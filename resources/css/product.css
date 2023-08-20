@@ -142,7 +142,7 @@ li.cate-item{
 
 
 .popup {
-    display: none;
+    display: block;
     position: fixed;
     position: absolute;
     top: 50%;
@@ -164,4 +164,33 @@ li.cate-item{
   }
   .fa-regular{
     margin-left: -2px;
+  }
+
+
+  .size-buttons {
+    margin-top: 15px;
+  }
+  
+  .size-button {
+    padding: 8px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8fbddb;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .selected-size {
+    margin-top: 10px;
+  }
+
+  .quantity-input{
+    width: 100px;
+    height: 50px;
+    border: 1px solid #6d6763;
+    border-radius: 5px;
+    margin-left: 5px;
+    padding-left: 10px;
+
   }
