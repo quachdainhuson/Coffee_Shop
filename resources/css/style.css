@@ -110,14 +110,14 @@ header{
 }
 
 .home-img{
-    flex: 1 1 10rem;
+    flex: 1 1 17rem;
    
 
 }
 
 .home-img img{
     animation: animate 3s linear infinite;
-   width: 1000px;
+   
     
 }
 @keyframes animate {

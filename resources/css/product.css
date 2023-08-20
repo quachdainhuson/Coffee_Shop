@@ -142,7 +142,7 @@ li.cate-item{
 
 
 .popup {
-    display: block;
+    display: none;
     position: fixed;
     position: absolute;
     top: 50%;

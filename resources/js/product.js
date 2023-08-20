@@ -6,7 +6,7 @@ $ = function(id) {
       $(id).style.display ='block';
   }
   var hide = function(id) {
-      $(id).style.display ='block';
+      $(id).style.display ='none';
   }
 
 
