@@ -17,7 +17,7 @@ ul.products li{
     max-width: 100%;
     height: auto;
     border: 1px solid #e0dede;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
     position: relative;
 }
@@ -27,17 +27,9 @@ ul.products li{
     transition: all 0.35s;
     background-color: #e7cd85;
 }
-.product-thumb .img-change{
-    position: absolute;
-    opacity: 1;
-    top: 0;
-    right: 0;
-}
 
-/* .product-thumb:hover .img-change{
-    opacity: 0;
 
-} */
+
 
 ul.products li .product-top{
     position: relative;
@@ -64,7 +56,7 @@ ul.products li .product-top a.buy-now{
     opacity: 75%;
     color: #fff;
     padding: 10px 0;
-    border-radius: 10px;
+    border-radius: 5px;
     position: absolute;
     bottom: -50px;
     width: 100%;
@@ -88,7 +80,7 @@ ul.products li .product-info a{
 li.item{
     background-color: #ffffff;
     border: 1px solid #E2DFDD;
-    border-radius: 10px;
+    border-radius: 5px;
     padding-top: 20px;
     margin-left: 20px;
 }
