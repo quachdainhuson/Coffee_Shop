@@ -187,7 +187,7 @@ li.cate-item{
   }
   .close-button {
     position: absolute;
-    top: 30px;
+    top: 15px;
     right: 40px;
     font-size: 24px;
     cursor: pointer;
