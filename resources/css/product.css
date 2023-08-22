@@ -192,5 +192,31 @@ li.cate-item{
     border-radius: 5px;
     margin-left: 5px;
     padding-left: 10px;
-
   }
+  .close-button {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  #cart-btn{
+    width: 170px;
+    height: 50px;
+    background-color: #C7A17A;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    
+    box-shadow: outset 170px 0 0 0  #C7A17A;
+    transition: 1s;
+
+}
+#cart-btn:hover, 
+#cart-btn:focus{
+    transition: 0.5s;
+    box-shadow: inset 170px 0 0 0 #000000;
+}
+#title-1{
+    align-items: center;
+}
