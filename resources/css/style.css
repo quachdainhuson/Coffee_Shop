@@ -29,7 +29,57 @@ img{
 }
 
 header{
-    /* position: fixed; */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 100px;
+    transition: 0.8s;
+    z-index: 100000;
+
+}
+
+
+header.sticky {
+padding:5px 100px;
+background: #CC0033;
+}   
+
+header .logo
+{
+position: relative; 
+transition: 0.6s;
+}
+
+header ul{ 
+    position: relative; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+} 
+header ul li{ 
+    position: relative; 
+    List-style: none;
+}
+header ul li a
+{ 
+    position: relative; 
+    margin: 0 15px;
+    letter-spacing: 2px;
+    font-weight: 500px;
+    transition: 0.6s;
+    color: #fff;
+} 
+
+header.sticky ul li a{
+    color: #fff;
+}
+
+/* .nav{
+    position: fixed;
     width: 100%;
     top: 0;
     right: 0;
@@ -40,20 +90,22 @@ header{
     background: #CC0033;
     box-shadow: 0 4px 41px rgb(14 55 54/ 14%);
     padding: 10px 10%;
-    transition: 0.2s;
     position: fixed;
-}
+    transition: top .3s;
+   
+} */
+
 
 .navbar{
-    /* position: fixed; */
+    position: fixed;
 }
 .logo{
     display: flex;
-    align-items: center;
 }
 
 .logo img{
     width: 100px;
+    margin-right: 260px;
 }
 
 .navbar-nav{ 
@@ -62,7 +114,7 @@ header{
 
 .navbar a{
     font-size: 1rem;
-    margin-left: 45px ;
+    margin-left: 15px ;
     color: var(--main-color);
     font-weight: 600;
     text-transform: uppercase;
@@ -85,9 +137,7 @@ header{
 
 
 
-.carousel{
-    top: 113px;
-}
+
 
 
 
