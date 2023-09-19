@@ -1,0 +1,105 @@
+body {
+    background-color: aliceblue;
+    font-family: serif;
+}
+
+#name-store {
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    margin-left: 20px;
+    font-size: 30px;
+    width: 200px;
+}
+
+.header-bar {
+    background-color: #66b4c2;
+    width: 100%;
+    height: 45px;
+    float: left;
+}
+
+#abc.col-3 {
+    background-color: blue;
+    height: 100%;
+}
+
+a {
+    padding-top: 10px;
+    text-decoration: none
+}
+
+.nav {
+    margin-top: -25px;
+    color: rgb(0, 0, 0);
+}
+
+.nav-link {
+    color: white;
+}
+
+.slide-bar {
+    width: 15%;
+    height: 1000px;
+    float: left;
+    background-color: rgb(255, 255, 255);
+}
+
+.d-flex {
+    padding-top: 20px;
+}
+
+.categories {
+    padding-top: 20px;
+}
+
+.content {
+    width: 78%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.bi {
+    color: black;
+}
+
+strong .title {
+    font-size: 100px;
+}
+
+.container {
+    padding-left: 100px;
+    height: auto;
+    width: auto;
+}
+
+.column {
+    padding-left: 90px;
+}
+
+.add-product {
+    float: right;
+    width: 150px;
+    height: 30px;
+    background-color: rgb(130, 241, 56);
+    border: none;
+    border-radius: 7px;
+    margin-right: 100px;
+}
+
+table {
+    margin-left: 35px;
+}
+
+.cart-dashboard,
+.member-dashboard {
+    width: 100px;
+    height: 100px;
+    margin-left: -12px;
+}
+
+.large {
+    font-size: 40px;
+}
