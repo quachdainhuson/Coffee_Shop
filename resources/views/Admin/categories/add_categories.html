@@ -7,6 +7,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../../../../public/css/admin.css">
     <link rel="stylesheet" href="../../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+
     <title>Admin Coffee Shop</title>
 </head>
 
@@ -64,7 +65,7 @@
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Hóa Đơn</h1>
+                    <h1>Danh Mục</h1>
                     <ul class="breadcrumb">
                         <li><a href="#">
                                 Analytics
@@ -77,51 +78,29 @@
             </div>
 
             <!-- Insights -->
-            <div class="row">
-                <div class="col-lg-11">
+            <div class="row" style="margin-left:30px;">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th  width="7%" scope="col">Mã ĐH</th>
-                                    <th  width="18%" scope="col">Khách Hàng</th>
-                                    <th  width="10%" scope="col">Điện Thoại</th>
-                                    <th  width="7%" scope="col">Tổng Tiền</th>
-                                    <th  width="10%"  scope="col">Tình Trạng</th>
-                                    <th  width="12%" scope="col">Ngày Mua</th>
-                                    <th  width="8%" scope="col">Chi Tiết Đơn Hàng</th>
-                                    <th  width="15%" scope="col">Sửa Trạng Thái</th>
-                                    <th  width="10" scope="col">Lần Sửa Đổi Gần Nhất</th>
-                                </tr>
-                            </thead>
-                                <tbody>
-                                <tr>
-                                    <td scope="col"></td>
-                                    <td scope="col"></td>
-                                    <td scope="col"></td>
-                                    <td scope="col"></td>
-                                    <p style="color:red;"></p>
-                                    <th scope="col" style="color:green"></th>
-                                    <td scope="col"></td>
-                                    <td scope="col">
-                                        <a href=""><button class="btn btn-primary" type="submit">Chi Tiết</button></a>
-                                    </td>
-                                    <td scope="col">
-                                        <a href=""><button class="btn btn-primary" type="submit"><i class="fa-solid fa-x"></i></button></a>
-                                        <a href=""><button class="btn btn-primary" type="submit"><i class="fa-regular fa-square-check"></i></button></a>
-                                        <a href=""><button class="btn btn-primary" type="submit"><i class="fa-solid fa-truck"></i></button></a>
-                                        <a href=""><button class="btn btn-primary" type="submit"><i class="fa-solid fa-box"></i></button></a>
-                                    </td>
-                                    <td scope="col"></td>
-                                </tr>
-                                </tbody>
+                        <div class="panel-body">
+                            <div class="col-md-8">
+                                <!-- ERROR -->
                                 
-                            
-                            
-                        </table>
-                        
+                                <form role="form"  enctype="multipart/form-data" method="post" action="">
+                                    <div style="margin-bottom: 10px;">
+                                        <label>Tên danh mục:</label>
+                                        <input require type="text" name="cate_name" class="form-control"
+                                            placeholder="Tên danh mục...">
+
+                                    </div>
+                                    <input type="submit" name="sbm" value="Thêm Danh Mục" class="btn btn-success"></input>
+                                    <button type="reset" class="btn btn-default">Làm mới</button>
+
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
         </main>
