@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('Admin/Product/product', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.product');
+Route::get('Admin/Product/add_product', [\App\Http\Controllers\ProductController::class, 'create'])->name('products.add_product');

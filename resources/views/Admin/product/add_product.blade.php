@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../../../public/css/admin.css">
-    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
-    
-    
+    <link rel="stylesheet" href="../../../public/css/admin.css">
+    <link rel="stylesheet" href="../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+
+
     <title>Admin Coffee Shop</title>
 </head>
 
@@ -22,7 +22,7 @@
         </a>
         <ul class="side-menu">
             <li><a href="../DashBoard/dashboard.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li ><a href="../Product/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
+            <li ><a href="/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
             <li><a href="../User/user.html"><i class='bx bx-group'></i>Người Dùng</a></li>
             <li><a href="../Categories/categories.html"><i class='bx bx-analyse'></i>Danh Mục</a></li>
             <li><a href="../Receipt/receipt.html"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
@@ -74,12 +74,12 @@
                         <li><a href="#" >Shop</a></li>
                     </ul>
                 </div>
-                
+
             </div>
 
             <!-- Insights -->
             <div class="container-fluid">
-                
+
                 <form role="form"  enctype="multipart/form-data" method="post" action="">
                     <div class="row">
                         <div class="col-4" >
@@ -93,7 +93,7 @@
                                         <div class="form-group">
                                             <label>Tên sản phẩm</label>
                                             <input required name="product_name" class="form-control" placeholder="">
-                                        </div>                            
+                                        </div>
                                         <div class="form-group">
                                             <label>Giá sản phẩm</label>
                                             <input required name="product_price" type="number" min="0" class="form-control">
@@ -105,52 +105,52 @@
                                                     <input name="product_featured" type="checkbox">Nổi Bật</input>
                                                 </label>
                                             </div>
-                                        </div> 
+                                        </div>
                                         <div class="form-group">
                                             <label>Danh mục</label>
                                             <select name="cate_id" class="form-control">
-                                            
+
                                                 <option value=""></option>
-                                                
+
                                             </select>
-                                        </div>                                    
+                                        </div>
                                         <div class="form-group">
                                             <label>Số Lượng Từng Kích Cỡ</label><br>
-                                        
+
                                             <label>Size</label>
-                                            <label for="quantity_<?php echo $size['size_number']; ?>"><?php echo $size['size_number']; ?>:</label>
-                                            <input type="number" name="<?php echo $size['size_number']; ?>" id="quantity_<?php echo $size['size_id']; ?>" min="0" value="0" required style="width: 50px;"><br>
-                                        
-                                        </div>                                   
+                                            
+                                            <input type="number" name=""  min="0" value="0" required style="width: 50px;"><br>
+
+                                        </div>
                                         <div class="form-group">
                                             <label>Màu Sắc</label>
                                             <select name="color_id" class="form-control">
-                                            
+
                                                 <option value=""></option>
-                                            
-                                            
+
+
                                             </select>
-                                        </div>                                   
+                                        </div>
                                         <div class="form-group">
                                             <label>Kiểu Dáng</label>
                                             <select name="style_id" class="form-control">
-                                            
+
                                                 <option value=""></option>
-                                                
+
                                             </select>
-                                        </div>                                    
+                                        </div>
                                         <div class="form-group">
                                             <label>Mô tả sản phẩm</label>
                                             <textarea required name="product_description" id="product_description" class="form-control" cols="30" rows="10"></textarea>
                                         </div>
                                         <input name="sbm" type="submit" value="Thêm mới" class="btn btn-primary"></input>
                                         <button type="reset" class="btn btn-light">Reset</button>
-                                    
+
                         </div>
                         <div class="col-2"></div>
                         </div>
                 </form>
-                    
+
             </div>
 
         </main>
