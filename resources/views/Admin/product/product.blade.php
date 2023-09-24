@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../../../public/css/admin.css">
-    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
-    
-    
+    <link rel="stylesheet" href="../../../public/css/admin.css">
+    <link rel="stylesheet" href="../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
     <title>Admin Coffee Shop</title>
 </head>
 
@@ -22,7 +20,7 @@
         </a>
         <ul class="side-menu">
             <li><a href="../DashBoard/dashboard.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li ><a href="../Product/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
+            <li ><a href="/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
             <li><a href="../User/user.html"><i class='bx bx-group'></i>Người Dùng</a></li>
             <li><a href="../Categories/categories.html"><i class='bx bx-analyse'></i>Danh Mục</a></li>
             <li><a href="../Receipt/receipt.html"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
@@ -74,7 +72,7 @@
                         <li><a href="#" >Shop</a></li>
                     </ul>
                 </div>
-                <a href="add_product.html" class="report">
+                <a href="{{ route('products.add_product') }}" class="report">
                     <i class='bx bx-plus'></i>
                     <span>Thêm Sản Phẩm</span>
                 </a>
@@ -98,16 +96,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>1</td>
                                     <td>1</td>
-                                    <td id="product-img"><img width="100px" height="100px" src="Public/image/<?php 
-                                                        $list_img = explode(',',$item['product_image']);
-                                                        $main_pic = $list_img[0];
-                                                        echo $main_pic;
-                                                    ?>" alt="" srcset=""></td>
+                                    <td id="product-img"><img width="100px" height="100px" src="Public/image/" alt="" srcset=""></td>
                                     <td>1</td>
                                     <td>
                                         1
@@ -117,7 +111,7 @@
                                             <a href="edit_product.html">
                                                 <button class="btn btn-primary" type="submit">
                                                     <i class='bx bxs-edit-alt' ></i>
-                                                    
+
                                                 </button>
                                             </a>
 
@@ -127,16 +121,16 @@
                                             </button>
                                             </a>
                                         </div>
-                                        
+
                                     </td>
                                 </tr>
-                                         
 
-                            
-                            
+
+
+
                             </tbody>
                         </table>
-                        
+
                     </div>
                 </div>
             </div>
