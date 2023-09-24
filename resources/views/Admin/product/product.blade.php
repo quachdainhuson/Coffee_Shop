@@ -16,7 +16,7 @@
     <div class="sidebar">
         <a href="#" class="logo">
             <i class='bx bx-code-alt'></i>
-            <div class="logo-name"><span>Coffee</span>Shop</div>
+            <div class="logo-name"><span>Coffee</span>Sho</div>
         </a>
         <ul class="side-menu">
             <li><a href="../DashBoard/dashboard.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
