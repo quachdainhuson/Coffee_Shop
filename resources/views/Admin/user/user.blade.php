@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../../../public/css/admin.css">
-    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../public/css/admin.css">
+    <link rel="stylesheet" href="../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
     <title>Admin Coffee Shop</title>
 </head>
 
@@ -21,7 +21,7 @@
         <ul class="side-menu">
             <li><a href="../DashBoard/dashboard.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li ><a href="../Product/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
-            <li><a href="../User/user.html"><i class='bx bx-group'></i>Người Dùng</a></li>
+            <li><a href="user.blade.php"><i class='bx bx-group'></i>Người Dùng</a></li>
             <li><a href="../Categories/categories.html"><i class='bx bx-analyse'></i>Danh Mục</a></li>
             <li><a href="../Receipt/receipt.html"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
@@ -72,7 +72,7 @@
                         <li><a href="#" >Shop</a></li>
                     </ul>
                 </div>
-                <a href="add_user.html" class="report">
+                <a href="{{ route('users.add_user') }}" class="report">
                     <i class='bx bx-plus'></i>
                     <span>Thêm Người Dùng</span>
                 </a>
@@ -89,22 +89,33 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Họ và tên</th>
-                                    <th scope="col">UserName</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Điện thoại</th>
+                                    <th scope="col">UserName</th>
                                     <th scope="col">Quyền</th>
                                     <th scope="col">Hành Động</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach($employees as $employee)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Quách Đại Như Sơn</td>
-                                    <td>huydietngay123</td>
-                                    <td>son@gmail.com</td>
-                                    <td>Admin</td>
+                                    <td>
+                                        {{ $employee->employee_id }}
+                                    </td>
+                                    <td>{{ $employee->employee_name }}</td>
+                                    <td>{{ $employee->employee_email }}</td>
+                                    <td>{{ $employee->employee_phone }}</td>
+                                    <td>{{ $employee->username }}</td>
+                                    <td>
+                                        @if($employee->role == 1)
+                                            Admin
+                                        @else
+                                            Nhân viên
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="form-group">
-                                            <a href="edit_user.html">
+                                            <a href="{{ route('users.edit_user',$employee->employee_id ) }}">
                                                 <button class="btn btn-primary" type="submit">
                                                     <i class='bx bxs-edit-alt' ></i>
 
@@ -114,12 +125,14 @@
                                             <a  href="">
                                                 <button class="btn btn-primary" type="submit">
                                                     <i class='bx bxs-trash' ></i>
-                                            </button>
+                                                </button>
                                             </a>
                                         </div>
 
                                     </td>
                                 </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                         <div class="panel-footer">
