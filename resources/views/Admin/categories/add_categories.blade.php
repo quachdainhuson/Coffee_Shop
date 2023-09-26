@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../../../public/css/admin.css">
-    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../public/css/admin.css">
+    <link rel="stylesheet" href="../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
 
     <title>Admin Coffee Shop</title>
 </head>
@@ -84,10 +84,11 @@
                             <div class="col-md-8">
                                 <!-- ERROR -->
 
-                                <form role="form"  enctype="multipart/form-data" method="post" action="">
+                                <form role="form"  enctype="multipart/form-data" method="post" action="{{ route('categories.store_category')}}">
+                                    @csrf
                                     <div style="margin-bottom: 10px;">
                                         <label>Tên danh mục:</label>
-                                        <input require type="text" name="cate_name" class="form-control"
+                                        <input required type="text" name="cate_name" class="form-control"
                                             placeholder="Tên danh mục...">
 
                                     </div>

@@ -83,14 +83,18 @@
                             <div class="col-md-8">
                                 <!-- ERROR -->
 
-                                <form role="form"  enctype="multipart/form-data" method="post" action="">
+                                <form role="form"  enctype="multipart/form-data" method="post" action="{{ route('categories.update_category', $cate_id)}}">
+                                    @csrf
+                                    @method('PUT')
+                                    @foreach($categories as $category)
                                     <div style="margin-bottom: 10px;">
                                         <label>Tên danh mục:</label>
-                                        <input require type="text" name="cate_name" class="form-control"
-                                            placeholder="Tên danh mục...">
+                                        <input required type="text" name="cate_name" class="form-control"
+                                            placeholder="Tên danh mục..." value="{{$category -> cate_name}}">
 
                                     </div>
                                     <input type="submit" name="sbm" value="Sửa Danh Mục" class="btn btn-success"></input>
+                                    @endforeach
                                     <button type="reset" class="btn btn-default">Làm mới</button>
 
                                 </form>

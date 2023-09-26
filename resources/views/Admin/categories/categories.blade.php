@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../../../public/css/admin.css">
-    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../public/css/admin.css">
+    <link rel="stylesheet" href="../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
 
     <title>Admin Coffee Shop</title>
 </head>
@@ -74,7 +74,7 @@
                     </ul>
 
                 </div>
-                <a href="add_categories.html" class="report">
+                <a href="{{route('categories.add_category')}}" class="report">
                     <i class='bx bx-plus'></i>
                     <span>Thêm Danh Mục</span>
                 </a>
@@ -94,30 +94,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            @foreach($categories as $category)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>1</td>
+                                    <th scope="row">{{$category->cate_id}}</th>
+                                    <td>{{$category->cate_name}}</td>
 
                                     <td>
                                         <div class="form-group">
-                                            <a href="edit_categories.html">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class='bx bxs-edit-alt' ></i>
+                                            <div class="btn">
+                                                <a href="{{route('categories.edit_category', $category->cate_id) }}">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            <i class='bx bxs-edit-alt' ></i>
 
-                                                </button>
-                                            </a>
-
-                                            <a  href="">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class='bx bxs-trash' ></i>
-                                            </button>
-                                            </a>
+                                                        </button>
+                                                    </a>
+                                            </div>
+                                            
+                                            
+                                            <div class="btn">
+                                                <form method="post" action="{{route('categories.delete_category', $category -> cate_id)}}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-primary" type="submit">
+                                                            <i class='bx bxs-trash' ></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            
+                                            
+                                            
+                                               
                                         </div>
 
                                     </td>
                                 </tr>
-
+                            @endforeach
 
 
 
