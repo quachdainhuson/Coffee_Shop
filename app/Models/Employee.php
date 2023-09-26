@@ -33,4 +33,22 @@ class Employee extends Model
             ->get();
         return $employee;
     }
+    public function updateEmployee(){
+        DB::table('employees')
+            ->where('employee_id', $this->employee_id)
+            ->update([
+                'employee_name' => $this->employee_name,
+                'employee_email' => $this->employee_email,
+                'employee_phone' => $this->employee_phone,
+                'username' => $this->username,
+                'password' => $this->password,
+                'role' => $this->role
+            ]);
+
+    }
+    public function destroyUser(){
+        DB::table('employees')
+            ->where('employee_id', $this->employee_id)
+            ->delete();
+    }
 }

@@ -74,14 +74,26 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        $obj = new Employee();
+        $obj->employee_id = $request->employee_id;
+        $obj->employee_name = $request->employee_name;
+        $obj->employee_email = $request->employee_email;
+        $obj->employee_phone = $request->employee_phone;
+        $obj->username = $request->username;
+        $obj->password = $request->password;
+        $obj->role = $request->role;
+        $obj->updateEmployee();
+        return Redirect::route('users.user');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Employee $employee)
+    public function destroy(Employee $employee, Request $request)
     {
-        //
+        $obj = new Employee();
+        $obj->employee_id = $request->employee_id;
+        $obj->destroyUser();
+        return Redirect::route('users.user');
     }
 }

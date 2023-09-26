@@ -76,8 +76,9 @@
             </div>
 
             <!-- Insights -->
-            <form role="form"  enctype="multipart/form-data" method="post" action="">
+            <form role="form"  enctype="multipart/form-data" method="post" action="{{ route('users.update_user', $employee_id) }}">
                 @csrf
+                @method('PUT')
                 @foreach($employees as $employee )
                 <div class="row">
                     <div class="col-1"></div>

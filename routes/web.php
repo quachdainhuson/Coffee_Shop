@@ -21,6 +21,8 @@ Route::prefix('Admin/User/')->group(function(){
     Route::get('/add_user', [\App\Http\Controllers\EmployeeController::class, 'create'])->name('users.add_user');
     Route::post('/add_user', [\App\Http\Controllers\EmployeeController::class, 'store'])->name('users.store');
     Route::get('/{employee_id}/edit_user', [\App\Http\Controllers\EmployeeController::class, 'edit'])->name('users.edit_user');
+    Route::put('/{employee_id}/edit_user', [\App\Http\Controllers\EmployeeController::class, 'update'])->name('users.update_user');
+    Route::delete('/{employee_id}', [\App\Http\Controllers\EmployeeController::class, 'destroy'])->name('users.destroy_user');
 });
 
 

@@ -121,12 +121,14 @@
 
                                                 </button>
                                             </a>
-
-                                            <a  href="">
+                                            <form  method="post" action="{{ route('users.destroy_user', $employee->employee_id) }}">
+                                                @csrf
+                                                @method('DELETE')
                                                 <button class="btn btn-primary" type="submit">
                                                     <i class='bx bxs-trash' ></i>
                                                 </button>
-                                            </a>
+                                            </form>
+
                                         </div>
 
                                     </td>
