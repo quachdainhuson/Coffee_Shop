@@ -60,11 +60,11 @@ class EmployeeController extends Controller
     public function edit(Employee $employee, Request $request)
     {
         $obj = new Employee();
-        $obj->employee_id = $request->employee_id;
+        $obj->id = $request->id;
         $employees = $obj->edit();
         return view('Admin/User/edit_user',[
             'employees' => $employees,
-            'employee_id' => $obj->employee_id
+            'id' => $obj->id
         ]);
 
     }
@@ -75,7 +75,7 @@ class EmployeeController extends Controller
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
         $obj = new Employee();
-        $obj->employee_id = $request->employee_id;
+        $obj->id = $request->id;
         $obj->employee_name = $request->employee_name;
         $obj->employee_email = $request->employee_email;
         $obj->employee_phone = $request->employee_phone;
@@ -92,7 +92,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee, Request $request)
     {
         $obj = new Employee();
-        $obj->employee_id = $request->employee_id;
+        $obj->id = $request->id;
         $obj->destroyUser();
         return Redirect::route('users.user');
     }

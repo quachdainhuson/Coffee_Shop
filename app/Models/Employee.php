@@ -29,13 +29,13 @@ class Employee extends Model
     public function edit()
     {
         $employee = DB::table('employees')
-            ->where('employee_id', $this->employee_id)
+            ->where('id', $this->id)
             ->get();
         return $employee;
     }
     public function updateEmployee(){
         DB::table('employees')
-            ->where('employee_id', $this->employee_id)
+            ->where('id', $this->id)
             ->update([
                 'employee_name' => $this->employee_name,
                 'employee_email' => $this->employee_email,
@@ -48,7 +48,7 @@ class Employee extends Model
     }
     public function destroyUser(){
         DB::table('employees')
-            ->where('employee_id', $this->employee_id)
+            ->where('id', $this->id)
             ->delete();
     }
 }

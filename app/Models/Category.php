@@ -25,14 +25,14 @@ class Category extends Model
 
     public function edit(){
         $categories = DB::table('categories')
-        ->where('cate_id', $this->cate_id)
+        ->where('id', $this->id)
         ->get();
         return $categories;
     }
 
     public function updateCategory(){
         DB::table('categories')
-        ->where('cate_id', $this -> cate_id)
+        ->where('id', $this -> id)
         ->update([
             'cate_name' => $this->cate_name
         ]);
@@ -40,7 +40,7 @@ class Category extends Model
 
     public function deleteCategory(){
         DB::table('categories')
-        ->where('cate_id', $this->cate_id)
+        ->where('id', $this->id)
         ->delete();
     }
 }

@@ -55,11 +55,11 @@ class CategoryController extends Controller
     public function edit(Category $category, Request $request)
     {
         $obj = new Category();
-        $obj->cate_id = $request->cate_id;
+        $obj->id = $request->id;
         $categories = $obj->edit();
         return view('Admin.Categories.edit_categories',[
             'categories' => $categories,
-            'cate_id' => $obj->cate_id
+            'id' => $obj->id
         ]);
 
     }
@@ -70,7 +70,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $obj = new Category();
-        $obj -> cate_id = $request -> cate_id;
+        $obj -> id = $request -> id;
         $obj -> cate_name = $request -> cate_name;
         $obj -> updateCategory();
         return Redirect::route('categories.category');
@@ -82,7 +82,7 @@ class CategoryController extends Controller
     public function destroy(Category $category, Request $request)
     {
         $obj = new Category();
-        $obj -> cate_id = $request->cate_id;
+        $obj -> id = $request->id;
         $obj -> deleteCategory();
         return Redirect::route('categories.category');
     }

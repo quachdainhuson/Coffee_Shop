@@ -21,10 +21,10 @@
             <div class="logo-name"><span>Coffee</span>Shop</div>
         </a>
         <ul class="side-menu">
-            <li><a href="../DashBoard/dashboard.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a href="../DashBoard/dashboard.blade.php"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
             <li ><a href="/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
             <li><a href="../User/user.blade.php"><i class='bx bx-group'></i>Người Dùng</a></li>
-            <li><a href="../Categories/categories.html"><i class='bx bx-analyse'></i>Danh Mục</a></li>
+            <li><a href="../Categories/categories.html"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li><a href="../Receipt/receipt.html"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
@@ -108,7 +108,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Danh mục</label>
-                                            <select name="cate_id" class="form-control">
+                                            <select name="id" class="form-control">
 
                                                 <option value=""></option>
 
