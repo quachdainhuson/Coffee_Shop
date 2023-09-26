@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../../../public/css/admin.css">
-    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../public/css/admin.css">
+    <link rel="stylesheet" href="../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
     <title>Admin Coffee Shop</title>
 </head>
 
@@ -21,7 +21,7 @@
         <ul class="side-menu">
             <li><a href="../DashBoard/dashboard.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li ><a href="../Product/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
-            <li><a href="../User/user.html"><i class='bx bx-group'></i>Người Dùng</a></li>
+            <li><a href="user.blade.php"><i class='bx bx-group'></i>Người Dùng</a></li>
             <li><a href="../Categories/categories.html"><i class='bx bx-analyse'></i>Danh Mục</a></li>
             <li><a href="../Receipt/receipt.html"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
@@ -76,28 +76,36 @@
             </div>
 
             <!-- Insights -->
-            <form role="form"  enctype="multipart/form-data" method="post" action="">
+            <form role="form"  enctype="multipart/form-data" method="post" action="{{ route('users.store') }}">
+                @csrf
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-7">
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Họ và Tên</label>
-                                <input type="text" name="full_name" required class="form-control"  placeholder="">
+                                <input type="text" name="employee_name" required class="form-control"  placeholder="">
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" name="user_email" required class="form-control"  placeholder="">
+                                <input type="text" name="employee_email" required class="form-control"  placeholder="">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label>Điện Thoại</label>
+                                <input type="text" name="employee_phone" required class="form-control"  placeholder="">
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" name="user_name" required class="form-control"  placeholder="">
+                                <input type="text" name="username" required class="form-control"  placeholder="">
                             </div>
                         </div>
                         <br>
@@ -105,21 +113,15 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Mật Khẩu</label>
-                                <input type="pass_word" name="pass_word" required class="form-control"  placeholder="">
+                                <input type="password" name="password" required class="form-control"  placeholder="">
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
-                            <div class="form-group">
-                                <label>Nhập Lại Mật Khẩu</label>
-                                <input type="password" name="re_password" required class="form-control" placeholder="">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label>Quyền</label>
-                            <select name="user_level" class="form-control">
+                            <select name="role" class="form-control">
                                     <option selected value=1>Admin</option>
-                                    <option value=2>Member</option>
+                                    <option value=2>Nhân Viên</option>
                                 </select>
                         </div>
                         <br>
