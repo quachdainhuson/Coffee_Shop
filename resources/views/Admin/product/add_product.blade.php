@@ -22,9 +22,9 @@
         </a>
         <ul class="side-menu">
             <li><a href="../DashBoard/dashboard.blade.php"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
-            <li ><a href="/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
-            <li><a href="../User/user.blade.php"><i class='bx bx-group'></i>Người Dùng</a></li>
-            <li><a href="../Categories/categories.html"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
+            <li class="active"><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
+            <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
+            <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li><a href="../Receipt/receipt.html"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
@@ -80,7 +80,8 @@
             <!-- Insights -->
             <div class="container-fluid">
 
-                <form role="form"  enctype="multipart/form-data" method="post" action="">
+                <form role="form"  enctype="multipart/form-data" method="post" action="{{route('products.store_product')}}">
+                    @csrf
                     <div class="row">
                         <div class="col-4" >
                             <br>
@@ -90,58 +91,33 @@
                         </div>
                         <div class="col-6" style="padding-left: 50px;">
                             <br><br><br><br>
+
                                         <div class="form-group">
                                             <label>Tên sản phẩm</label>
                                             <input required name="product_name" class="form-control" placeholder="">
                                         </div>
-                                        <div class="form-group">
-                                            <label>Giá sản phẩm</label>
-                                            <input required name="product_price" type="number" min="0" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Sản phẩm nổi bật</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="product_featured" type="checkbox">Nổi Bật</input>
-                                                </label>
-                                            </div>
-                                        </div>
+
                                         <div class="form-group">
                                             <label>Danh mục</label>
-                                            <select name="id" class="form-control">
 
-                                                <option value=""></option>
-
+                                            <select name="cate_id" class="form-control">
+                                                @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->cate_name }}</option>
+                                                @endforeach
                                             </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Số Lượng Từng Kích Cỡ</label><br>
-
-                                            <label>Size</label>
-
-                                            <input type="number" name=""  min="0" value="0" required style="width: 50px;"><br>
 
                                         </div>
                                         <div class="form-group">
-                                            <label>Màu Sắc</label>
-                                            <select name="color_id" class="form-control">
-
-                                                <option value=""></option>
-
-
-                                            </select>
+                                            <label>Giá Của Từng Size</label><br>
+                                            @foreach($sizes as $size)
+                                            <label>Size: {{$size->size_name}}</label>
+                                                <input type="number" name="price_{{$size}}" min="0" value="10000" required style="width: 100px;"><br>
+                                            @endforeach
                                         </div>
-                                        <div class="form-group">
-                                            <label>Kiểu Dáng</label>
-                                            <select name="style_id" class="form-control">
 
-                                                <option value=""></option>
-
-                                            </select>
-                                        </div>
                                         <div class="form-group">
                                             <label>Mô tả sản phẩm</label>
-                                            <textarea required name="product_description" id="product_description" class="form-control" cols="30" rows="10"></textarea>
+                                            <textarea required name="product_description" class="form-control" cols="30" rows="10"></textarea>
                                         </div>
                                         <input name="sbm" type="submit" value="Thêm mới" class="btn btn-primary"></input>
                                         <button type="reset" class="btn btn-light">Reset</button>

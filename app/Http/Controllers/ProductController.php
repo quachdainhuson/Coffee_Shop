@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Size;
 
 class ProductController extends Controller
 {
@@ -13,7 +15,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('Admin.Product.product');
+        $obj = new Product();
+        $products = $obj->index();
+        return view('Admin.Product.product',[
+            'products' => $products
+        ]);
     }
 
 
@@ -22,7 +28,15 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('Admin.Product.add_product');
+        $objCate = new Category();
+        $categories = $objCate->index();
+        $objSize = new Size();
+        $sizes = $objSize->index();
+        return view('Admin.Product.add_product',[
+            'categories' => $categories,
+            'sizes' => $sizes
+
+        ]);
     }
 
     /**
@@ -30,7 +44,13 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $obj = new Product();
+        $obj->product_name = $request->product_name;
+        $obj->product_description = $request->product_description;
+        $obj->cate_id = $request->cate_id;
+        $obj->store();
+
+        return redirect()->route('products.product');
     }
 
     /**

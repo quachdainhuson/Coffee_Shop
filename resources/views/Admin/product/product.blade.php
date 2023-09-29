@@ -20,9 +20,9 @@
         </a>
         <ul class="side-menu">
             <li><a href="../DashBoard/dashboard.blade.php"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
-            <li ><a href="/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
-            <li><a href="../User/user.blade.php"><i class='bx bx-group'></i>Người Dùng</a></li>
-            <li><a href="../Categories/categories.html"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
+            <li class="active"><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
+            <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
+            <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li><a href="../Receipt/receipt.html"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
@@ -88,46 +88,37 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Tên Sản Phẩm</th>
-                                    <th scope="col">Giá</th>
                                     <th scope="col">Hình Ảnh</th>
                                     <th scope="col">Danh Mục</th>
-                                    <th scope="col">Kích Cỡ</th>
                                     <th>ADD/DELETE</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($products as $product)
+                                    <tr>
+                                        <th scope="row">{{ $product->id }}</th>
+                                        <td>{{ $product->product_name }}</td>
 
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td id="product-img"><img width="100px" height="100px" src="Public/image/" alt="" srcset=""></td>
-                                    <td>1</td>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <a href="edit_product.html">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class='bx bxs-edit-alt' ></i>
+                                        <td id="product-img"><img width="150px" height="150px" src="Public/image/" alt="" srcset=""></td>
+                                        <td>{{ $product->cate_name }}</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <a href="edit_product.blade.php">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        <i class='bx bxs-edit-alt' ></i>
 
+                                                    </button>
+                                                </a>
+                                                <a  href="">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        <i class='bx bxs-trash' ></i>
                                                 </button>
-                                            </a>
+                                                </a>
+                                            </div>
 
-                                            <a  href="">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class='bx bxs-trash' ></i>
-                                            </button>
-                                            </a>
-                                        </div>
-
-                                    </td>
-                                </tr>
-
-
-
-
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
 

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('Admin/Product/')->group(function(){
     Route::get('/product', [\App\Http\Controllers\ProductController::class, 'index'])->name('products.product');
     Route::get('/add_product', [\App\Http\Controllers\ProductController::class, 'create'])->name('products.add_product');
+    Route::post('/add_product', [\App\Http\Controllers\ProductController::class, 'store'])->name('products.store_product');
 });
 
 Route::prefix('Admin/User/')->group(function(){
