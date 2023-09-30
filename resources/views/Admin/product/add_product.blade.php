@@ -92,35 +92,35 @@
                         <div class="col-6" style="padding-left: 50px;">
                             <br><br><br><br>
 
-                                        <div class="form-group">
-                                            <label>Tên sản phẩm</label>
-                                            <input required name="product_name" class="form-control" placeholder="">
-                                        </div>
+                            <div class="form-group">
+                                <label>Tên sản phẩm</label>
+                                <input required name="product_name" class="form-control" placeholder="">
+                            </div>
 
-                                        <div class="form-group">
-                                            <label>Danh mục</label>
+                            <div class="form-group">
+                                <label>Danh mục</label>
 
-                                            <select name="cate_id" class="form-control">
-                                                @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->cate_name }}</option>
-                                                @endforeach
-                                            </select>
+                                <select name="cate_id" class="form-control">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->cate_name }}</option>
+                                    @endforeach
+                                </select>
 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Giá Của Từng Size</label><br>
-                                            @foreach($sizes as $size)
-                                                <label for="size_{{ $size->id }}">{{ $size->size_name }}</label>
-                                                <input type="number" name="sizes[{{ $size->id }}][product_price]" id="size_{{ $size->id }}"><br>
-                                            @endforeach
-                                        </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Giá Của Từng Size</label><br>
+                                @foreach($sizes as $size)
+                                    <label for="size_{{ $size->id }}">{{ $size->size_name }}</label>
+                                    <input type="number" name="sizes[{{ $size->id }}][product_price]" id="size_{{ $size->id }}"><br>
+                                @endforeach
+                            </div>
 
-                                        <div class="form-group">
-                                            <label>Mô tả sản phẩm</label>
-                                            <textarea required name="product_description" class="form-control" cols="30" rows="10"></textarea>
-                                        </div>
-                                        <input name="sbm" type="submit" value="Thêm mới" class="btn btn-primary"></input>
-                                        <button type="reset" class="btn btn-light">Reset</button>
+                            <div class="form-group">
+                                <label>Mô tả sản phẩm</label>
+                                <textarea required name="product_description" class="form-control" cols="30" rows="10"></textarea>
+                            </div>
+                            <input name="sbm" type="submit" value="Thêm mới" class="btn btn-primary"></input>
+                            <button type="reset" class="btn btn-light">Reset</button>
 
                         </div>
                         <div class="col-2"></div>

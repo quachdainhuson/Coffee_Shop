@@ -26,6 +26,6 @@ class Product extends Model
             'product_image' => '1',
             'cate_id' => $this->cate_id,
         ]);
-
     }
+
 }

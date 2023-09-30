@@ -103,7 +103,7 @@
                                         <td>{{ $product->cate_name }}</td>
                                         <td>
                                             <div class="form-group">
-                                                <a href="edit_product.blade.php">
+                                                <a href="{{route('products.edit_product',$product->id)}}">
                                                     <button class="btn btn-primary" type="submit">
                                                         <i class='bx bxs-edit-alt' ></i>
 

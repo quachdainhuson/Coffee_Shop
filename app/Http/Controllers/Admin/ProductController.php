@@ -74,7 +74,15 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $objCate = new Category();
+        $categories = $objCate->index();
+        $objSize = new Size();
+        $sizes = $objSize->index();
+        return view('Admin.Product.edit_product',[
+            'categories' => $categories,
+            'sizes' => $sizes
+
+        ]);
     }
 
     /**

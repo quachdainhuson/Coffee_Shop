@@ -80,7 +80,8 @@
             <!-- Insights -->
             <div class="container-fluid">
 
-                <form role="form"  enctype="multipart/form-data" method="post" action="">
+                <form role="form"  enctype="multipart/form-data" method="post" action="">//route('products.store_product')
+                    @csrf
                     <div class="row">
                         <div class="col-4" >
                             <br>
@@ -90,65 +91,40 @@
                         </div>
                         <div class="col-6" style="padding-left: 50px;">
                             <br><br><br><br>
-                                        <div class="form-group">
-                                            <label>Tên sản phẩm</label>
-                                            <input required name="product_name" class="form-control" placeholder="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Giá sản phẩm</label>
-                                            <input required name="product_price" type="number" min="0" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Sản phẩm nổi bật</label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="product_featured" type="checkbox">Nổi Bật</input>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Danh mục</label>
-                                            <select name="id" class="form-control">
 
-                                                <option value=""></option>
+                            <div class="form-group">
+                                <label>Tên sản phẩm</label>
+                                <input required name="product_name" class="form-control" placeholder="">
+                            </div>
 
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Số Lượng Từng Kích Cỡ</label><br>
+                            <div class="form-group">
+                                <label>Danh mục</label>
 
-                                            <label>Size</label>
-                                            <label for="quantity_<?php echo $size['size_number']; ?>"><?php echo $size['size_number']; ?>:</label>
-                                            <input type="number" name="<?php echo $size['size_number']; ?>" id="quantity_<?php echo $size['size_id']; ?>" min="0" value="0" required style="width: 50px;"><br>
+                                <select name="cate_id" class="form-control">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->cate_name }}</option>
+                                    @endforeach
+                                </select>
 
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Màu Sắc</label>
-                                            <select name="color_id" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Giá Của Từng Size</label><br>
+                                @foreach($sizes as $size)
+                                    <label for="size_{{ $size->id }}">{{ $size->size_name }}</label>
+                                    <input type="number" name="sizes[{{ $size->id }}][product_price]" id="size_{{ $size->id }}"><br>
+                                @endforeach
+                            </div>
 
-                                                <option value=""></option>
-
-
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Kiểu Dáng</label>
-                                            <select name="style_id" class="form-control">
-
-                                                <option value=""></option>
-
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Mô tả sản phẩm</label>
-                                            <textarea required name="product_description" id="product_description" class="form-control" cols="30" rows="10"></textarea>
-                                        </div>
-                                        <input name="sbm" type="submit" value="Sửa" class="btn btn-primary"></input>
-                                        <button type="reset" class="btn btn-light">Reset</button>
+                            <div class="form-group">
+                                <label>Mô tả sản phẩm</label>
+                                <textarea required name="product_description" class="form-control" cols="30" rows="10"></textarea>
+                            </div>
+                            <input name="sbm" type="submit" value="Thêm mới" class="btn btn-primary"></input>
+                            <button type="reset" class="btn btn-light">Reset</button>
 
                         </div>
                         <div class="col-2"></div>
-                        </div>
+                    </div>
                 </form>
 
             </div>
