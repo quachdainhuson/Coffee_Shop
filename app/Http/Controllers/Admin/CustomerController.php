@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\ReceiptTable;
-use App\Http\Requests\StoreReceiptTableRequest;
-use App\Http\Requests\UpdateReceiptTableRequest;
+use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\UpdateCustomerRequest;
+use App\Models\Customer;
 
-class ReceiptTableController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class ReceiptTableController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReceiptTableRequest $request)
+    public function store(StoreCustomerRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ReceiptTableController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ReceiptTable $receiptTable)
+    public function show(Customer $customer)
     {
         //
     }
@@ -43,7 +43,7 @@ class ReceiptTableController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ReceiptTable $receiptTable)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -51,7 +51,7 @@ class ReceiptTableController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateReceiptTableRequest $request, ReceiptTable $receiptTable)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         //
     }
@@ -59,7 +59,7 @@ class ReceiptTableController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ReceiptTable $receiptTable)
+    public function destroy(Customer $customer)
     {
         //
     }

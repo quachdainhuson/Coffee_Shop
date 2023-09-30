@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\TableCoffee;
-use App\Http\Requests\StoreTableCoffeeRequest;
-use App\Http\Requests\UpdateTableCoffeeRequest;
+use App\Http\Requests\StoreReceiptRequest;
+use App\Http\Requests\UpdateReceiptRequest;
+use App\Models\Receipt;
 
-class TableCoffeeController extends Controller
+class ReceiptController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class TableCoffeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTableCoffeeRequest $request)
+    public function store(StoreReceiptRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class TableCoffeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TableCoffee $tableCoffee)
+    public function show(Receipt $receipt)
     {
         //
     }
@@ -43,7 +43,7 @@ class TableCoffeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TableCoffee $tableCoffee)
+    public function edit(Receipt $receipt)
     {
         //
     }
@@ -51,7 +51,7 @@ class TableCoffeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTableCoffeeRequest $request, TableCoffee $tableCoffee)
+    public function update(UpdateReceiptRequest $request, Receipt $receipt)
     {
         //
     }
@@ -59,7 +59,7 @@ class TableCoffeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TableCoffee $tableCoffee)
+    public function destroy(Receipt $receipt)
     {
         //
     }

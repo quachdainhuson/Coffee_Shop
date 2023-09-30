@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Customer;
-use App\Http\Requests\StoreCustomerRequest;
-use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Requests\StoreTableCoffeeRequest;
+use App\Http\Requests\UpdateTableCoffeeRequest;
+use App\Models\TableCoffee;
 
-class CustomerController extends Controller
+class TableCoffeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCustomerRequest $request)
+    public function store(StoreTableCoffeeRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Customer $customer)
+    public function show(TableCoffee $tableCoffee)
     {
         //
     }
@@ -43,7 +43,7 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customer $customer)
+    public function edit(TableCoffee $tableCoffee)
     {
         //
     }
@@ -51,7 +51,7 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCustomerRequest $request, Customer $customer)
+    public function update(UpdateTableCoffeeRequest $request, TableCoffee $tableCoffee)
     {
         //
     }
@@ -59,7 +59,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer)
+    public function destroy(TableCoffee $tableCoffee)
     {
         //
     }

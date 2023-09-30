@@ -16,7 +16,7 @@ return new class extends Migration
             $table->String('product_price');
             $table->foreignId('product_id')->constrained('products');
             $table->foreignId('size_id')->constrained('sizes');
-            $table->timestamps();
+
         });
     }
 

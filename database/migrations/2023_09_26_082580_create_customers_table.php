@@ -17,7 +17,7 @@ return new class extends Migration
             $table->String('customer_email');
             $table->String('customer_phone',10);
             $table->String('customer_address');
-            $table->timestamps();
+
         });
     }
 

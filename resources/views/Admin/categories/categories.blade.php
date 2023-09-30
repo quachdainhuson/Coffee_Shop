@@ -21,7 +21,7 @@
         </a>
         <ul class="side-menu">
             <li><a href="../DashBoard/dashboard.blade.php"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
-            <li><a href="../Product/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
+            <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
             <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
             <li class="active"><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li><a href="../Receipt/receipt.html"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>

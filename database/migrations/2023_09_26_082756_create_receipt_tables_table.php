@@ -15,7 +15,6 @@ return new class extends Migration
             $table->foreignId('receipt_id')->constrained('receipts');
             $table->foreignId('table_id')->constrained('table_coffees');
             $table->primary(['receipt_id', 'table_id']);
-            $table->timestamps();
         });
     }
 

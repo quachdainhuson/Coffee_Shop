@@ -1,34 +1,33 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use App\Http\Requests\StoreSizeRequest;
+use App\Http\Requests\UpdateSizeRequest;
+use App\Models\Size;
 
-class ProductController extends Controller
+class SizeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('Admin.Product.product');
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('Admin.Product.add_product');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreSizeRequest $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Size $size)
     {
         //
     }
@@ -44,7 +43,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Size $size)
     {
         //
     }
@@ -52,7 +51,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateSizeRequest $request, Size $size)
     {
         //
     }
@@ -60,7 +59,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Size $size)
     {
         //
     }

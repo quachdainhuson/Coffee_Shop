@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\ReceiptDetail;
-use App\Http\Requests\StoreReceiptDetailRequest;
-use App\Http\Requests\UpdateReceiptDetailRequest;
+use App\Http\Requests\StoreReceiptTableRequest;
+use App\Http\Requests\UpdateReceiptTableRequest;
+use App\Models\ReceiptTable;
 
-class ReceiptDetailController extends Controller
+class ReceiptTableController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class ReceiptDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReceiptDetailRequest $request)
+    public function store(StoreReceiptTableRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ReceiptDetailController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ReceiptDetail $receiptDetail)
+    public function show(ReceiptTable $receiptTable)
     {
         //
     }
@@ -43,7 +43,7 @@ class ReceiptDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ReceiptDetail $receiptDetail)
+    public function edit(ReceiptTable $receiptTable)
     {
         //
     }
@@ -51,7 +51,7 @@ class ReceiptDetailController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateReceiptDetailRequest $request, ReceiptDetail $receiptDetail)
+    public function update(UpdateReceiptTableRequest $request, ReceiptTable $receiptTable)
     {
         //
     }
@@ -59,7 +59,7 @@ class ReceiptDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ReceiptDetail $receiptDetail)
+    public function destroy(ReceiptTable $receiptTable)
     {
         //
     }

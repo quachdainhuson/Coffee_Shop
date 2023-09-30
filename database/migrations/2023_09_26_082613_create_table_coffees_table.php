@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->String('table_name');
             $table->integer('table_status');
-            $table->timestamps();
+
         });
     }
 

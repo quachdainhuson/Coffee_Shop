@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Receipt;
-use App\Http\Requests\StoreReceiptRequest;
-use App\Http\Requests\UpdateReceiptRequest;
+use App\Http\Requests\StoreDashboardRequest;
+use App\Http\Requests\UpdateDashboardRequest;
+use App\Models\Dashboard;
 
-class ReceiptController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('Admin.DashBoard.dashboard');
     }
 
     /**
@@ -27,7 +27,7 @@ class ReceiptController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReceiptRequest $request)
+    public function store(StoreDashboardRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ReceiptController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Receipt $receipt)
+    public function show(Dashboard $dashboard)
     {
         //
     }
@@ -43,7 +43,7 @@ class ReceiptController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Receipt $receipt)
+    public function edit(Dashboard $dashboard)
     {
         //
     }
@@ -51,7 +51,7 @@ class ReceiptController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateReceiptRequest $request, Receipt $receipt)
+    public function update(UpdateDashboardRequest $request, Dashboard $dashboard)
     {
         //
     }
@@ -59,7 +59,7 @@ class ReceiptController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Receipt $receipt)
+    public function destroy(Dashboard $dashboard)
     {
         //
     }
