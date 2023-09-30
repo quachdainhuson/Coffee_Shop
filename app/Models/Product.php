@@ -20,7 +20,7 @@ class Product extends Model
     }
     public function store(){
 
-        DB::table('products')->insert([
+        return DB::table('products')->insertGetId([
             'product_name' => $this->product_name,
             'product_description' => $this->product_description,
             'product_image' => '1',

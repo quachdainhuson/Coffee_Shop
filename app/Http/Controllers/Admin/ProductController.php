@@ -49,9 +49,8 @@ class ProductController extends Controller
         $obj->product_name = $request->product_name;
         $obj->product_description = $request->product_description;
         $obj->cate_id = $request->cate_id;
-        $obj->store();
-        $product_id = $obj->product_id;
-        dd($product_id);
+        $product_id = $obj->store();
+//        dd($product_id);
         foreach ($request->input('sizes') as $sizeId => $data) {
             $productDetail = new ProductDetail();
             $productDetail->product_id = $product_id;
