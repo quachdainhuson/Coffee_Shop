@@ -55,7 +55,7 @@ ul.products li .product-top .product-thumb{
 } */
 
 ul.products li .product-top .product-thumb img{
-    display: block; 
+    display: block;
 }
 
 ul.products li .product-top a.buy-now{
@@ -71,7 +71,7 @@ ul.products li .product-top a.buy-now{
     bottom: -50px;
     width: 100%;
     transition: 0.35s ease-in-out;
-    
+
 }
 
 ul.products li:hover a.buy-now{
@@ -103,7 +103,7 @@ li.item{
     background-color: #ffffff;
     border: 1px solid #E2DFDD;
     border-radius: 10px;
-    
+
 }
 h5.title{
     color: red;
@@ -112,7 +112,7 @@ h5.title{
 }
 input#product-search{
     margin-top: 50px;
-    
+
 }
 input#search{
     width: 290px;
@@ -135,6 +135,7 @@ li.cate-item{
     width: 290px;
     height: 50px;
     margin-top: 20px;
+    margin-left: 30px;
     border-radius: 3px;
     border: 1px solid #E2DFDD;
     padding-top: 12px;
@@ -171,7 +172,7 @@ li.cate-item{
   .size-buttons {
     margin-top: 15px;
   }
-  
+
   .size-button {
     padding: 8px 15px;
     margin: 5px;
@@ -181,7 +182,7 @@ li.cate-item{
     color: white;
     cursor: pointer;
   }
-  
+
   .selected-size {
     margin-top: 10px;
   }
@@ -208,12 +209,12 @@ li.cate-item{
     border-radius: 5px;
     color: white;
     border: none;
-    
+
     box-shadow: outset 170px 0 0 0  #C7A17A;
     transition: 1s;
 
 }
-#cart-btn:hover, 
+#cart-btn:hover,
 #cart-btn:focus{
     transition: 0.5s;
     box-shadow: inset 170px 0 0 0 #000000;

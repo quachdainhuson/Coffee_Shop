@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\ReceiptTable;
 use App\Http\Requests\StoreReceiptTableRequest;
 use App\Http\Requests\UpdateReceiptTableRequest;
+use App\Models\ReceiptTable;
 
 class ReceiptTableController extends Controller
 {
