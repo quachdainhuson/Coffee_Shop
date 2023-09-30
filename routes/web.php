@@ -23,6 +23,7 @@ Route::prefix('Admin/Product/')->group(function(){
     Route::post('/add_product', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('products.store_product');
     Route::get('/{id}/edit_product', [\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('products.edit_product');
     Route::put('/{id}/edit_product', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('products.update_product');
+    Route::delete('/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('products.destroy_product');
 });
 
 Route::prefix('Admin/User/')->group(function(){

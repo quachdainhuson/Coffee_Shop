@@ -80,9 +80,12 @@
             <!-- Insights -->
             <div class="container-fluid">
 
-                <form role="form"  enctype="multipart/form-data" method="post" action="">//route('products.store_product')
+                <form role="form"  enctype="multipart/form-data" method="post" action="{{route('products.update_product',$id)}}">
+
                     @csrf
+                    @METHOD('PUT')
                     <div class="row">
+                        @foreach($products as $product)
                         <div class="col-4" >
                             <br>
                             <br>
@@ -94,36 +97,41 @@
 
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input required name="product_name" class="form-control" placeholder="">
+                                <input required name="product_name" class="form-control" placeholder="" value="{{$product->product_name}}">
                             </div>
 
                             <div class="form-group">
                                 <label>Danh mục</label>
 
                                 <select name="cate_id" class="form-control">
+
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->cate_name }}</option>
+                                        <option @if($category->id == $product->cate_id){{'selected'}} @endif value="{{ $category->id }}">{{ $category->cate_name }}</option>
                                     @endforeach
                                 </select>
 
                             </div>
                             <div class="form-group">
                                 <label>Giá Của Từng Size</label><br>
-                                @foreach($sizes as $size)
-                                    <label for="size_{{ $size->id }}">{{ $size->size_name }}</label>
-                                    <input type="number" name="sizes[{{ $size->id }}][product_price]" id="size_{{ $size->id }}"><br>
+                                @foreach($product_detail as $prd_detail)
+
+                                    <label for="size_{{ $prd_detail->size_id }}">{{ $prd_detail->size_name }}</label>
+
+                                    <input type="number" name="sizes[{{ $prd_detail->size_id }}][product_price]" id="size_{{ $prd_detail->size_id }}" value="{{ $prd_detail->product_price }}">
                                 @endforeach
+
                             </div>
 
                             <div class="form-group">
                                 <label>Mô tả sản phẩm</label>
-                                <textarea required name="product_description" class="form-control" cols="30" rows="10"></textarea>
+                                <textarea required name="product_description" class="form-control" cols="30" rows="10">{{$product->product_description}}</textarea>
                             </div>
                             <input name="sbm" type="submit" value="Thêm mới" class="btn btn-primary"></input>
                             <button type="reset" class="btn btn-light">Reset</button>
 
                         </div>
                         <div class="col-2"></div>
+                        @endforeach
                     </div>
                 </form>
 

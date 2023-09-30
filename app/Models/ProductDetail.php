@@ -16,4 +16,12 @@ class ProductDetail extends Model
             'product_price' => $this->price,
         ]);
     }
+    public function updateProductDetail(){
+        DB::table('product_details')
+            ->where('product_id', $this -> product_id)
+            ->where('size_id', $this -> size_id)
+            ->update([
+                'product_price' => $this->price,
+            ]);
+    }
 }

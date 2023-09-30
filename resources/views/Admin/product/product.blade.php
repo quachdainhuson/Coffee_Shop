@@ -109,11 +109,15 @@
 
                                                     </button>
                                                 </a>
-                                                <a  href="">
-                                                    <button class="btn btn-primary" type="submit">
-                                                        <i class='bx bxs-trash' ></i>
-                                                </button>
-                                                </a>
+                                                <div class="btn">
+                                                    <form method="post" action="{{route('products.destroy_product', $product->id)}}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-primary" type="submit">
+                                                            <i class='bx bxs-trash' ></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
 
                                         </td>
