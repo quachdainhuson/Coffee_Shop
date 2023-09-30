@@ -110,8 +110,8 @@
                                         <div class="form-group">
                                             <label>Giá Của Từng Size</label><br>
                                             @foreach($sizes as $size)
-                                            <label>Size: {{$size->size_name}}</label>
-                                                <input type="number" name="price_{{$size}}" min="0" value="10000" required style="width: 100px;"><br>
+                                                <label for="size_{{ $size->id }}">{{ $size->size_name }}</label>
+                                                <input type="number" name="sizes[{{ $size->id }}][product_price]" id="size_{{ $size->id }}"><br>
                                             @endforeach
                                         </div>
 
@@ -124,7 +124,7 @@
 
                         </div>
                         <div class="col-2"></div>
-                        </div>
+                    </div>
                 </form>
 
             </div>

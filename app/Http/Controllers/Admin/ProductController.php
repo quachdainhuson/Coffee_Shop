@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductDetail;
 use App\Models\Size;
 
 class ProductController extends Controller
@@ -49,7 +50,15 @@ class ProductController extends Controller
         $obj->product_description = $request->product_description;
         $obj->cate_id = $request->cate_id;
         $obj->store();
-
+        $product_id = $obj->product_id;
+        dd($product_id);
+        foreach ($request->input('sizes') as $sizeId => $data) {
+            $productDetail = new ProductDetail();
+            $productDetail->product_id = $product_id;
+            $productDetail->size_id = $sizeId;
+            $productDetail->price = $data['product_price'];
+            $productDetail->store();
+        }
         return redirect()->route('products.product');
     }
 
