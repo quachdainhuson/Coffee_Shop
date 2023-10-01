@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\Controller;
 use App\Http\Requests\StoreHomePageRequest;
 use App\Http\Requests\UpdateHomePageRequest;
 use App\Models\HomePage;
-use App\Models\Product;
 
 class HomePageController extends Controller
 {
@@ -19,11 +18,7 @@ class HomePageController extends Controller
     }
     public function product()
     {
-        $obj = new Product();
-        $products = $obj->index();
-        return view('Client.product',[
-            'products' => $products
-        ]);
+        return view('Client.product');
     }
     public function cart()
     {
