@@ -70,6 +70,7 @@
         <div class="col-1"></div>
         <div class="col-7">
           <ul class="products">
+              @foreach($products as $product)
             <li class="item">
                 <div class="product-item">
                     <div class="product-top">
@@ -81,105 +82,12 @@
                     </div>
                         <div class="product-info">
                             <a href="#" class="product-cat">PAPER POUCH</a>
-                            <a href="#" class="product-name">PAPER POUCH </a>
+                            <a href="#" class="product-name">{{$product->product_name}}</a>
                             <div class="product-price">3.200.000đ</div>
                         </div>
                 </div>
             </li>
-
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-cat">PAPER POUCH</a>
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li>
-
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-cat">PAPER POUCH</a>
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li>
-
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-cat">PAPER POUCH</a>
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li>
-
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-cat">PAPER POUCH</a>
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li>
-
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-cat">PAPER POUCH</a>
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li>
-
-
-
-
-
-
-
-
-
+              @endforeach
         </ul>
         </div>
         <div class="col-3">
