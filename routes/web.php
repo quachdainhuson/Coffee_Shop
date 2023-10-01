@@ -36,7 +36,8 @@ Route::prefix('Admin/User/')->group(function(){
 });
 
 Route::prefix('Admin/DashBoard/')->group(function(){
-Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.dashboard');
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.dashboard');
+    Route::get('/add_dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'create'])->name('dashboard.add_dashboard');
 });
 
 
