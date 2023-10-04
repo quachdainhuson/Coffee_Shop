@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Size;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -50,6 +51,11 @@ class ProductController extends Controller
         $obj->product_name = $request->product_name;
         $obj->product_description = $request->product_description;
         $obj->cate_id = $request->cate_id;
+        $product_image = $request->file('product_image')->getClientOriginalName();
+        if (!Storage::exists('public/Admin/'.$product_image)) {
+            Storage::putFileAs('public/Admin', $request->file('product_image'), $product_image);
+        }
+        $obj->product_image = $product_image;
         $product_id = $obj->store();
 //        dd($product_id);
         foreach ($request->input('sizes') as $sizeId => $data) {

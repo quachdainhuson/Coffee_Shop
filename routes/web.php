@@ -16,6 +16,7 @@ Route::prefix('Client/')->group(function(){
     Route::get('/home', [\App\Http\Controllers\User\HomePageController::class, 'index'])->name('client.home');
     Route::get('/product', [\App\Http\Controllers\User\HomePageController::class, 'product'])->name('client.product');
     Route::get('/cart', [\App\Http\Controllers\User\HomePageController::class, 'cart'])->name('client.cart');
+
 });
 Route::prefix('Admin/Product/')->group(function(){
     Route::get('/product', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products.product');
@@ -39,7 +40,9 @@ Route::prefix('Admin/DashBoard/')->group(function(){
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.dashboard');
     Route::get('/add_dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'create'])->name('dashboard.add_dashboard');
 });
-
+Route::prefix('Admin/login/')->group(function(){
+    Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'index'])->name('Admin.login');
+});
 
 Route::prefix('Admin/Category/')->group(function(){
     Route::get('/category',[\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.category');

@@ -84,94 +84,6 @@
             </li>
             @endforeach
 
-            <!-- <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li>
-
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li>
-
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li>
-
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li>
-
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="">
-
-                        </a>
-                        <a href="#" onclick="show('popup1')" class="buy-now">MUA NGAY</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-name">PAPER POUCH </a>
-                            <div class="product-price">3.200.000đ</div>
-                        </div>
-                </div>
-            </li> -->
-
-
-
-
-
-
-
-
-
         </ul>
         </div>
         <div class="col-3">
@@ -198,7 +110,7 @@
 
     <div class="popup" id="popup1">
 
-        <a href=""class="close-button"  onclick="hide('popup1')" ><i class="fa-solid fa-x" style="color: #ff0000;"></i></a>
+        <a href="" class="close-button"  onclick="hide('popup1')" ><i class="fa-solid fa-x" style="color: #ff0000;"></i></a>
 
     <div class="row">
         <div class="col-4">
@@ -206,11 +118,11 @@
         </div>
         <div class="col-8">
             <span style="font-size: 40px;">PAPER POUCH</span><br>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i><br>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i><br>
             <h4 style="margin-top: 10px;">30.000 VND</h4>
             <h5>Available : <span style="color: #a7a7a7 ;">In stock</span></h5>
             <h6>Anlor sit amet, consectetur adipiscing elit. Fusce condimentum est lacus, non pretium risus lacinia vel. Fusce eget turpis orci.</h6>

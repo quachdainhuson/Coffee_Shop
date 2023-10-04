@@ -98,7 +98,6 @@
                                     <tr>
                                         <th scope="row">{{ $product->id }}</th>
                                         <td>{{ $product->product_name }}</td>
-
                                         <td id="product-img"><img width="150px" height="150px" src="Public/image/" alt="" srcset=""></td>
                                         <td>{{ $product->cate_name }}</td>
                                         <td>
@@ -106,7 +105,6 @@
                                                 <a href="{{route('products.edit_product',$product->id)}}">
                                                     <button class="btn btn-primary" type="submit">
                                                         <i class='bx bxs-edit-alt' ></i>
-
                                                     </button>
                                                 </a>
                                                 <div class="btn">
