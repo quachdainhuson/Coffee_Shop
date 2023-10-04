@@ -40,7 +40,9 @@ Route::prefix('Admin/DashBoard/')->group(function(){
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.dashboard');
     Route::get('/add_dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'create'])->name('dashboard.add_dashboard');
 });
-
+Route::prefix('Admin/login/')->group(function(){
+    Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'index'])->name('Admin.login');
+});
 
 Route::prefix('Admin/Category/')->group(function(){
     Route::get('/category',[\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.category');
