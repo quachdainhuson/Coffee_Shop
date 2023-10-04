@@ -111,7 +111,7 @@
                                 <label>Giá Của Từng Size</label><br>
                                 @foreach($sizes as $size)
                                     <label for="size_{{ $size->id }}">{{ $size->size_name }}</label>
-                                    <input type="number" name="sizes[{{ $size->id }}][product_price]" id="size_{{ $size->id }}"><br>
+                                    <input type="number" name="sizes[{{ $size->id }}][product_price]" id="size_{{ $size->id }}">
                                 @endforeach
                             </div>
 
