@@ -16,6 +16,7 @@ Route::prefix('Client/')->group(function(){
     Route::get('/home', [\App\Http\Controllers\User\HomePageController::class, 'index'])->name('client.home');
     Route::get('/product', [\App\Http\Controllers\User\HomePageController::class, 'product'])->name('client.product');
     Route::get('/cart', [\App\Http\Controllers\User\HomePageController::class, 'cart'])->name('client.cart');
+
 });
 Route::prefix('Admin/Product/')->group(function(){
     Route::get('/product', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products.product');

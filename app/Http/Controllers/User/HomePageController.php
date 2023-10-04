@@ -25,6 +25,14 @@ class HomePageController extends Controller
             'products' => $products
         ]);
     }
+    public function detail()
+    {
+        $obj = new HomePage();
+        $products = $obj->index();
+        return view('Client.product',[
+            'products' => $products
+        ]);
+    }
     public function cart()
     {
         return view('Client.cart');

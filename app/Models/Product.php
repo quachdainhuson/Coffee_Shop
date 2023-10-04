@@ -23,7 +23,7 @@ class Product extends Model
         return DB::table('products')->insertGetId([
             'product_name' => $this->product_name,
             'product_description' => $this->product_description,
-            'product_image' => '1',
+            'product_image' => $this->product_image,
             'cate_id' => $this->cate_id,
         ]);
     }
