@@ -1,22 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@200;300;400;500;600;700&family=Roboto&display=swap');
-*{
-    font-family: 'Poppins', sans-serif;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    scroll-padding-top: 2rem;
-    text-decoration: none;
-    list-style: none;
-    scroll-behavior: smooth;
-
-}
 
 body::-webkit-scrollbar {
     display: none;
 }
 
 :root{
-    --main-color: #ffffff;
+    --main-color: #FDF5E6;
     --second-color: #CD853F;
 }
 
@@ -29,90 +18,159 @@ section{
 }
 
 
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
 
-header{
-    width: 100%;
-    top: 0;
-    right: 0;
-    left: 0;
+.header .logo img{
+    height: 4rem;
+}
+html{
+    overflow-x: hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: #fff;
+    border-radius: 5rem;
+}
+
+
+.navbar a{
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.header{
+    background: #CC0033;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 100px;
+    padding: 1.5rem 7%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
     transition: 0.8s;
-    z-index: 100000;
-    background-color:  #CC0033;
 }
 
-
-/* header.sticky {
-padding:5px 100px;
-background: #CC0033;
-}    */
-
-/* header .logo
-{
-position: relative; 
-transition: 0.6s;
-} */
-
-header ul{ 
-    position: relative; 
-    display: flex; 
-    justify-content: center; 
+header ul{
+    position: relative;
+    display: flex;
+    justify-content: center;
     align-items: center;
-} 
-header ul li{ 
-    position: relative; 
+}
+
+header ul li{
+    position: relative;
     List-style: none;
 }
+
 header ul li a
-{ 
-    position: relative; 
+{
+    position: relative;
     margin: 0 15px;
-    letter-spacing: 2px;
-    font-weight: 500px;
-    transition: 0.6s;
-    color: #fff;
-} 
 
-header.sticky ul li a{
+}
+
+.header .navbar a{
+    margin: 0 1rem;
     color: #fff;
 }
-.navbar{
-    position: fixed;
-}
-.logo{
-    display: flex;
-}
 
-.logo img{
-    width: 100px;
-    
-}
-
-.navbar-nav{ 
-    display: flex;
-} 
-
-.navbar a{
-    font-size: 1rem;
-    margin-left: 15px ;
-    color: var(--main-color);
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.navbar a:hover{
+.header .navbar a:hover{
     color: var(--second-color);
+    text-decoration: none;
+
+}
+.header .search-form{
+    position: absolute;
+    top: 100%;
+    right: 7%;
+    background: #fff;
+    width: 40rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    transform: scaleY(0);
+    transform-origin: top;
 }
 
-#menu-icon{
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1001;
-    display: none;
+.header .search-form.active{
+    transform: scaleY(1);
 }
+
+.header .search-form input{
+    height: 100%;
+    width: 100%;
+    font-size: 1.6rem;
+    color: black;
+    padding: 1rem;
+    text-transform: none;
+}
+
+.header .search-form label{
+    cursor: pointer;
+    font-size: 2.2rem;
+    margin-right: 1.5rem;
+    color: black;
+}
+
+
+
+
+
+.header .icons{
+    margin-top: 1rem;
+}
+
+.navbar{
+    position: relative;
+    display: inline-block;
+}
+
+.menu-items{
+    display: none;
+    position: absolute;
+    background-color: var(--second-color);
+    min-width: 160px;
+    z-index: 1;
+}
+
+.menu-items a{
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.menu-items a:hover {
+    background-color: #f1f1f1;
+}
+
+.menu:hover .menu-items {
+    display: block;
+}
+
+
+
 
 /*footer*/
 .contact{

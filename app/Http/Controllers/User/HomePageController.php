@@ -5,8 +5,11 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Admin\Controller;
 use App\Http\Requests\StoreHomePageRequest;
 use App\Http\Requests\UpdateHomePageRequest;
+use App\Models\Category;
 use App\Models\HomePage;
 use App\Models\Product;
+use App\Models\Size;
+use Illuminate\Http\Request;
 
 class HomePageController extends Controller
 {
@@ -19,18 +22,30 @@ class HomePageController extends Controller
     }
     public function product()
     {
-        $obj = new Product();
-        $products = $obj->index();
+        $objProduct = new Product();
+        $products = $objProduct->index();
+        $objCate = new Category();
+        $categories = $objCate->index();
         return view('Client.product',[
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
-    public function detail()
+    public function detail(Request $request)
     {
-        $obj = new HomePage();
-        $products = $obj->index();
-        return view('Client.product',[
-            'products' => $products
+        $objSize = new Size();
+        $sizes = $objSize->index();
+        $objCate = new Category();
+        $categories = $objCate->index();
+        $objProductDetail = new Product();
+        $objProductDetail->id = $request->id;
+        $products_detail = $objProductDetail->edit();
+        return view('Client.product_detail',[
+            'categories' => $categories,
+            'sizes' => $sizes,
+            'products_detail' => $products_detail['products_detail'],
+            'products' => $products_detail['products']
+
         ]);
     }
     public function cart()

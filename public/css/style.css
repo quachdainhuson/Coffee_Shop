@@ -29,7 +29,7 @@ section{
     text-transform: capitalize;
     transition: .2s linear;
   }
-  
+
   .header .logo img{
     height: 4rem;
   }
@@ -38,21 +38,21 @@ section{
     scroll-padding-top: 9rem;
     scroll-behavior: smooth;
   }
-  
+
   html::-webkit-scrollbar{
     width: .8rem;
   }
-  
+
   html::-webkit-scrollbar-track{
     background: transparent;
   }
-  
+
   html::-webkit-scrollbar-thumb{
     background: #fff;
     border-radius: 5rem;
   }
 
-  
+
   .navbar a{
     font-weight: 600;
     font-size: 1rem;
@@ -71,35 +71,35 @@ section{
     z-index: 1000;
     transition: 0.8s;
   }
-  
-  header ul{ 
-    position: relative; 
-    display: flex; 
-    justify-content: center; 
+
+  header ul{
+    position: relative;
+    display: flex;
+    justify-content: center;
     align-items: center;
-  } 
-  
-  header ul li{ 
-    position: relative; 
+  }
+
+  header ul li{
+    position: relative;
     List-style: none;
   }
-  
+
   header ul li a
-  { 
-    position: relative; 
+  {
+    position: relative;
     margin: 0 15px;
-  
-  } 
-  
+
+  }
+
   .header .navbar a{
     margin: 0 1rem;
     color: #fff;
   }
-  
+
   .header .navbar a:hover{
     color: var(--second-color);
     text-decoration: none;
-  
+
   }
   .header .search-form{
     position: absolute;
@@ -113,11 +113,11 @@ section{
     transform: scaleY(0);
     transform-origin: top;
   }
-  
+
   .header .search-form.active{
     transform: scaleY(1);
   }
-  
+
   .header .search-form input{
     height: 100%;
     width: 100%;
@@ -126,14 +126,14 @@ section{
     padding: 1rem;
     text-transform: none;
   }
-  
+
   .header .search-form label{
     cursor: pointer;
     font-size: 2.2rem;
     margin-right: 1.5rem;
     color: black;
   }
-  
+
 
  img{
     width: 100%;
@@ -141,8 +141,8 @@ section{
 header.sticky {
     padding:15px 100px;
     background: #CC0033;
-    }  
-    
+    }
+
 .header .icons{
     margin-top: 1rem;
 }
@@ -195,14 +195,14 @@ header.sticky {
 
 .home-img{
     flex: 1 1 17rem;
-   
+
 
 }
 
 .home-img img{
     animation: animate 3s linear infinite;
-   
-    
+
+
 }
 @keyframes animate {
     0% {
@@ -440,7 +440,7 @@ header.sticky {
 .origin-text .btn:hover, .job-text .btn:hover{
     color: white;
     background: var(--second-color);
-}   
+}
 
 
 
@@ -502,7 +502,7 @@ header.sticky {
     border-radius: 10px; /* Rounded corners */
     font-size: 18px; /* Increase font size */
   }
-  
+
   #myBtn:hover {
     background-color: #555; /* Add a dark-grey background on hover */
   }
@@ -523,7 +523,7 @@ ul li{
     position: fixed;
     top: 100PX;
     z-index: 2;
-    
+
 }
 ul#menu-categories-1{
     padding-left: 1000px;
@@ -532,14 +532,14 @@ ul#menu-categories-1 li{
     color: rgb(255, 255, 255);
     float: left;
     margin-top: 23px;
-    
+
 }
 ul#menu-categories-1 li a {
     margin: auto;
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 18px;
-    
+
 }
 #header{
     background-color: rgb(0, 0, 0);
@@ -638,5 +638,5 @@ ul#menu-categories-1 li:hover:before{
     border-radius: 36px 0 0 36px;
     outline: none;
     width: 100%;
-    
+
 }

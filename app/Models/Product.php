@@ -39,7 +39,7 @@ class Product extends Model
             ->join('categories', 'products.cate_id', '=', 'categories.id')
             ->join('product_details', 'products.id', '=', 'product_details.product_id')
             ->join('sizes', 'product_details.size_id', '=', 'sizes.id')
-            ->select(['products.*',
+            ->select([
                 'categories.cate_name as cate_name',
                 'product_details.product_price as product_price',
                 'sizes.size_name as size_name',
@@ -74,4 +74,6 @@ class Product extends Model
             ->delete();
 
     }
+
+
 }
