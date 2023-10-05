@@ -98,7 +98,11 @@
                                     <tr>
                                         <th scope="row">{{ $product->id }}</th>
                                         <td>{{ $product->product_name }}</td>
-                                        <td id="product-img"><img width="150px" height="150px" src="Public/image/" alt="" srcset=""></td>
+                                        <td id="product-img">
+
+                                            <img width="150px" height="150px"
+                                                 src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product->product_image)}}"
+                                                 alt="" srcset=""></td>
                                         <td>{{ $product->cate_name }}</td>
                                         <td>
                                             <div class="form-group">

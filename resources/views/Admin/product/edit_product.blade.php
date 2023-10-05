@@ -89,8 +89,9 @@
                         <div class="col-4" >
                             <br>
                             <br>
-                            <input type="file" multiple name="product_image[]" id="product_image" onchange="preview()" multiple>
-                            <img id="frame" src="image/no-img.png" width="300px" height="300px"/>
+                            <input type="hidden" name="image_name" value="{{$product->product_image}}">
+                            <input type="file"  name="product_image" id="product_image" onchange="preview()" multiple>
+                            <img id="frame" src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product->product_image)}}" width="300px" height="300px"/>
                         </div>
                         <div class="col-6" style="padding-left: 50px;">
                             <br><br><br><br>

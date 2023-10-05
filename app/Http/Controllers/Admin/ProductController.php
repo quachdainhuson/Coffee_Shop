@@ -107,6 +107,16 @@ class ProductController extends Controller
         $obj->id = $request->id;
         $obj->product_name = $request->product_name;
         $obj->product_description = $request->product_description;
+        if ($request->file('product_image') == null) {
+            $obj->product_image = $request->image_name;
+        } else{
+            $product_image = $request->file('product_image')->getClientOriginalName();
+            if (!Storage::exists('public/Admin/'.$product_image)) {
+                Storage::putFileAs('public/Admin', $request->file('product_image'), $product_image);
+            }
+            $obj->product_image = $product_image;
+        }
+
         $obj->cate_id = $request->cate_id;
         $obj->updateProduct();
         foreach ($request->input('sizes') as $sizeId => $data) {
