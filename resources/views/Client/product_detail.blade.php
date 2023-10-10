@@ -17,7 +17,7 @@
     <a href="#" class="logo">
         <img src="../../../public/image/logo_highland.png" alt="">
     </a>
-    <nav class="navbar">
+    <nav class="navbar"> 
         <div><a href="#">TRANG CHỦ</a></div>
         <div class="menu"><a href="#">MENU</a>
             <div class="menu-items">

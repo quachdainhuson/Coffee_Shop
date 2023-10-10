@@ -54,3 +54,11 @@ toggler.addEventListener('change', function () {
         document.body.classList.remove('dark');
     }
 });
+
+
+// const btn = document.getElementsByClassName('btn-table');
+
+// btn.addEventListener('click', function onClick() {
+//   btn.style.backgroundColor = 'salmon';
+//   btn.style.color = 'white';
+// });

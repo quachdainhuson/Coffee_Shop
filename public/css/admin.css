@@ -622,3 +622,43 @@ body{
     }
     
 }
+
+
+/* .btn-table{
+    display: inline-flex;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 50px;
+    float: left;
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #090909;
+    box-sizing: border-box;
+    width: 20%;
+    height: 90px;  
+} */
+#btn-table{
+    display: inline-flex;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 50px;
+    float: left;
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #090909;
+    box-sizing: border-box;
+    width: 20%;
+    height: 90px;  
+}
+
+#btn-table:hover{
+    background: #1976D2;
+}
+
+.panel{
+    background-color: #f4f1f1  ;
+}
