@@ -17,6 +17,10 @@ Route::prefix('Client/')->group(function(){
     Route::get('/product', [\App\Http\Controllers\User\HomePageController::class, 'product'])->name('client.product');
     Route::get('/cart', [\App\Http\Controllers\User\HomePageController::class, 'cart'])->name('client.cart');
     Route::get('/{product}/detail', [\App\Http\Controllers\User\HomePageController::class, 'detail'])->name('client.detail');
+    Route::put('/{product}/add_to_cart', [\App\Http\Controllers\User\HomePageController::class, 'addToCart'])->name('client.add_to_cart');
+    Route::put('/update_cart', [\App\Http\Controllers\User\HomePageController::class, 'updateCart'])->name('client.update_cart');
+    Route::get('/{product}/delete-product-cart', [\App\Http\Controllers\User\HomePageController::class, 'deleteProductInCart'])->name('client.delete_prd_cart');
+    Route::get('/delete_cart', [\App\Http\Controllers\User\HomePageController::class, 'deleteCart'])->name('client.delete_cart');
 
 });
 Route::prefix('Admin/Product/')->group(function(){

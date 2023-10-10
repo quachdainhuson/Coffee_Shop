@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="../public/image/x-icon" href="../../../public/image/logo_highland.png">
     <!-- <link rel="stylesheet" href="../css/style.css"> -->
-    <link rel="stylesheet" href="../../public/css/header.css">
-    <link rel="stylesheet" href="../../public/css/cart.css">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
+    <link rel="stylesheet" href="{{asset('css/cart.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.min.css')}}">
     <title>Highlands Coffee</title>
-    <link rel="stylesheet" href="../../public/fontawesome-free-6.4.2-web/css/all.min.css">
-    <script src="../public/bootstrap-5.0.2-dist/bootstrap.min.css"></script>
+    <link rel="stylesheet" href="{{asset('fontawesome-free-6.4.2-web/css/all.min.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
 </head>
 <header class="header">
     <a href="#" class="logo">
-        <img src="../../public/image/logo_highland.png" alt="">
+        <img src="{{asset('image/logo_highland.png')}}" alt="">
     </a>
     <nav class="navbar">
         <div><a href="#">TRANG CHỦ</a></div>
@@ -57,59 +56,60 @@
 </header>
 <body>
     <div class="row">
+
         <div class="col-2"></div>
-        <div class="col-8" id="list-cart">
-            <table class="table table-hover">
-                <tr>
-                    <th class="product-image">PRODUCT IMAGE</th>
-                    <th class="product-name">PRODUCT NAME</th>
-                    <th class="product-price">PRICE</th>
-                    <th class="product-subtotal">QUANTITY</th>
-                    <th class="product-quantity">SUBTOTAL</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th class="product-image">
-                        <img src="../../public/image/t-p-1.png">
-                    </th>
-                    <th class="product-name">ESPRESSO RISTRETTO</th>
-                    <th class="product-price">$130.00</th>
-                    <th class="product-quantity">2</th>
-                    <th class="product-subtotal">$130.00</th>
-                    <th><a href=""><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></th>
-                </tr>
-                <tr>
-                    <th class="product-image">
-                        <img src="../../public/image/t-p-1.png">
-                    </th>
-                    <th class="product-name">ESPRESSO RISTRETTO</th>
-                    <th class="product-price">$130.00</th>
-                    <th class="product-quantity">2</th>
-                    <th class="product-subtotal">$130.00</th>
-                    <th><a href=""><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></th>
-                </tr>
-                <tr>
-                    <th class="product-image">
-                        <img src="../../public/image/t-p-1.png">
-                    </th>
-                    <th class="product-name">ESPRESSO RISTRETTO</th>
-                    <th class="product-price">$130.00</th>
-                    <th class="product-quantity">2</th>
-                    <th class="product-subtotal">$130.00</th>
-                    <th><a href=""><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></th>
-                </tr>
+            <div class="col-8" id="list-cart">
+                @php($total = 0)
+                <form method="post" action="{{route('client.update_cart')}}">
+                    @csrf
+                    @method('PUT')
+                @if(Session::has('cart'))
+                    <h4 class="title-2">YOUR CART</h4>
+                <table class="table table-hover">
+                    <tr>
+                        <th class="product-image">Hình Ảnh</th>
+                        <th class="product-name">Sản Phẩm</th>
+                        <th class="product-name">Giá</th>
+                        <th class="product-price">Kích cỡ</th>
+                        <th class="product-subtotal">Số lượng</th>
+                        <th class="product-quantity">Giá</th>
+                        <th></th>
+                    </tr>
+                    @foreach(Session::get('cart') as $product_id => $product)
+                        @php($total += $product['price'] * $product['product_quantity'])
+                        <tr>
+                            <input type="hidden" name="size_id" value="{{$product['size_id']}}">
+                            <th class="product-image">
+                                <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product['product_image'])}}">
+                            </th>
+                            <th class="product-name">{{$product['product_name']}}</th>
+                            <th class="product-price">{{ number_format($product['price'], 0, ',', '.') }}</th>
+                            <th class="product-price">{{$product['size_name']}}</th>
+                            <th class="product-subtotal">
+                                <input type="number" name="quantity[{{$product_id}}]" value="{{$product['product_quantity']}}">
 
+                            </th>
+                            <th class="product-quantity">{{number_format($product['price'] * $product['product_quantity'], 0, ',', '.') }}</th>
+                            <th><a href="{{route('client.delete_prd_cart', $product_id)}}"><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></th>
+                        </tr>
+                    @endforeach
 
-            </table>
+                </table>
+                    <a href="{{route('client.delete_cart', $product_id)}}" class="cart-btn"><b>CLEAR CART</b></a>
+                    <button class="cart-btn"><b>UPDATE CART</b></button>
+                @else
+                    <h4 class="title-2">YOUR CART IS EMPTY</h4>
+                @endif
+                </form>
+            </div>
 
-        </div>
         <div class="col-2"></div>
+
     </div>
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8" style="margin-top: 30px;">
-            <a href="#" class="cart-btn"><b>CLEAR CART</b></a>
-            <a href="#" class="cart-btn"><b>UPDATE CART</b></a>
+
         </div>
     </div>
 
@@ -118,13 +118,13 @@
         <div class="col-3" id="cart-total">
             <div class="total-price">
                 <h4 class="title-2">CART TOTAL</h4>
-                <div class="cart-total" id="subtotal">
-                    <span><b>SubTotal</b></span>
-                    <span><b>$180</b></span>
-                </div>
+{{--                <div class="cart-total" id="subtotal">--}}
+{{--                    <span><b>SubTotal</b></span>--}}
+{{--                    <span><b>$180</b></span>--}}
+{{--                </div>--}}
                 <div class="cart-total" id="totalprice">
                     <span><b>Total</b></span>
-                    <span><b>$180</b></span>
+                    <span><b>{{number_format($total, 0, ',', '.')}}</b></span>
                 </div>
                 <button id="cart-btn"><b>ADD TO PROCESS</b></button>
 

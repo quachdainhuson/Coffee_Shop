@@ -17,7 +17,7 @@
     <a href="#" class="logo">
         <img src="../../../public/image/logo_highland.png" alt="">
     </a>
-    <nav class="navbar"> 
+    <nav class="navbar">
         <div><a href="#">TRANG CHỦ</a></div>
         <div class="menu"><a href="#">MENU</a>
             <div class="menu-items">
@@ -64,30 +64,33 @@
 <div class="product-title">
     <h3 id="title-1">Sản Phẩm Mới Nhất</h3>
 </div>
+    <form method="post" action="{{route('client.add_to_cart', $products)}}">
+            @csrf
+            @method('PUT')
             <div class="row">
-                <div class="col-2"></div>
-                <div class="col-2">
-                    <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/'.$products['product_image']))}}" alt="" width="300px">
-                </div>
-                <div class="col-4" style="margin-left: 20px">
-                    <span style="font-size: 40px;">{{ $products->product_name }}</span><br>
-                    <h4 style="margin-top: 10px;" id="product_price">Chọn Size</h4>
-                    <h6>{{ $products->product_description }}</h6>
-                    <div class="product-details">
-                        <div class="size-buttons">
-                            @foreach($sizes as $size)
-                                <label>
-                                    <input type="radio" name="size_id" id="size_id" value="{{$size->id}}" onClick="updatePrice(this)">{{$size->size_name}}
-                                </label>
-                            @endforeach
-                            <br>
-                            <span>Số Lượng</span>
-                            <input type="number" class="quantity-input" value="1">
-                        </div>
+                    <div class="col-2"></div>
+                    <div class="col-2">
+                        <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/'.$products['product_image']))}}" alt="" width="300px">
                     </div>
-                    <br>
-                    <button id="cart-btn">ADD TO CART</button>
-                </div>
+                    <div class="col-4" style="margin-left: 20px">
+                        <span style="font-size: 40px;">{{ $products->product_name }}</span><br>
+                        <h4 style="margin-top: 10px;" id="product_price">Chọn Size</h4>
+                        <h6>{{ $products->product_description }}</h6>
+                        <div class="product-details">
+                            <div class="size-buttons">
+                                @foreach($sizes as $size)
+                                    <label>
+                                        <input type="radio" name="size_id" id="size_id" value="{{$size->id}}" onClick="updatePrice(this)">{{$size->size_name}}
+                                    </label>
+                                @endforeach
+                                <br>
+                                <span>Số Lượng</span>
+                                <input type="number" class="quantity-input" value="1" name="product_quantity">
+                            </div>
+                        </div>
+                        <br>
+                        <button id="cart-btn">ADD TO CART</button>
+                    </div>
 
                 <div class="col-3">
                     <div class="search-here">
@@ -104,6 +107,7 @@
                     </div>
                 </div>
             </div>
+    </form>
     </div>
 </div>
 <section class="contact">

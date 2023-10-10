@@ -129,7 +129,6 @@
                                                 <a href="{{route('products.add_to_cart', $product)}}">
                                                     <button class="btn btn-primary" type="submit">
                                                         ADD TO CART
-
                                                     </button>
                                                 </a>
                                             </div>

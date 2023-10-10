@@ -77,9 +77,9 @@
         <div><a href="#">TRANG CHỦ</a></div>
         <div class="menu"><a href="#">MENU</a>
             <div class="menu-items">
-                <a href="#">Cà phê</a>
-                <a href="#">Trà</a>
-                <a href="#">Freeze</a>
+                @foreach($categories as $category)
+                <a href="#">{{$category->cate_name}}</a>
+                @endforeach
             </div>
         </div>
         <div><a href="#">CỘNG ĐỒNG</a></div>

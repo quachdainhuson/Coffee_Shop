@@ -124,7 +124,7 @@
                 <div class="size-buttons">
                     <input type="radio" name="size_id" id="size_id">
                     <span>Số Lượng</span>
-                    <input type="number" class="quantity-input" value="1">
+                    <input type="number" class="quantity-input" value="1" name="product_quantity">
                 </div>
                 <p class="selected-size">Selected size: None</p>
               </div>
