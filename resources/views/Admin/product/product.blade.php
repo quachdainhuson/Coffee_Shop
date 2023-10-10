@@ -72,10 +72,16 @@
                         <li><a href="#" >Shop</a></li>
                     </ul>
                 </div>
+                <a href="{{ route('products.cart') }}" class="report">
+                    <i class='bx bx-plus'></i>
+                    <span>Cart</span>
+                </a>
                 <a href="{{ route('products.add_product') }}" class="report">
                     <i class='bx bx-plus'></i>
                     <span>Thêm Sản Phẩm</span>
                 </a>
+
+
             </div>
 
             <!-- Insights -->
@@ -103,16 +109,16 @@
                                             <img width="150px" height="150px"
                                                  src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product->product_image)}}"
                                                  alt="" srcset=""></td>
-                                        <td>{{ $product->cate_name }}</td>
+                                        <td>{{ $product->categories->cate_name }}</td>
                                         <td>
                                             <div class="form-group">
-                                                <a href="{{route('products.edit_product',$product->id)}}">
+                                                <a href="{{route('products.edit_product',$product)}}">
                                                     <button class="btn btn-primary" type="submit">
                                                         <i class='bx bxs-edit-alt' ></i>
                                                     </button>
                                                 </a>
                                                 <div class="btn">
-                                                    <form method="post" action="{{route('products.destroy_product', $product->id)}}">
+                                                    <form method="post" action="{{route('products.destroy_product', $product)}}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-primary" type="submit">
@@ -120,6 +126,12 @@
                                                         </button>
                                                     </form>
                                                 </div>
+                                                <a href="{{route('products.add_to_cart', $product)}}">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        ADD TO CART
+
+                                                    </button>
+                                                </a>
                                             </div>
 
                                         </td>

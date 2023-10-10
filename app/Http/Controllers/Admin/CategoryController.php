@@ -15,8 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $obj = new Category();
-        $categories = $obj ->index();
+        $categories = Category::all();
         return view('Admin.Categories.categories',[
             'categories' => $categories
         ]);
@@ -35,9 +34,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $obj = new Category();
-        $obj->cate_name = $request->cate_name;
-        $obj->store();
+        Category::create($request->all());
         return Redirect::route('categories.category');
     }
 
@@ -54,12 +51,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category, Request $request)
     {
-        $obj = new Category();
-        $obj->id = $request->id;
-        $categories = $obj->edit();
         return view('Admin.Categories.edit_categories',[
-            'categories' => $categories,
-            'id' => $obj->id
+            'categories' => $category,
         ]);
 
     }
@@ -69,10 +62,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $obj = new Category();
-        $obj -> id = $request -> id;
-        $obj -> cate_name = $request -> cate_name;
-        $obj -> updateCategory();
+        $category->update($request->all());
         return Redirect::route('categories.category');
     }
 
@@ -81,9 +71,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category, Request $request)
     {
-        $obj = new Category();
-        $obj -> id = $request->id;
-        $obj -> deleteCategory();
+        $category->delete();
         return Redirect::route('categories.category');
     }
 }

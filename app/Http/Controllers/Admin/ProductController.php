@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Size;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -18,8 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $obj = new Product();
-        $products = $obj->index();
+        $products = Product::with('categories')->get();
         return view('Admin.Product.product',[
             'products' => $products
         ]);
@@ -31,10 +32,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $objCate = new Category();
-        $categories = $objCate->index();
-        $objSize = new Size();
-        $sizes = $objSize->index();
+        $categories = Category::all();
+        $sizes = Size::all();
         return view('Admin.Product.add_product',[
             'categories' => $categories,
             'sizes' => $sizes
@@ -47,23 +46,18 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $obj = new Product();
-        $obj->product_name = $request->product_name;
-        $obj->product_description = $request->product_description;
-        $obj->cate_id = $request->cate_id;
         $product_image = $request->file('product_image')->getClientOriginalName();
         if (!Storage::exists('public/Admin/'.$product_image)) {
             Storage::putFileAs('public/Admin', $request->file('product_image'), $product_image);
         }
-        $obj->product_image = $product_image;
-        $product_id = $obj->store();
-//        dd($product_id);
+        $productId = Product::create(array_merge($request->all(), ['product_image' => $product_image]));
+        $product_id = $productId->id;
         foreach ($request->input('sizes') as $sizeId => $data) {
-            $productDetail = new ProductDetail();
-            $productDetail->product_id = $product_id;
-            $productDetail->size_id = $sizeId;
-            $productDetail->price = $data['product_price'];
-            $productDetail->store();
+            ProductDetail::create([
+                'product_id' => $product_id,
+                'size_id' => $sizeId,
+                'product_price' => $data['product_price'],
+            ]);
         }
         return redirect()->route('products.product');
     }
@@ -81,20 +75,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product, Request $request)
     {
-        $objProduct = new Product();
-        $objProduct->id = $request->id;
-        $products = $objProduct->edit();
-        $objCate = new Category();
-        $categories = $objCate->index();
-        $objSize = new Size();
-        $sizes = $objSize->index();
-
+        $product_detail = ProductDetail::with('sizes')->where('product_id','=', $product->id)->get();
+        $categories = Category::all();
+        $sizes = Size::all();
         return view('Admin.Product.edit_product',[
+            'products' => $product,
             'categories' => $categories,
             'sizes' => $sizes,
-            'id' => $objProduct->id,
-            'products' => $products['products'],
-            'product_detail' =>$products['products_detail']
+            'product_detail' =>$product_detail
         ]);
     }
 
@@ -103,28 +91,27 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $obj = new Product();
-        $obj->id = $request->id;
-        $obj->product_name = $request->product_name;
-        $obj->product_description = $request->product_description;
         if ($request->file('product_image') == null) {
-            $obj->product_image = $request->image_name;
+            $product_image = $request->image_name;
         } else{
             $product_image = $request->file('product_image')->getClientOriginalName();
             if (!Storage::exists('public/Admin/'.$product_image)) {
                 Storage::putFileAs('public/Admin', $request->file('product_image'), $product_image);
             }
-            $obj->product_image = $product_image;
-        }
+            $product->product_image = $product_image;
 
-        $obj->cate_id = $request->cate_id;
-        $obj->updateProduct();
+        }
+        $product->update(array_merge($request->all(), ['product_image' => $product_image]));
         foreach ($request->input('sizes') as $sizeId => $data) {
-            $productDetail = new ProductDetail();
-            $productDetail->product_id = $request->id;
-            $productDetail->size_id = $sizeId;
-            $productDetail->price = $data['product_price'];
-            $productDetail->updateProductDetail();
+            ProductDetail::updateOrCreate(
+                [
+                    'product_id' => $product->id,
+                    'size_id' => $sizeId,
+                ],
+                [
+                    'product_price' => $data['product_price'],
+                ]
+            );
         }
         return redirect()->route('products.product');
     }
@@ -134,9 +121,32 @@ class ProductController extends Controller
      */
     public function destroy(Product $product, Request $request)
     {
-        $obj = new Product();
-        $obj->id = $request->id;
-        $obj->deleteProduct();
+        ProductDetail::with('sizes')->where('product_id','=', $product->id)->delete();
+        $product->delete();
         return redirect()->route('products.product');
+    }
+    public function addToCart(Product $product, Request $request)
+    {
+        if(Session::has('cart')){
+
+            $currentCart = Session::get('cart');
+        }else{
+            $currentCart = array();
+        }
+            $currentCart = Arr::add($currentCart, $product->id,
+                [
+                    'product_name' => $product->product_name,
+                    'product_image' => $product->product_image,
+                    'product_quantity' => 1,
+                ]);
+        Session::put('cart', $currentCart);
+        return redirect()->route('products.cart');
+    }
+    public function cart()
+    {
+
+        Session::get('cart');
+        return view('Admin.Product.cart');
+
     }
 }

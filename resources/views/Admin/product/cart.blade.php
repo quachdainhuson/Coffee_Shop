@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="../public/image/x-icon" href="../../../public/image/logo_highland.png">
-    <!-- <link rel="stylesheet" href="../../public/css/style.css"> -->
-    <link rel="stylesheet" href="../../public/css/header.css">
-    <link rel="stylesheet" href="../../public/css/product.css">
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <link rel="stylesheet" href="../../../public/css/header.css">
+    <link rel="stylesheet" href="../../../public/css/cart.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
     <title>Highlands Coffee</title>
-    <link rel="stylesheet" href="../../public/fontawesome-free-6.4.2-web/css/all.min.css">
+    <link rel="stylesheet" href="../../../public/fontawesome-free-6.4.2-web/css/all.min.css">
+    <script src="../../../public/bootstrap-5.0.2-dist/bootstrap.min.css"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
 </head>
 <header class="header">
     <a href="#" class="logo">
-        <img src="../../public/image/logo_highland.png" alt="">
+        <img src="../../../public/image/logo_highland.png" alt="">
     </a>
     <nav class="navbar">
         <div><a href="#">TRANG CHỦ</a></div>
@@ -54,84 +56,66 @@
 
 </header>
 <body>
-    <br><br><br><br><br>
-    <div class="product-title">
-        <h3 id="title-1">Sản Phẩm Mới Nhất</h3>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8" id="list-cart">
+            <h4 class="title-2">YOUR CART</h4>
+            <table class="table table-hover">
+
+                <tr>
+                    <th class="product-image">PRODUCT IMAGE</th>
+                    <th class="product-name">Tên Sản Phẩm</th>
+                    <th class="product-price">PRICE</th>
+                    <th class="product-subtotal">QUANTITY</th>
+                    <th class="product-quantity">SUBTOTAL</th>
+                    <th></th>
+                </tr>
+
+                @foreach(Session::get('cart') as $product_id => $product)
+                    <tr>
+                        <th class="product-image">
+                            <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product['product_image'])}}">
+                        </th>
+                        <th class="product-name">{{$product['product_name']}}</th>
+                        <th class="product-price">PRICE</th>
+                        <th class="product-subtotal">{{$product['product_quantity']}}</th>
+                        <th class="product-quantity">SUBTOTAL</th>
+                        <th></th>
+                    </tr>
+                @endforeach
+            </table>
+
+        </div>
+        <div class="col-2"></div>
     </div>
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-7">
-          <ul class="products">
-            @foreach($products as $product)
-            <li class="item">
-                <div class="product-item">
-                    <div class="product-top">
-                        <a href="#" class="product-thumb">
-                            <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product->product_image) }}" alt="">
-                        </a>
-                        <a href="{{route('client.detail', $product)}}" class="buy-now">XEM SẢN PHẨM</a>
-                    </div>
-                        <div class="product-info">
-                            <a href="#" class="product-name">{{ $product->product_name }}</a>
-
-                        </div>
-                </div>
-            </li>
-            @endforeach
-
-        </ul>
-        </div>
-        <div class="col-3">
-            <div class="search-here">
-                <h5 class="title">SEARCH HERE</h5>
-                <input id="search" type="text" placeholder="     Search Here">
-            </div>
-            <div class="categories">
-                <h5 class="title">DANH MỤC</h5>
-                <ul>
-                    @foreach($categories as $category)
-                    <li class="cate-item">{{ $category->cate_name }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-        <div class="col-1">
-
+        <div class="col-2"></div>
+        <div class="col-8" style="margin-top: 30px;">
+            <a href="#" class="cart-btn"><b>CLEAR CART</b></a>
+            <a href="#" class="cart-btn"><b>UPDATE CART</b></a>
         </div>
     </div>
-
-
-    <div class="popup" id="popup1">
-
-        <a href="" class="close-button"  onclick="hide('popup1')" ><i class="fa-solid fa-x" style="color: #ff0000;"></i></a>
 
     <div class="row">
-        <div class="col-4">
-            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="" width="300px">
-        </div>
-        <div class="col-8">
-            <span style="font-size: 40px;">PAPER POUCH</span><br>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i><br>
-            <h4 style="margin-top: 10px;">30.000 VND</h4>
-            <h5>Available : <span style="color: #a7a7a7 ;">In stock</span></h5>
-            <h6>Anlor sit amet, consectetur adipiscing elit. Fusce condimentum est lacus, non pretium risus lacinia vel. Fusce eget turpis orci.</h6>
-            <div class="product-details">
-
-                <div class="size-buttons">
-                    <input type="radio" name="size_id" id="size_id">
-                    <span>Số Lượng</span>
-                    <input type="number" class="quantity-input" value="1">
+        <div class="col-7"></div>
+        <div class="col-3" id="cart-total">
+            <div class="total-price">
+                <h4 class="title-2">CART TOTAL</h4>
+                <div class="cart-total" id="subtotal">
+                    <span><b>SubTotal</b></span>
+                    <span><b>$180</b></span>
                 </div>
-                <p class="selected-size">Selected size: None</p>
-              </div>
-              <button id="cart-btn">ADD TO CART</button>
+                <div class="cart-total" id="totalprice">
+                    <span><b>Total</b></span>
+                    <span><b>$180</b></span>
+                </div>
+                <button id="cart-btn"><b>ADD TO PROCESS</b></button>
+
+            </div>
         </div>
+        <div class="col-2"></div>
     </div>
-    </div>
+
 
 
 
@@ -147,8 +131,6 @@
           <a href="#"><i class='bx bx-envelope'></i>customerservice@highlandscoffee.com.vn</a>
         </div>
   </section>
-    <script src="../../public/js/product.js"></script>
-    <script src="../../public/js/nav.js"></script>
-    <script src="../../public/bootstrap-5.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../../public/js/product.js"></script>
 </body>
 </html>

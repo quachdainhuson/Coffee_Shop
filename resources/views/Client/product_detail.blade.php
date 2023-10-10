@@ -64,37 +64,31 @@
 <div class="product-title">
     <h3 id="title-1">Sản Phẩm Mới Nhất</h3>
 </div>
-
             <div class="row">
                 <div class="col-2"></div>
-                @foreach($products as $product)
                 <div class="col-2">
-                    <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/'.$product->product_image))}}" alt="" width="300px">
+                    <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/'.$products['product_image']))}}" alt="" width="300px">
                 </div>
                 <div class="col-4" style="margin-left: 20px">
-                        <span style="font-size: 40px;">{{ $product->product_name }}</span><br>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i><br>
-                    <h4 style="margin-top: 10px;">30.000 VND</h4>
-                    <h5>Available : <span style="color: #a7a7a7 ;">In stock</span></h5>
-                    <h6>{{ $product->product_description }}</h6>
+                    <span style="font-size: 40px;">{{ $products->product_name }}</span><br>
+                    <h4 style="margin-top: 10px;" id="product_price">Chọn Size</h4>
+                    <h6>{{ $products->product_description }}</h6>
                     <div class="product-details">
-
                         <div class="size-buttons">
                             @foreach($sizes as $size)
-                            <button class="size-button" data-size="{{$size->size_name}}">{{$size->size_name}}</button>
+                                <label>
+                                    <input type="radio" name="size_id" id="size_id" value="{{$size->id}}" onClick="updatePrice(this)">{{$size->size_name}}
+                                </label>
                             @endforeach
+                            <br>
                             <span>Số Lượng</span>
                             <input type="number" class="quantity-input" value="1">
                         </div>
-                        <p class="selected-size">Selected size: None</p>
                     </div>
+                    <br>
                     <button id="cart-btn">ADD TO CART</button>
                 </div>
-                @endforeach
+
                 <div class="col-3">
                     <div class="search-here">
                         <h5 class="title">SEARCH HERE</h5>
@@ -110,17 +104,8 @@
                     </div>
                 </div>
             </div>
-
-
-
     </div>
 </div>
-
-
-
-
-
-
 <section class="contact">
     <div class="social">
         <a href="#"><i class="bx bxl-facebook"></i></a>
@@ -136,5 +121,17 @@
 <script src="../../public/js/product.js"></script>
 <script src="../../public/js/nav.js"></script>
 <script src="../../public/bootstrap-5.3.1-dist/js/bootstrap.min.js"></script>
+<script>
+    function updatePrice(e) {
+        let size = e.value;
+        let price = 0;
+        @foreach($products_detail as $sizePrice)
+            if(size == "{{$sizePrice->size_id}}"){
+                price = "{{$sizePrice->product_price}}";
+            }
+        @endforeach
+        document.getElementById('product_price').innerHTML = price + " VND";
+    }
+</script>
 </body>
 </html>

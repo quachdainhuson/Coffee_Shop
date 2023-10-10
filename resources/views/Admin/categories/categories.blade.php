@@ -102,7 +102,7 @@
                                     <td>
                                         <div class="form-group">
                                             <div class="btn">
-                                                <a href="{{route('categories.edit_category', $category->id) }}">
+                                                <a href="{{route('categories.edit_category', $category) }}">
                                                         <button class="btn btn-primary" type="submit">
                                                             <i class='bx bxs-edit-alt' ></i>
 
@@ -112,7 +112,7 @@
 
 
                                             <div class="btn">
-                                                <form method="post" action="{{route('categories.delete_category', $category -> id)}}">
+                                                <form method="post" action="{{route('categories.delete_category', $category)}}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-primary" type="submit">
