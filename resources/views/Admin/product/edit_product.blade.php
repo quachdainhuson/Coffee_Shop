@@ -80,25 +80,24 @@
             <!-- Insights -->
             <div class="container-fluid">
 
-                <form role="form"  enctype="multipart/form-data" method="post" action="{{route('products.update_product',$id)}}">
-
+                <form role="form"  enctype="multipart/form-data" method="post" action="{{route('products.update_product', $products)}}">
                     @csrf
                     @METHOD('PUT')
                     <div class="row">
-                        @foreach($products as $product)
+
                         <div class="col-4" >
                             <br>
                             <br>
-                            <input type="hidden" name="image_name" value="{{$product->product_image}}">
+                            <input type="hidden" name="image_name" value="{{$products->product_image}}">
                             <input type="file"  name="product_image" id="product_image" onchange="preview()" multiple>
-                            <img id="frame" src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product->product_image)}}" width="300px" height="300px"/>
+                            <img id="frame" src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$products->product_image)}}" width="300px" height="300px"/>
                         </div>
                         <div class="col-6" style="padding-left: 50px;">
                             <br><br><br><br>
 
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input required name="product_name" class="form-control" placeholder="" value="{{$product->product_name}}">
+                                <input required name="product_name" class="form-control" placeholder="" value="{{$products->product_name}}">
                             </div>
 
                             <div class="form-group">
@@ -107,7 +106,7 @@
                                 <select name="cate_id" class="form-control">
 
                                     @foreach($categories as $category)
-                                        <option @if($category->id == $product->cate_id){{'selected'}} @endif value="{{ $category->id }}">{{ $category->cate_name }}</option>
+                                        <option @if($category->id == $products->cate_id){{'selected'}} @endif value="{{ $category->id }}">{{ $category->cate_name }}</option>
                                     @endforeach
                                 </select>
 
@@ -125,14 +124,14 @@
 
                             <div class="form-group">
                                 <label>Mô tả sản phẩm</label>
-                                <textarea required name="product_description" class="form-control" cols="30" rows="10">{{$product->product_description}}</textarea>
+                                <textarea required name="product_description" class="form-control" cols="30" rows="10">{{$products->product_description}}</textarea>
                             </div>
                             <input name="sbm" type="submit" value="Thêm mới" class="btn btn-primary"></input>
                             <button type="reset" class="btn btn-light">Reset</button>
 
                         </div>
                         <div class="col-2"></div>
-                        @endforeach
+
                     </div>
                 </form>
 

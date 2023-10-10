@@ -10,37 +10,14 @@ use PhpParser\Node\Expr\FuncCall;
 class Category extends Model
 {
     use HasFactory;
-
-    public function index(){
-        $categories = DB::table('categories')
-                    ->get();
-        return $categories;
+    protected $table = 'categories';
+    protected $primaryKey = 'id';
+    public $timestamps = false;
+    protected $fillable = [
+        'cate_name'
+    ];
+    public function products(){
+        return $this->hasMany(Product::class, 'cate_id');
     }
 
-    public function store(){
-        DB::table('categories')->insert([
-            'cate_name'=> $this->cate_name
-        ]);
-    }
-
-    public function edit(){
-        $categories = DB::table('categories')
-        ->where('id', $this->id)
-        ->get();
-        return $categories;
-    }
-
-    public function updateCategory(){
-        DB::table('categories')
-        ->where('id', $this -> id)
-        ->update([
-            'cate_name' => $this->cate_name
-        ]);
-    }
-
-    public function deleteCategory(){
-        DB::table('categories')
-        ->where('id', $this->id)
-        ->delete();
-    }
 }

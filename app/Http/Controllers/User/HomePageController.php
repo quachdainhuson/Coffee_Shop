@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateHomePageRequest;
 use App\Models\Category;
 use App\Models\HomePage;
 use App\Models\Product;
+use App\Models\ProductDetail;
 use App\Models\Size;
 use Illuminate\Http\Request;
 
@@ -22,29 +23,25 @@ class HomePageController extends Controller
     }
     public function product()
     {
-        $objProduct = new Product();
-        $products = $objProduct->index();
-        $objCate = new Category();
-        $categories = $objCate->index();
+        $products = Product::with('categories')->get();
+        $categories = Category::all();
         return view('Client.product',[
             'products' => $products,
             'categories' => $categories
         ]);
     }
-    public function detail(Request $request)
+    public function detail(Product $product,Request $request)
     {
-        $objSize = new Size();
-        $sizes = $objSize->index();
-        $objCate = new Category();
-        $categories = $objCate->index();
-        $objProductDetail = new Product();
-        $objProductDetail->id = $request->id;
-        $products_detail = $objProductDetail->edit();
+        $sizes = Size::all();
+        $categories = Category::all();
+        $products_detail = ProductDetail::join('sizes', 'sizes.id', '=', 'product_details.size_id')->
+        where('product_id', $product->id)->get();
+
         return view('Client.product_detail',[
             'categories' => $categories,
             'sizes' => $sizes,
-            'products_detail' => $products_detail['products_detail'],
-            'products' => $products_detail['products']
+            'products_detail' => $products_detail,
+            'products' => $product,
 
         ]);
     }

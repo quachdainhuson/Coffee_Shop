@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\DB;
 class Size extends Model
 {
     use HasFactory;
-    public function index(){
-        $sizes = DB::table('sizes')
-            ->get();
-        return $sizes;
+    protected $table = 'sizes';
+    protected $primaryKey = 'id';
+    public $timestamps = false;
+    protected $fillable = [
+        'size_name',
+    ];
+    public function product_details(){
+        return $this->hasMany(ProductDetail::class, 'size_id');
     }
 }
