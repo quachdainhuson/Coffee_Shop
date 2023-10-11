@@ -20,7 +20,7 @@
     </a>
     <nav class="navbar">
         <div><a href="#">TRANG CHỦ</a></div>
-        <div class="menu"><a href="#">MENU</a>
+        <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
                 <a href="#">Cà phê</a>
                 <a href="#">Trà</a>
@@ -38,7 +38,7 @@
                 <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><style>svg{fill:#fcfcfd}</style><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></a>
             </li>
             <li class="cart-btn">
-                <a class="nav-link" href=""><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><style>svg{fill:#f7f7f8}</style><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg></a>
+                <a class="nav-link" href="{{route('client.cart')}}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><style>svg{fill:#f7f7f8}</style><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg></a>
             </li>
             <li class="user-btn">
                 <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#f1f2f3}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg></a>
@@ -56,14 +56,13 @@
 </header>
 <body>
     <div class="row">
-
+        @php($total = 0)
         <div class="col-2"></div>
+        @if(Session::has('cart'))
             <div class="col-8" id="list-cart">
-                @php($total = 0)
                 <form method="post" action="{{route('client.update_cart')}}">
                     @csrf
                     @method('PUT')
-                @if(Session::has('cart'))
                     <h4 class="title-2">YOUR CART</h4>
                 <table class="table table-hover">
                     <tr>
@@ -87,32 +86,25 @@
                             <th class="product-price">{{$product['size_name']}}</th>
                             <th class="product-subtotal">
                                 <input type="number" name="quantity[{{$product_id}}]" value="{{$product['product_quantity']}}">
-
                             </th>
                             <th class="product-quantity">{{number_format($product['price'] * $product['product_quantity'], 0, ',', '.') }}</th>
                             <th><a href="{{route('client.delete_prd_cart', $product_id)}}"><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></th>
                         </tr>
                     @endforeach
-
                 </table>
-                    <a href="{{route('client.delete_cart', $product_id)}}" class="cart-btn"><b>CLEAR CART</b></a>
-                    <button class="cart-btn"><b>UPDATE CART</b></button>
-                @else
-                    <h4 class="title-2">YOUR CART IS EMPTY</h4>
-                @endif
-                </form>
             </div>
 
         <div class="col-2"></div>
-
     </div>
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8" style="margin-top: 30px;">
+            <a href="{{route('client.delete_cart')}}" class="cart-btn"><b>CLEAR CART</b></a>
 
+            <button class="cart-btn"><b>UPDATE CART</b></button>
         </div>
     </div>
-
+    </form>
     <div class="row">
         <div class="col-7"></div>
         <div class="col-3" id="cart-total">
@@ -124,30 +116,43 @@
 {{--                </div>--}}
                 <div class="cart-total" id="totalprice">
                     <span><b>Total</b></span>
+
                     <span><b>{{number_format($total, 0, ',', '.')}}</b></span>
+
                 </div>
-                <button id="cart-btn"><b>ADD TO PROCESS</b></button>
+                <button id="cart-btn" "><a href="{{route('client.checkout')}}"><b>ADD TO PROCESS</b></a></button>
 
             </div>
         </div>
         <div class="col-2"></div>
     </div>
 
+    @else
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8" id="list-cart">
+                <h4 class="title-2">YOUR CART IS EMPTY</h4>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    @endif
 
 
 
+    <script src="{{asset('js/product.js')}}"></script>
+</body>
+<footer>
     <section class="contact">
         <div class="social">
-          <a href="#"><i class="bx bxl-facebook"></i></a>
-          <a href="#"><i class="bx bxl-instagram"></i></a>
-          <a href="#"><i class="bx bxl-youtube"></i></a>
+            <a href="#"><i class="bx bxl-facebook"></i></a>
+            <a href="#"><i class="bx bxl-instagram"></i></a>
+            <a href="#"><i class="bx bxl-youtube"></i></a>
         </div>
         <div class="links">
-          <a href="#">© 2018 Highlands Coffee. All rights reserved</a>
-          <a href="#"><i class='bx bx-paper-plane'></i>Đăng ký để nhận bản tin</a>
-          <a href="#"><i class='bx bx-envelope'></i>customerservice@highlandscoffee.com.vn</a>
+            <a href="#">© 2018 Highlands Coffee. All rights reserved</a>
+            <a href="#"><i class='bx bx-paper-plane'></i>Đăng ký để nhận bản tin</a>
+            <a href="#"><i class='bx bx-envelope'></i>customerservice@highlandscoffee.com.vn</a>
         </div>
-  </section>
-    <script src="../../public/js/product.js"></script>
-</body>
+    </section>
+</footer>
 </html>

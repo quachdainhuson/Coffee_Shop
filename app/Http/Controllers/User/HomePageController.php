@@ -59,6 +59,10 @@ class HomePageController extends Controller
     }
     public function addToCart(Product $product, Request $request)
     {
+
+        if($request->size_id == null){
+            return redirect()->route('client.detail', $product);
+        }
         if (Session::has('cart')) {
             $currentCart = Session::get('cart');
         } else {
@@ -89,6 +93,9 @@ class HomePageController extends Controller
     }
     public function updateCart(Request $request)
     {
+        if ($request->input('quantity') == null) {
+            return redirect()->route('client.cart');
+        }
         $currentCart = Session::get('cart');
         foreach ($request->input('quantity') as $cartItemKey => $quantity) {
             $currentCart[$cartItemKey]['product_quantity'] = $quantity;
@@ -105,6 +112,9 @@ class HomePageController extends Controller
         unset($currentCart[$product_id]);
         Session::put('cart', $currentCart);
         return redirect()->route('client.cart');
+    }
+    public function checkout(){
+        return view('Client.checkout');
     }
     /**
      * Show the form for creating a new resource.

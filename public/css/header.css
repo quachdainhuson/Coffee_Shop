@@ -173,12 +173,16 @@ header ul li a
 
 
 /*footer*/
+footer{
+
+    top: 50%;
+}
 .contact{
     display: flex;
     flex-direction: column;
     align-items: center;
     background: #4b2f13;
-    margin-top: 100px;
+
 }
 
 .social a{
