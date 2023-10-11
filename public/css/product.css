@@ -220,3 +220,37 @@ li.cate-item{
     box-shadow: inset 170px 0 0 0 #000000;
 }
 
+
+
+/* button size in product detail */
+input[type="radio"]{
+    display: none;
+}
+
+label{
+    position: relative;
+    color: #C7A17A;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 0.8em;
+    border: 3px solid #C7A17A;
+    padding: 1em 2em;
+    border-radius: 0.5em;
+    align-items: center;
+    font-size: 15px;
+
+}
+
+
+
+input[type="radio"]:checked + label:before{
+    height: 3em;
+    width: 3em;
+    border: 0.65em solid #fff;
+    background-color:#C7A17A;
+}
+
+input[type="radio"]:checked + label{
+   color: #fff;
+    background-color:#C7A17A;
+}
