@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+
+
+
+use Illuminate\Http\Request;
+
 class LoginController
 {
-    public function index()
-    {
-        return view('Admin.login.login');
-    }
+
 }
