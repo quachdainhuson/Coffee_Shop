@@ -109,13 +109,9 @@ class EmployeeController extends Controller
             $employee = Auth::guard('employee')->user();
             Auth::guard('employee')->login($employee);
             Session::put('employee', $employee);
-            return redirect()->route('users.user');
+            return redirect()->route('dashboard.dashboard');
         }else{
             return redirect()->route('users.login');
         }
-
-
-
-
     }
 }

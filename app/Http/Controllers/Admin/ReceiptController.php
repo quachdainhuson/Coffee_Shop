@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreReceiptRequest;
 use App\Http\Requests\UpdateReceiptRequest;
 use App\Models\Receipt;
+use App\Models\ReceiptDetail;
+use Illuminate\Support\Facades\DB;
 
 class ReceiptController extends Controller
 {
@@ -13,9 +15,31 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        //
+        $receipt = Receipt::all();
+        return view('Admin.receipt.receipt',[
+            'receipts' => $receipt
+        ]);
     }
+    public function detail(Receipt $receipt){
+        $receipt_detail = DB::table('receipts')
+            ->select('receipt_details.*',
+                'customer_name',
+                'customer_phone',
+                'customer_address',
+                'customer_email',
+                'receipts.id as receipt_id',
+                'receipts.total_price',
+                'receipts.status as receipt_status',
+                'receipts.customer_id as receipt_customer_id',
+                'receipts.employee_id as receipt_employee_id',
+            )
+            ->join('receipt_details', 'receipts.id', '=', 'receipt_details.receipt_id')
+            ->join('customers', 'receipts.customer_id', '=', 'customers.id')
+            ->where('receipt_details.receipt_id', '=', $receipt->id)
+            ->get();
 
+        return view('Admin.receipt.receipt_detail');
+    }
     /**
      * Show the form for creating a new resource.
      */

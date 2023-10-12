@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../../../public/css/admin.css">
-    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
+    <link rel="stylesheet" href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.min.css')}}">
     <title>Admin Coffee Shop</title>
 </head>
 
@@ -19,11 +19,11 @@
             <div class="logo-name"><span>Coffee</span>Shop</div>
         </a>
         <ul class="side-menu">
-            <li><a href="../DashBoard/dashboard.blade.php"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
-            <li ><a href="../Product/product.html"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
-            <li><a href="../User/user.blade.php"><i class='bx bx-group'></i>Người Dùng</a></li>
-            <li><a href="../Categories/categories.html"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
-            <li><a href="../Receipt/receipt.html"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
+            <li><a href="{{route('dashboard.dashboard')}}"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
+            <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
+            <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
+            <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
+            <li class="active" ><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
@@ -94,25 +94,39 @@
                                 </tr>
                             </thead>
                                 <tbody>
-                                <tr>
-                                    <td scope="col"></td>
-                                    <td scope="col"></td>
-                                    <td scope="col"></td>
-                                    <td scope="col"></td>
-                                    <p style="color:red;"></p>
-                                    <th scope="col" style="color:green"></th>
-                                    <td scope="col"></td>
-                                    <td scope="col">
-                                        <a href=""><button class="btn btn-primary" type="submit">Chi Tiết</button></a>
-                                    </td>
-                                    <td scope="col">
-                                        <a href=""><button class="btn btn-primary" type="submit"><i class="fa-solid fa-x"></i></button></a>
-                                        <a href=""><button class="btn btn-primary" type="submit"><i class="fa-regular fa-square-check"></i></button></a>
-                                        <a href=""><button class="btn btn-primary" type="submit"><i class="fa-solid fa-truck"></i></button></a>
-                                        <a href=""><button class="btn btn-primary" type="submit"><i class="fa-solid fa-box"></i></button></a>
-                                    </td>
-                                    <td scope="col"></td>
-                                </tr>
+                                @foreach($receipts as $receipt)
+                                    <tr>
+                                        <td scope="col">{{$receipt->id}}</td>
+                                        <td scope="col">{{$receipt->customer->customer_name}}</td>
+                                        <td scope="col">{{$receipt->customer->customer_phone}}</td>
+                                        <td scope="col">{{$receipt->total_price}}</td>
+                                        <th scope="col" style="color:green">
+                                            @if($receipt->status == 0)
+                                                Chờ Xác Nhận
+                                            @elseif($receipt->status == 1)
+                                                Đã Xác Nhận
+                                            @elseif($receipt->status == 2)
+                                                Đang Giao Hàng
+                                            @elseif($receipt->status == 3)
+                                                Đã Giao Hàng
+                                            @elseif($receipt->status == 4)
+                                                Đã Hủy
+                                            @endif
+
+                                        </th>
+                                        <td scope="col">{{$receipt->order_date}}</td>
+                                        <td scope="col">
+                                            <a href="{{route('receipts.detail',$receipt)}}"><button class="btn btn-primary" type="submit">Chi Tiết</button></a>
+                                        </td>
+                                        <td scope="col">
+                                            <a href=""><button class="btn btn-primary" type="submit"><i class='bx bx-checkbox-checked'></i></button></a>
+                                            <a href=""><button class="btn btn-primary" type="submit"><i class="fa-regular fa-square-check"></i></button></a>
+                                            <a href=""><button class="btn btn-primary" type="submit"><i class='bx bx-check'></i></button></a>
+                                            <a href=""><button class="btn btn-primary" type="submit"><i class='bx bx-x'></i></button></a>
+                                        </td>
+                                        <td scope="col"></td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
 
 
