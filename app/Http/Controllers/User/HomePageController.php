@@ -11,6 +11,8 @@ use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Size;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class HomePageController extends Controller
 {
@@ -19,7 +21,10 @@ class HomePageController extends Controller
      */
     public function index()
     {
-        return view('Client.home');
+        $categories = Category::all();
+        return view('Client.home',[
+            'categories' => $categories
+        ]);
     }
     public function product()
     {
@@ -47,7 +52,69 @@ class HomePageController extends Controller
     }
     public function cart()
     {
-        return view('Client.cart');
+        $currentCart = Session::get('cart');
+        return view('Client.cart',[
+            'currentCart' => $currentCart,
+        ]);
+    }
+    public function addToCart(Product $product, Request $request)
+    {
+
+        if($request->size_id == null){
+            return redirect()->route('client.detail', $product);
+        }
+        if (Session::has('cart')) {
+            $currentCart = Session::get('cart');
+        } else {
+            $currentCart = [];
+        }
+        $quantity = $request->input('product_quantity');
+        $size_id = $request->input('size_id');
+        $product_detail = ProductDetail::join('sizes', 'sizes.id', '=', 'product_details.size_id')
+        ->where('product_id', $product->id)
+            ->where('size_id', $size_id)
+            ->first();
+        $cartItemKey = $product->id . '_' . $size_id;
+        if (array_key_exists($cartItemKey, $currentCart)) {
+            $currentCart[$cartItemKey]['product_quantity'] = $currentCart[$cartItemKey]['product_quantity'] + $quantity;
+        } else {
+            $currentCart[$cartItemKey] = [
+                'product_id' => $product->id,
+                'product_name' => $product->product_name,
+                'product_image' => $product->product_image,
+                'product_quantity' => $quantity,
+                'size_id' => $size_id,
+                'size_name' => $product_detail->size_name,
+                'price' => $product_detail->product_price,
+            ];
+        }
+        Session::put('cart', $currentCart);
+        return redirect()->route('client.cart');
+    }
+    public function updateCart(Request $request)
+    {
+        if ($request->input('quantity') == null) {
+            return redirect()->route('client.cart');
+        }
+        $currentCart = Session::get('cart');
+        foreach ($request->input('quantity') as $cartItemKey => $quantity) {
+            $currentCart[$cartItemKey]['product_quantity'] = $quantity;
+        }
+        Session::put('cart', $currentCart);
+        return redirect()->route('client.cart');
+    }
+    public function deleteCart(){
+        Session::flush();
+        return redirect()->route('client.cart');
+    }
+    public function deleteProductInCart($product_id, Request $request){
+        $currentCart = Session::get('cart');
+        unset($currentCart[$product_id]);
+        Session::put('cart', $currentCart);
+        return redirect()->route('client.cart');
+    }
+    public function checkout(){
+        return view('Client.checkout');
     }
     /**
      * Show the form for creating a new resource.

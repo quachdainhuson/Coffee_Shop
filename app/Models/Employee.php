@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Employee extends Model
+class Employee extends Model implements \Illuminate\Contracts\Auth\Authenticatable
 {
-
     use HasFactory;
+    use Authenticatable;
+    public $timestamps = false;
     public function index()
     {
         $employees = DB::table('employees')->get();
@@ -20,7 +23,7 @@ class Employee extends Model
         DB::table('employees')->insert([
             'employee_name' => $this->employee_name,
             'employee_email' => $this->employee_email,
-            'employee_phone' => $this->employee_phone,
+            'employee_phone' => '1023456789',
             'username' => $this->username,
             'password' => $this->password,
             'role' => $this->role
@@ -51,4 +54,5 @@ class Employee extends Model
             ->where('id', $this->id)
             ->delete();
     }
+
 }
