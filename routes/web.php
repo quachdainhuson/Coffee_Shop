@@ -55,3 +55,13 @@ Route::prefix('Admin/Category/')->group(function(){
     Route::put('/{category}/update_category', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('categories.update_category');
     Route::delete('/{category}/delete_category', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('categories.delete_category');
 });
+
+Route::prefix('Admin/Table/')->group(function(){
+    Route::get('/table_management',[\App\Http\Controllers\Admin\TableCoffeeController::class, 'index'])->name('tables.table_management');
+    Route::get('/table',[\App\Http\Controllers\Admin\TableCoffeeController::class, 'index1'])->name('tables.table');
+    Route::get('/add_table', [\App\Http\Controllers\Admin\TableCoffeeController::class, 'create'])->name('tables.add_table');
+    Route::post('/store_table', [\App\Http\Controllers\Admin\TableCoffeeController::class, 'store'])->name('tables.store_table');
+    Route::get('/{id}/edit_table', [\App\Http\Controllers\Admin\TableCoffeeController::class, 'edit'])->name('tables.edit_table');
+    Route::put('/{id}/update_table', [\App\Http\Controllers\Admin\TableCoffeeController::class, 'update'])->name('tables.update_table');
+    Route::delete('/{id}/delete_table', [\App\Http\Controllers\Admin\TableCoffeeController::class, 'destroy'])->name('tables.delete_table');
+});
