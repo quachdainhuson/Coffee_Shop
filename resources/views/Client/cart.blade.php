@@ -22,7 +22,7 @@
         <div><a href="{{route('client.home')}}">TRANG CHỦ</a></div>
         <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
-                <@foreach($categories as $category)
+                @foreach($categories as $category)
                 <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
                 @endforeach
             </div>

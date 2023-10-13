@@ -132,7 +132,10 @@ class HomePageController extends Controller
         return redirect()->route('client.cart');
     }
     public function checkout(){
-        return view('Client.checkout');
+        $categories = Category::all();
+        return view('Client.checkout',[
+            'categories' => $categories,
+        ]);
     }
     public function checkoutProcess(Request $request){
         $customer = $request->all();
