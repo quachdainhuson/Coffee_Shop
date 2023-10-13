@@ -15,16 +15,16 @@
 
 </head>
 <header class="header">
-    <a href="#" class="logo">
+    <a href="{{route('client.home')}}" class="logo">
         <img src="{{asset('image/logo_highland.png')}}" alt="">
     </a>
     <nav class="navbar">
-        <div><a href="#">TRANG CHỦ</a></div>
+        <div><a href="{{route('client.home')}}">TRANG CHỦ</a></div>
         <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
-                <a href="#">Cà phê</a>
-                <a href="#">Trà</a>
-                <a href="#">Freeze</a>
+                <@foreach($categories as $category)
+                <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
+                @endforeach
             </div>
         </div>
         <div><a href="#">CỘNG ĐỒNG</a></div>
@@ -120,7 +120,7 @@
                     <span><b>{{number_format($total, 0, ',', '.')}}</b></span>
 
                 </div>
-                <button id="cart-btn" "><a href="{{route('client.checkout')}}"><b>ADD TO PROCESS</b></a></button>
+                <button id="cart-btn" ><a href="{{route('client.checkout')}}"><b>ADD TO PROCESS</b></a></button>
 
             </div>
         </div>

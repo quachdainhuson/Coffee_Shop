@@ -65,9 +65,11 @@ class HomePageController extends Controller
     }
     public function cart()
     {
+        $categories = Category::all();
         $currentCart = Session::get('cart');
         return view('Client.cart',[
             'currentCart' => $currentCart,
+            'categories' => $categories,
         ]);
     }
     public function addToCart(Product $product, Request $request)
@@ -159,7 +161,7 @@ class HomePageController extends Controller
         Receipt::where('id', $order_id['id'])->update([
             'total_price' => $total_price,
         ]);
-        Session::unset('cart');
+        Session::forget('cart');
 
         return redirect()->route('client.home');
     }

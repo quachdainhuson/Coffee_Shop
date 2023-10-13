@@ -15,7 +15,7 @@
 </head>
 <header class="header">
     <a href="{{route('client.home')}}" class="logo">
-        <img src="../../public/image/logo_highland.png" alt="">
+        <img src="{{asset('image/logo_highland.png')}}" alt="">
     </a>
     <nav class="navbar">
         <div><a href="{{route('client.home')}}">TRANG CHỦ</a></div>
@@ -90,7 +90,7 @@
                 <h5 class="title">DANH MỤC</h5>
                 <ul>
                     @foreach($categories as $category)
-                    <li class="cate-item">{{ $category->cate_name }}</li>
+                    <li class="cate-item"><a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a></li>
                     @endforeach
                 </ul>
             </div>

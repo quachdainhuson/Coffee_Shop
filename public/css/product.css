@@ -140,7 +140,13 @@ li.cate-item{
     border: 1px solid #E2DFDD;
     padding-top: 12px;
     padding-left: 20px;
+    list-style: none;
 }
+
+li.cate-item a{
+    text-decoration: none;
+    color: #000000;
+}    
 
 
 .popup {

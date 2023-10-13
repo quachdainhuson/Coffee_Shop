@@ -68,8 +68,8 @@
     @csrf
     @method('PUT')
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-2">
+        <div class="col-1"></div>
+        <div class="col-3">
             <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/'.$products['product_image']))}}" alt="" width="300px">
         </div>
         <div class="col-4" style="margin-left: 20px">
@@ -93,7 +93,7 @@
             <button id="cart-btn">ADD TO CART</button>
         </div>
 
-        <div class="col-3">
+        <div class="col-2">
             <div class="search-here">
                 <h5 class="title">SEARCH HERE</h5>
                 <input id="search" type="text" placeholder="     Search Here">
