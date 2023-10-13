@@ -60,9 +60,18 @@
 
 </header>
 <body>
+    @php
+        $total = 0;
+    @endphp
+    @foreach(Session::get('cart') as $product_id => $product)
+        @php($total += $product['price'] * $product['product_quantity'])
+    @endforeach
 <div class="row">
+
     <div class="col-1"></div>
     <div class="col-6">
+        <form action="{{route('client.checkoutProcess')}}" method="post">
+            @csrf
         <div class="checkout-area pt-120 pb-120">
             <div class="container">
                 <div class="row">
@@ -93,169 +102,32 @@
                                                         <div class="row">
                                                             <div class="col-xl-6">
                                                                 <div class="from-group mt-30">
-                                                                    <label for="fname">Họ và Tên*</label>
-                                                                    <input type="text" name="fname" id="fname" placeholder="Họ Và Tên">
+                                                                    <label for="customer_name">Họ và Tên*</label>
+                                                                    <input type="text" name="customer_name" id="customer_name" placeholder="Họ Và Tên" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6">
                                                                 <div class="from-group mt-30">
-                                                                    <label for="lname">Số Điện Thoại*</label>
-                                                                    <input type="text" name="lname" id="lname" placeholder="Số Điện Thoại">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-xl-6">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="tel">Email</label>
-                                                                    <input type="tel" name="tel" id="tel" placeholder="Email">
+                                                                    <label for="customer_phone">Số Điện Thoại*</label>
+                                                                    <input type="text" name="customer_phone" id="customer_phone" placeholder="Số Điện Thoại" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6">
                                                                 <div class="from-group mt-30">
-                                                                    <label for="email">Địa Chỉ</label>
-                                                                    <input type="email" name="email" id="email" placeholder="Địa Chỉ">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="ainfo">Ghi Chú*</label>
-                                                                    <textarea name="ainfo" id="ainfo" placeholder="Ghi chú"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="pd-2" role="tabpanel" aria-labelledby="pd-2-tab">
-                                                <div class="cart-form">
-                                                    <form action="https://xpressrow.com/html/cafena/cafena/checkout.html">
-                                                        <div class="row">
-                                                            <div class="col-xl-6">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="fname2">First Name*</label>
-                                                                    <input type="text" name="fname2" id="fname2" placeholder="First Name">
+                                                                    <label for="customer_email">Email</label>
+                                                                    <input type="email" name="customer_email" id="customer_email" placeholder="Email">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6">
                                                                 <div class="from-group mt-30">
-                                                                    <label for="lname2">Last Name*</label>
-                                                                    <input type="text" name="lname2" id="lname2" placeholder="Last Name">
+                                                                    <label for="customer_address">Địa Chỉ</label>
+                                                                    <input type="text" name="customer_address" id="customer_address" placeholder="Địa Chỉ">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-12">
                                                                 <div class="from-group mt-30">
-                                                                    <label for="cname2">Company name (optional)</label>
-                                                                    <input type="text" name="cname2" id="cname2" placeholder="Company Name">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="rname2">Country / Region *</label>
-                                                                    <input type="text" name="rname2" id="rname2" placeholder="Company Name">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="hname2">Street address *</label>
-                                                                    <input type="text" name="hname2" id="hname2" placeholder="House number & State">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="tname2">Town / City *</label>
-                                                                    <input type="text" name="tname2" id="tname2">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="zname2">Postcode / ZIP (optional)*</label>
-                                                                    <input type="text" name="zname2" id="zname2">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="tel2">Phone</label>
-                                                                    <input type="tel" name="tel2" id="tel2" placeholder="Enter your number..">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="email2">Email</label>
-                                                                    <input type="email" name="email2" id="email2" placeholder="Enter your mail..">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="ainfo2">Additional Information*</label>
-                                                                    <textarea name="ainfo2" id="ainfo2" placeholder="Note about your order, Special note for delevery !"></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="pd-3" role="tabpanel" aria-labelledby="pd-3-tab">
-                                                <div class="cart-form">
-                                                    <form action="https://xpressrow.com/html/cafena/cafena/checkout.html">
-                                                        <div class="row">
-                                                            <div class="col-xl-6">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="fname3">First Name*</label>
-                                                                    <input type="text" name="fname3" id="fname3" placeholder="First Name">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="lname3">Last Name*</label>
-                                                                    <input type="text" name="lname3" id="lname3" placeholder="Last Name">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="cname3">Company name (optional)</label>
-                                                                    <input type="text" name="cname3" id="cname3" placeholder="Company Name">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="rname3">Country / Region *</label>
-                                                                    <input type="text" name="rname3" id="rname3" placeholder="Company Name">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="hname3">Street address *</label>
-                                                                    <input type="text" name="hname3" id="hname3" placeholder="House number & State">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="tname3">Town / City *</label>
-                                                                    <input type="text" name="tname3" id="tname3">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="zname3">Postcode / ZIP (optional)*</label>
-                                                                    <input type="text" name="zname3" id="zname3">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="tel3">Phone</label>
-                                                                    <input type="tel" name="tel3" id="tel3" placeholder="Enter your number..">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-6">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="email3">Email</label>
-                                                                    <input type="email" name="email3" id="email3" placeholder="Enter your mail..">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-12">
-                                                                <div class="from-group mt-30">
-                                                                    <label for="ainfo3">Additional Information*</label>
-                                                                    <textarea name="ainfo3" id="ainfo3" placeholder="Note about your order, Special note for delevery !"></textarea>
+                                                                    <label for="note">Ghi Chú*</label>
+                                                                    <textarea name="note" id="note" placeholder="Ghi chú"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -268,15 +140,11 @@
                                         <div class="col-xl-8">
                                             <div class="cart-total mt-45 text-end">
                                                 <h2 class="title text-start">Cart Total</h2>
-                                                <div class="ct-sub">
-                                                    <span>Sub Total</span>
-                                                    <span>$ 180</span>
-                                                </div>
                                                 <div class="ct-sub ct-sub__total">
                                                     <span>Total</span>
-                                                    <span>$ 180</span>
+                                                    <span>{{number_format($total, 0, ',', '.')}} VND</span>
                                                 </div>
-                                                <a href="#0" class="site-btn">Procced to checkout</a>
+                                                <button>Procced to checkout</button>
                                             </div>
                                         </div>
                                     </div>
@@ -287,6 +155,8 @@
                 </div>
             </div>
         </div>
+
+        </form>
     </div>
     <div class="col-5">
         <section class="h-100">
@@ -301,35 +171,34 @@
                                             class="fas fa-angle-down mt-1"></i></a></p>
                             </div>
                         </div>
-
+                        @foreach(Session::get('cart') as $product_id => $product)
                         <div class="card rounded-3 mb-4">
                             <div class="card-body p-4">
                                 <div class="row d-flex justify-content-between align-items-center">
                                     <div class="col-md-2 col-lg-2 col-xl-2">
                                         <img
-                                            src="{{asset('image/em nam.png')}}"
+                                            src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product['product_image'])}}"
                                             class="img-fluid rounded-3" >
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-4">
-                                        <p class="lead fw-normal mb-2">Cà Phê Đensssssssssss</p>
-                                        <p><span class="text-muted">Size: </span>M
-                                        <p><span class="text-muted">Số Lượng: </span>3
+                                        <p class="lead fw-normal mb-2">{{$product['product_name']}}</p>
+                                        <p><span class="text-muted">Size: </span>{{$product['size_name']}}
+                                        <p><span class="text-muted">Số Lượng: </span>{{$product['product_quantity']}}
                                     </div>
-                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                        <h5 class="mb-0">$499.00</h5>
+                                    <div class="col-md-3 col-lg-3 col-xl-3 offset-lg-1">
+                                        <h5 class="mb-0">{{ number_format($product['price'], 0, ',', '.') }} VND</h5>
                                     </div>
-                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                        <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
-
+                        @endforeach
                     </div>
                 </div>
             </div>
         </section>
     </div>
+
 </div>
 
 

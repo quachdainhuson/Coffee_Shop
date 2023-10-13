@@ -23,7 +23,7 @@ Route::prefix('Client/')->group(function(){
     Route::get('/delete_cart', [\App\Http\Controllers\User\HomePageController::class, 'deleteCart'])->name('client.delete_cart');
     Route::get('/checkout', [\App\Http\Controllers\User\HomePageController::class, 'checkout'])->name('client.checkout');
     Route::get('/category/{id}', [\App\Http\Controllers\User\HomePageController::class, 'cateProduct'])->name('client.cate_product');
-
+    Route::post('/checkout', [\App\Http\Controllers\User\HomePageController::class, 'checkoutProcess'])->name('client.checkoutProcess');
 });
 Route::middleware('checkLoginEmployee')->prefix('Admin/Product/')->group(function(){
     Route::get('/product', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products.product');
@@ -35,7 +35,10 @@ Route::middleware('checkLoginEmployee')->prefix('Admin/Product/')->group(functio
     Route::get('{product}/add_to_cart', [\App\Http\Controllers\Admin\ProductController::class, 'addToCart'])->name('products.add_to_cart');
     Route::get('/cart', [\App\Http\Controllers\Admin\ProductController::class, 'cart'])->name('products.cart');
 });
-
+Route::middleware('checkLoginEmployee')->prefix('Admin/receipt/')->group(function(){
+    Route::get('/receipt', [\App\Http\Controllers\Admin\ReceiptController::class, 'index'])->name('receipts.receipt');
+    Route::get('/{receipt}/receipt_detail', [\App\Http\Controllers\Admin\ReceiptController::class, 'detail'])->name('receipts.detail');
+});
 Route::prefix('Admin/User/')->group(function(){
     Route::get('/user', [\App\Http\Controllers\Admin\EmployeeController::class, 'index'])->name('users.user');
     Route::get('/add_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'create'])->name('users.add_user');
