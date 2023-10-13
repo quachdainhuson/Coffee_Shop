@@ -10,7 +10,6 @@
     <div class="center">
         <h1>Login</h1>
         <form method="post"  action="{{route('user.loginProcess')}}">
-            @csrf
             <div class="txt_field">
                 <input type="text" name="username" required>
                 <span></span>
