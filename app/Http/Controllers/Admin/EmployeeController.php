@@ -98,20 +98,5 @@ class EmployeeController extends Controller
         $obj->destroyUser();
         return Redirect::route('users.user');
     }
-    public function login()
-    {
-        return view('Admin.login.login');
-    }
-    public function loginProcess(Request $request)
-    {
-        $account = $request->only('username', 'password');
-        if (Auth::guard('employee')->attempt($account)){
-            $employee = Auth::guard('employee')->user();
-            Auth::guard('employee')->login($employee);
-            Session::put('employee', $employee);
-            return redirect()->route('dashboard.dashboard');
-        }else{
-            return redirect()->route('users.login');
-        }
-    }
+
 }

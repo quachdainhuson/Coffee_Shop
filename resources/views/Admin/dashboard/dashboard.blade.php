@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../../public/css/admin.css">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
     <title>Admin</title>
 </head>
 
@@ -19,7 +19,7 @@
         </a>
         <ul class="side-menu">
             <li class="active" ><a href="{{route('dashboard.dashboard')}}"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
-            <li><a href=".{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
+            <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
             <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
             <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
@@ -27,7 +27,7 @@
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#" class="logout">
+                <a href="{{route('user.logout')}}" class="logout">
                     <i class='bx bx-log-out-circle'></i>
                     Logout
                 </a>
