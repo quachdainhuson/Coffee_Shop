@@ -42,7 +42,7 @@ class ReceiptController extends Controller
             ->join('receipt_details', 'receipt_details.receipt_id', '=', 'receipts.id')
             ->join('product_details', 'product_details.id', '=', 'receipt_details.product_detail_id')
             ->join('products', 'products.id', '=', 'product_details.product_id')
-            ->where('receipts.id', 12)
+            ->where('receipts.id', $receipt->id)
             ->get();
 
         return view('Admin.receipt.receipt_detail',

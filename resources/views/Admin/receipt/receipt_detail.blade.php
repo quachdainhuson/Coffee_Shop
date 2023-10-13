@@ -171,7 +171,7 @@
                                                 <tr class="table-active">
                                                     <th scope="col" style="width: 50px;">#</th>
                                                     <th scope="col">Sản Phẩm</th>
-                                                    <th scope="col">Size</th>
+                                                    <th scope="col">Giá Niêm Yết</th>
                                                     <th scope="col">Số Lượng</th>
                                                     <th scope="col" class="text-end">Giá</th>
                                                 </tr>
@@ -181,14 +181,14 @@
                                                 @foreach($product_details as $product_detail)
 {{--                                                    {{dd($product_detail)}}--}}
                                                     <tr>
-                                                        <th scope="row">$i</th>
+                                                        <th scope="row">{{$i}}</th>
                                                         <td class="text-start">
                                                             <span class="fw-medium">{{$product_detail->product_name}}</span>
                                                             <p class="text-muted mb-0">{{$product_detail->size_name}}</p>
                                                         </td>
-                                                        <td>{{$product_detail->product_price}}</td>
+                                                        <td>{{number_format($product_detail->product_price, 0, ',', '.')}}</td>
                                                         <td>{{$product_detail->quantity}}</td>
-                                                        <td class="text-end">{{$product_detail->product_price * $product_detail->quantity}}</td>
+                                                        <td class="text-end">{{number_format($product_detail->product_price * $product_detail->quantity, 0, ',', '.')}} </td>
                                                     </tr>
                                                     @php($i++)
                                                 @endforeach
@@ -200,7 +200,7 @@
                                                 <tbody>
                                                     <tr class="border-top border-top-dashed fs-15">
                                                         <th scope="row">Tổng Giá</th>
-                                                        <th class="text-end">{{$product_detail->total_price}}</th>
+                                                        <th class="text-end">{{number_format($product_detail->total_price, 0, ',', '.')}}</th>
                                                     </tr>
                                                 </tbody>
                                             </table>
