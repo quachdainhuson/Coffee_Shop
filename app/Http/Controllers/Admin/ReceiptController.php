@@ -21,12 +21,13 @@ class ReceiptController extends Controller
         ]);
     }
     public function detail(Receipt $receipt){
+        $customer = DB::table('customers')
+            ->select('customers.*')
+            ->where('customers.id', '=', $receipt->customer_id)
+            ->get();
+
         $receipt_detail = DB::table('receipts')
             ->select('receipt_details.*',
-                'customer_name',
-                'customer_phone',
-                'customer_address',
-                'customer_email',
                 'receipts.id as receipt_id',
                 'receipts.total_price',
                 'receipts.status as receipt_status',
@@ -34,11 +35,23 @@ class ReceiptController extends Controller
                 'receipts.employee_id as receipt_employee_id',
             )
             ->join('receipt_details', 'receipts.id', '=', 'receipt_details.receipt_id')
-            ->join('customers', 'receipts.customer_id', '=', 'customers.id')
             ->where('receipt_details.receipt_id', '=', $receipt->id)
             ->get();
+        $product_detail =DB::table('receipts')
+            ->select('products.product_name', 'product_details.*', 'receipts.*', 'receipt_details.*')
+            ->join('receipt_details', 'receipt_details.receipt_id', '=', 'receipts.id')
+            ->join('product_details', 'product_details.id', '=', 'receipt_details.product_detail_id')
+            ->join('products', 'products.id', '=', 'product_details.product_id')
+            ->where('receipts.id', 12)
+            ->get();
 
-        return view('Admin.receipt.receipt_detail');
+        return view('Admin.receipt.receipt_detail',
+            [
+                'receipt_details' => $receipt_detail,
+                'receipt' => $receipt,
+                'customer' => $customer,
+                'product_details' => $product_detail
+            ]);
     }
     /**
      * Show the form for creating a new resource.

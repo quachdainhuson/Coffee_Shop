@@ -85,18 +85,30 @@
                                     <h3 class="fw-bold mb-4">Hóa Đơn </h3>
                                     <div class="row g-4">
                                         <div class="col-lg-6 col-6">
-                                            <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Invoice No</p>
-                                            <h5 class="fs-16 mb-0">#VL<span id="invoice-no">25000355</span></h5>
+                                            <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Hóa Đơn Số</p>
+                                            <h5 class="fs-16 mb-0"><span id="invoice-no">{{$receipt->id}}</span></h5>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-6 col-6">
-                                            <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Date</p>
-                                            <h5 class="fs-16 mb-0"><span id="invoice-date">23 Nov, 2021</span> <small class="text-muted" id="invoice-time">02:36PM</small></h5>
+                                            <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Ngày</p>
+                                            <h5 class="fs-16 mb-0"><span id="invoice-date">{{$receipt->order_date}}</span> <small class="text-muted" id="invoice-time">02:36PM</small></h5>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-6 col-6">
                                             <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Payment Status</p>
-                                            <span class="badge bg-success-subtle text-success fs-11" id="payment-status">Paid</span>
+                                            <span class="badge bg-success-subtle text-success fs-11" id="payment-status">
+                                                @if($receipt->status == 0)
+                                                    Chưa Xác Nhận
+                                                @elseif($receipt->status == 1)
+                                                    Đã Xác Nhận
+                                                @elseif($receipt->status == 2)
+                                                    Đang Thực Hiện
+                                                @elseif($receipt->status == 3)
+                                                    Đã Xong
+                                                @elseif($receipt->status == 4)
+                                                    Đã Hủy
+                                                @endif
+                                            </span>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-6 col-6">
@@ -116,7 +128,7 @@
                                         <!--end col-->
                                         <div class="col-lg-6 col-6">
                                             <h6 class="text-muted text-uppercase fw-semibold mb-3">Total Amount</h6>
-                                            <h3 class="fw-bold mb-2">$755.96</h3>
+                                            <h3 class="fw-bold mb-2">{{number_format($receipt->total_price, 0, ',', '.')}} VND</h3>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-6 col-6">
@@ -130,11 +142,14 @@
                             <div class="row p-4 border-top border-top-dashed">
                                 <div class="col-lg-9">
                                     <div class="row g-3">
+                                        @foreach($customer as $customers) @endforeach
                                         <div class="col-6">
-                                            <h6 class="text-muted text-uppercase fw-semibold mb-3">Shipping Address</h6>
-                                            <p class="fw-medium mb-2" id="shipping-name">David Nichols</p>
-                                            <p class="text-muted mb-1" id="shipping-address-line-1">305 S San Gabriel Blvd</p>
-                                            <p class="text-muted mb-1"><span>Phone: +</span><span id="shipping-phone-no">(123) 456-7890</span></p>
+
+                                            <h6 class="text-muted text-uppercase fw-semibold mb-3">Thông Tin Khách Hàng</h6>
+                                            <p class="fw-medium mb-2" id="shipping-name">{{$customers->customer_name}}</p>
+                                            <p class="text-muted mb-1" id="shipping-address-line-1">{{$customers->customer_address}}</p>
+                                            <p class="text-muted mb-1" id="shipping-email-line-1">{{$customers->customer_email}}</p>
+                                            <p class="text-muted mb-1"><span>Phone: </span><span id="shipping-phone-no">{{$customers->customer_phone}}</span></p>
                                         </div>
                                         <!--end col-->
                                     </div>
@@ -155,53 +170,28 @@
                                                 <thead>
                                                 <tr class="table-active">
                                                     <th scope="col" style="width: 50px;">#</th>
-                                                    <th scope="col">Product Details</th>
-                                                    <th scope="col">Rate</th>
-                                                    <th scope="col">Quantity</th>
-                                                    <th scope="col" class="text-end">Amount</th>
+                                                    <th scope="col">Sản Phẩm</th>
+                                                    <th scope="col">Size</th>
+                                                    <th scope="col">Số Lượng</th>
+                                                    <th scope="col" class="text-end">Giá</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody id="products-list">
-                                                <tr>
-                                                    <th scope="row">01</th>
-                                                    <td class="text-start">
-                                                        <span class="fw-medium">Sweatshirt for Men (Pink)</span>
-                                                        <p class="text-muted mb-0">Graphic Print Men &amp; Women Sweatshirt</p>
-                                                    </td>
-                                                    <td>$119.99</td>
-                                                    <td>02</td>
-                                                    <td class="text-end">$239.98</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">02</th>
-                                                    <td class="text-start">
-                                                        <span class="fw-medium">Noise NoiseFit Endure Smart Watch</span>
-                                                        <p class="text-muted mb-0">32.5mm (1.28 Inch) TFT Color Touch Display</p>
-                                                    </td>
-                                                    <td>$94.99</td>
-                                                    <td>01</td>
-                                                    <td class="text-end">$94.99</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">03</th>
-                                                    <td class="text-start">
-                                                        <span class="fw-medium">350 ml Glass Grocery Container</span>
-                                                        <p class="text-muted mb-0">Glass Grocery Container (Pack of 3, White)</p>
-                                                    </td>
-                                                    <td>$24.99</td>
-                                                    <td>01</td>
-                                                    <td class="text-end">$24.99</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">04</th>
-                                                    <td class="text-start">
-                                                        <span class="fw-medium">Fabric Dual Tone Living Room Chair</span>
-                                                        <p class="text-muted mb-0">Chair (White)</p>
-                                                    </td>
-                                                    <td>$340.00</td>
-                                                    <td>01</td>
-                                                    <td class="text-end">$340.00</td>
-                                                </tr>
+                                                @php($i = 1)
+                                                @foreach($product_details as $product_detail)
+{{--                                                    {{dd($product_detail)}}--}}
+                                                    <tr>
+                                                        <th scope="row">$i</th>
+                                                        <td class="text-start">
+                                                            <span class="fw-medium">{{$product_detail->product_name}}</span>
+                                                            <p class="text-muted mb-0">{{$product_detail->size_name}}</p>
+                                                        </td>
+                                                        <td>{{$product_detail->product_price}}</td>
+                                                        <td>{{$product_detail->quantity}}</td>
+                                                        <td class="text-end">{{$product_detail->product_price * $product_detail->quantity}}</td>
+                                                    </tr>
+                                                    @php($i++)
+                                                @endforeach
                                                 </tbody>
                                             </table><!--end table-->
                                         </div>
@@ -209,8 +199,8 @@
                                             <table class="table table-borderless table-nowrap align-middle mb-0 ms-auto" style="width:250px">
                                                 <tbody>
                                                     <tr class="border-top border-top-dashed fs-15">
-                                                        <th scope="row">Total Amount</th>
-                                                        <th class="text-end">$755.96</th>
+                                                        <th scope="row">Tổng Giá</th>
+                                                        <th class="text-end">{{$product_detail->total_price}}</th>
                                                     </tr>
                                                 </tbody>
                                             </table>
