@@ -159,7 +159,7 @@ class HomePageController extends Controller
         Receipt::where('id', $order_id['id'])->update([
             'total_price' => $total_price,
         ]);
-        Session::unset('cart');
+        Session::forget('cart');
 
         return redirect()->route('client.home');
     }

@@ -71,7 +71,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category, Request $request)
     {
-        $category->delete();
-        return Redirect::route('categories.category');
+        if ($category->products->count() > 0){
+            flash()->addError('Không thể xóa danh mục này');
+            return Redirect::route('categories.category');
+        }else{
+            $category->delete();
+            return Redirect::route('categories.category');
+        }
+
     }
 }

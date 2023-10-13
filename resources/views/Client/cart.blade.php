@@ -79,13 +79,13 @@
                         <tr>
                             <input type="hidden" name="size_id" value="{{$product['size_id']}}">
                             <th class="product-image">
-                                <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product['product_image'])}}">
+                                <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product['product_image'])}}" width="150px" height="150px">
                             </th>
                             <th class="product-name">{{$product['product_name']}}</th>
                             <th class="product-price">{{ number_format($product['price'], 0, ',', '.') }}</th>
                             <th class="product-price">{{$product['size_name']}}</th>
                             <th class="product-subtotal">
-                                <input type="number" name="quantity[{{$product_id}}]" value="{{$product['product_quantity']}}">
+                                <input type="number" name="quantity[{{$product_id}}]" min="1" value="{{$product['product_quantity']}}">
                             </th>
                             <th class="product-quantity">{{number_format($product['price'] * $product['product_quantity'], 0, ',', '.') }}</th>
                             <th><a href="{{route('client.delete_prd_cart', $product_id)}}"><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></th>
