@@ -22,6 +22,7 @@ Route::prefix('Client/')->group(function(){
     Route::get('/{product}/delete-product-cart', [\App\Http\Controllers\User\HomePageController::class, 'deleteProductInCart'])->name('client.delete_prd_cart');
     Route::get('/delete_cart', [\App\Http\Controllers\User\HomePageController::class, 'deleteCart'])->name('client.delete_cart');
     Route::get('/checkout', [\App\Http\Controllers\User\HomePageController::class, 'checkout'])->name('client.checkout');
+    Route::get('/category/{id}', [\App\Http\Controllers\User\HomePageController::class, 'cateProduct'])->name('client.cate_product');
 
 });
 Route::middleware('checkLoginEmployee')->prefix('Admin/Product/')->group(function(){

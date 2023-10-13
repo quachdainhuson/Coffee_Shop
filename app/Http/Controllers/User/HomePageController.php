@@ -35,6 +35,16 @@ class HomePageController extends Controller
             'categories' => $categories
         ]);
     }
+
+    public function cateProduct($id){
+        $products = Product::where('cate_id',$id)->get();
+        $categories = Category::all();
+        return view('Client.product',[
+            'products' => $products,
+            'categories' => $categories
+        ]);
+    }
+
     public function detail(Product $product,Request $request)
     {
         $sizes = Size::all();

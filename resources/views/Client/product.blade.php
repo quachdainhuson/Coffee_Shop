@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="../public/image/x-icon" href="../../../public/image/logo_highland.png">
     <!-- <link rel="stylesheet" href="../../public/css/style.css"> -->
-    <link rel="stylesheet" href="../../public/css/header.css">
-    <link rel="stylesheet" href="../../public/css/product.css">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
+    <link rel="stylesheet" href="{{asset('css/product.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.min.css')}}">
     <title>Highlands Coffee</title>
     <link rel="stylesheet" href="../../public/fontawesome-free-6.4.2-web/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -21,9 +21,9 @@
         <div><a href="{{route('client.home')}}">TRANG CHỦ</a></div>
         <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
-                <a href="#">Cà phê</a>
-                <a href="#">Trà</a>
-                <a href="#">Freeze</a>
+                @foreach($categories as $category)
+                <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
+                @endforeach
             </div>
         </div>
         <div><a href="#">CỘNG ĐỒNG</a></div>
@@ -100,38 +100,6 @@
         </div>
     </div>
 
-
-    <div class="popup" id="popup1">
-
-        <a href="" class="close-button"  onclick="hide('popup1')" ><i class="fa-solid fa-x" style="color: #ff0000;"></i></a>
-
-    <div class="row">
-        <div class="col-4">
-            <img src="../../public/image/PHIN_SUA_DA_5.1.png" alt="" width="300px">
-        </div>
-        <div class="col-8">
-            <span style="font-size: 40px;">PAPER POUCH</span><br>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i><br>
-            <h4 style="margin-top: 10px;">30.000 VND</h4>
-            <h5>Available : <span style="color: #a7a7a7 ;">In stock</span></h5>
-            <h6>Anlor sit amet, consectetur adipiscing elit. Fusce condimentum est lacus, non pretium risus lacinia vel. Fusce eget turpis orci.</h6>
-            <div class="product-details">
-
-                <div class="size-buttons">
-                    <input type="radio" name="size_id" id="size_id">
-                    <span>Số Lượng</span>
-                    <input type="number" class="quantity-input" value="1" name="product_quantity">
-                </div>
-                <p class="selected-size">Selected size: None</p>
-              </div>
-              <button id="cart-btn">ADD TO CART</button>
-        </div>
-    </div>
-    </div>
 
 
 

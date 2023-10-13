@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="../public/image/x-icon" href="../../../public/image/logo_highland.png">
     <!-- <link rel="stylesheet" href="../../public/css/style.css"> -->
-    <link rel="stylesheet" href="../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../public/css/product.css">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
+    <link rel="stylesheet" href="{{asset('css/product.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
     <title>Highlands Coffee</title>
@@ -79,9 +79,10 @@
             <div class="product-details">
                 <div class="size-buttons">
                     @foreach($sizes as $size)
-                        <label>
-                            <input type="radio" name="size_id" id="size_id" value="{{$size->id}}" onClick="updatePrice(this)">{{$size->size_name}}
-                        </label>
+                        
+                            <input type="radio" name="size_id" id="{{$size->id}}" value="{{$size->id}}" onClick="updatePrice(this)">
+                            <label for="{{$size->id}}">{{$size->size_name}}</label>
+                        
                     @endforeach
                     <br>
                     <span>Số Lượng</span>

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="../public/image/x-icon" href="../../public/image/logo_highland.png">
-    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css"> -->
     <title>Highlands Coffee</title>
-
+    <link rel="stylesheet" href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../font/fontawesome-free-6.3.0-web/css/all.min.css">
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
@@ -78,7 +78,7 @@
         <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
                 @foreach($categories as $category)
-                <a href="#">{{$category->cate_name}}</a>
+                <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
                 @endforeach
             </div>
         </div>
