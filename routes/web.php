@@ -39,15 +39,19 @@ Route::middleware('checkLoginEmployee')->prefix('Admin/receipt/')->group(functio
     Route::get('/receipt', [\App\Http\Controllers\Admin\ReceiptController::class, 'index'])->name('receipts.receipt');
     Route::get('/{receipt}/receipt_detail', [\App\Http\Controllers\Admin\ReceiptController::class, 'detail'])->name('receipts.detail');
 });
-Route::prefix('Admin/User/')->group(function(){
+Route::prefix('Admin/login/')->group(function(){
+    Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('users.login');
+    Route::post('/login', [\App\Http\Controllers\Admin\LoginController::class, 'loginProcess'])->name('user.loginProcess');
+    Route::get('/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('user.logout');
+});
+
+Route::middleware('checkLoginEmployee')->prefix('Admin/User/')->group(function(){
     Route::get('/user', [\App\Http\Controllers\Admin\EmployeeController::class, 'index'])->name('users.user');
     Route::get('/add_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'create'])->name('users.add_user');
     Route::post('/add_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'store'])->name('users.store');
     Route::get('/{id}/edit_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'edit'])->name('users.edit_user');
     Route::put('/{id}/edit_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'update'])->name('users.update_user');
     Route::delete('/{id}', [\App\Http\Controllers\Admin\EmployeeController::class, 'destroy'])->name('users.destroy_user');
-    Route::get('/login', [\App\Http\Controllers\Admin\EmployeeController::class, 'login'])->name('users.login');
-    Route::post('/login', [\App\Http\Controllers\Admin\EmployeeController::class, 'loginProcess'])->name('user.loginProcess');
 });
 
 Route::middleware('checkLoginEmployee')->prefix('Admin/DashBoard/')->group(function(){

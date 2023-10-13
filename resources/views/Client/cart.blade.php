@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="../public/image/x-icon" href="../../../public/image/logo_highland.png">
+    <link rel="icon" type="../public/image/x-icon" href="{{asset('image/logo_highland.png')}}">
     <!-- <link rel="stylesheet" href="../css/style.css"> -->
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/cart.css')}}">
@@ -136,9 +136,6 @@
             <div class="col-2"></div>
         </div>
     @endif
-
-
-
     <script src="{{asset('js/product.js')}}"></script>
 </body>
 <footer>
