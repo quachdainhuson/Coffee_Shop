@@ -30,7 +30,7 @@
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#" class="logout">
+                <a href="{{route('user.logout')}}" class="logout">
                     <i class='bx bx-log-out-circle'></i>
                     Logout
                 </a>
