@@ -79,14 +79,14 @@
             <div class="product-details">
                 <div class="size-buttons">
                     @foreach($sizes as $size)
-                        
+
                             <input type="radio" name="size_id" id="{{$size->id}}" value="{{$size->id}}" onClick="updatePrice(this)">
                             <label for="{{$size->id}}">{{$size->size_name}}</label>
-                        
+
                     @endforeach
                     <br>
                     <span>Số Lượng</span>
-                    <input type="number" class="quantity-input" value="1" name="product_quantity">
+                    <input type="number" class="quantity-input" min="1" value="1" name="product_quantity">
                 </div>
             </div>
             <br>

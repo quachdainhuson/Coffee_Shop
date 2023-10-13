@@ -66,13 +66,13 @@
             <li class="item">
                 <div class="product-item">
                     <div class="product-top">
-                        <a href="#" class="product-thumb">
+                        <a href="{{route('client.detail', $product)}}" class="product-thumb">
                             <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product->product_image) }}" alt="">
                         </a>
                         <a href="{{route('client.detail', $product)}}" class="buy-now">XEM SẢN PHẨM</a>
                     </div>
                         <div class="product-info">
-                            <a href="#" class="product-name">{{ $product->product_name }}</a>
+                            <a href="{{route('client.detail', $product)}}" class="product-name">{{ $product->product_name }}</a>
 
                         </div>
                 </div>

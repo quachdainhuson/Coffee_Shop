@@ -186,7 +186,7 @@
                                         <p><span class="text-muted">Số Lượng: </span>{{$product['product_quantity']}}
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3 offset-lg-1">
-                                        <h5 class="mb-0">{{ number_format($product['price'], 0, ',', '.') }} VND</h5>
+                                        <h5 class="mb-0">{{ number_format($product['price']*$product['product_quantity'], 0, ',', '.') }} VND</h5>
                                     </div>
 
                                 </div>
