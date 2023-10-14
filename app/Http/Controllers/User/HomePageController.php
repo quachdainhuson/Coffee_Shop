@@ -162,6 +162,7 @@ class HomePageController extends Controller
         Session::forget('cart');
         flash()->addSuccess('Đặt hàng thành công');
         flash()->addSuccess('Đơn hàng của bạn sẽ được xác nhận trong thời gian sớm nhất');
+
         return redirect()->route('client.home');
     }
     /**
