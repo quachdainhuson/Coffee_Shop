@@ -7,8 +7,11 @@ use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class EmployeeController extends Controller
 {
@@ -17,8 +20,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $obj = new Employee();
-        $employees = $obj->index();
+        $employees = Employee::all();
         return view('Admin/User/user',[
             'employees' => $employees
         ]);
@@ -37,14 +39,15 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        $obj = new Employee();
-        $obj->employee_name = $request->employee_name;
-        $obj->employee_email = $request->employee_email;
-        $obj->employee_phone = $request->employee_phone;
-        $obj->username = $request->username;
-        $obj->password = $request->password;
-        $obj->role = $request->role;
-        $obj->store();
+       Employee::create([
+            'employee_name' => $request->employee_name,
+            'employee_email' => $request->employee_email,
+            'employee_phone' => $request->employee_phone,
+            'username' => $request->username,
+            'password' =>  Hash::make($request->password),
+            'role' => $request->role
+
+       ]);
         return Redirect::route('users.user');
     }
 
@@ -61,12 +64,9 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee, Request $request)
     {
-        $obj = new Employee();
-        $obj->id = $request->id;
-        $employees = $obj->edit();
+
         return view('Admin/User/edit_user',[
-            'employees' => $employees,
-            'id' => $obj->id
+            'employees' => $employee
         ]);
 
     }
@@ -76,16 +76,25 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        $obj = new Employee();
-        $obj->id = $request->id;
-        $obj->employee_name = $request->employee_name;
-        $obj->employee_email = $request->employee_email;
-        $obj->employee_phone = $request->employee_phone;
-        $obj->username = $request->username;
-        $obj->password = $request->password;
-        $obj->role = $request->role;
-        $obj->updateEmployee();
-        return Redirect::route('users.user');
+
+        if (Hash::check($request->password, $employee->password)){
+            $obj = new Employee();
+            $obj->id = $request->id;
+            $obj->employee_name = $request->employee_name;
+            $obj->employee_email = $request->employee_email;
+            $obj->employee_phone = $request->employee_phone;
+            $obj->username = $request->username;
+            $obj->password = Hash::make($request->password);
+            $obj->role = $request->role;
+            $obj->updateEmployee();
+            flash()->addSuccess('Cập nhật thành công');
+            return Redirect::route('users.user');
+
+        }else{
+            flash()->addError('Cập nhật thất bại');
+            return Redirect::route('users.user');
+        }
+
     }
 
     /**
@@ -97,6 +106,31 @@ class EmployeeController extends Controller
         $obj->id = $request->id;
         $obj->destroyUser();
         return Redirect::route('users.user');
+    }
+    public function changePassword(Request $request, Employee $employee){
+        return view('Admin/User/change_password',[
+            'employees' => $employee
+        ]);
+    }
+    public function changePass(Request $request, Employee $employee){
+
+        if (Hash::check($request->current_password, $employee->password)){
+            if ($request->new_password == $request->confirm_password){
+                Employee::where('id', $employee->id)->update([
+                    'password' => Hash::make($request->new_password)
+                ]);
+                flash()->addSuccess('Cập nhật thành công');
+                return Redirect::route('users.user');
+            }else{
+                flash()->addError('Mật khẩu không trùng khớp');
+                return Redirect::route('users.user');
+            }
+
+
+        }else{
+            flash()->addError('Cập nhật thất bại');
+            return Redirect::route('users.user');
+        }
     }
 
 }

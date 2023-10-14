@@ -49,9 +49,11 @@ Route::middleware('checkLoginEmployee')->prefix('Admin/User/')->group(function()
     Route::get('/user', [\App\Http\Controllers\Admin\EmployeeController::class, 'index'])->name('users.user');
     Route::get('/add_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'create'])->name('users.add_user');
     Route::post('/add_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'store'])->name('users.store');
-    Route::get('/{id}/edit_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'edit'])->name('users.edit_user');
-    Route::put('/{id}/edit_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'update'])->name('users.update_user');
-    Route::delete('/{id}', [\App\Http\Controllers\Admin\EmployeeController::class, 'destroy'])->name('users.destroy_user');
+    Route::get('/{employee}/edit_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'edit'])->name('users.edit_user');
+    Route::put('/{employee}/edit_user', [\App\Http\Controllers\Admin\EmployeeController::class, 'update'])->name('users.update_user');
+    Route::delete('/{employee}', [\App\Http\Controllers\Admin\EmployeeController::class, 'destroy'])->name('users.destroy_user');
+    Route::get('/{employee}/change_password', [\App\Http\Controllers\Admin\EmployeeController::class, 'changePassword'])->name('users.change_password');
+    Route::put('/{employee}/change_password', [\App\Http\Controllers\Admin\EmployeeController::class, 'changePass'])->name('users.change_pass');
 });
 
 Route::middleware('checkLoginEmployee')->prefix('Admin/DashBoard/')->group(function(){

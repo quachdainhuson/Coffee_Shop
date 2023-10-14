@@ -116,7 +116,7 @@
                                     <td>
                                         <div class="form-group">
                                             <div class="btn">
-                                                <a href="{{ route('users.edit_user',$employee->id ) }}">
+                                                <a href="{{ route('users.edit_user',$employee ) }}">
                                                     <button class="btn btn-primary" type="submit">
                                                         <i class='bx bxs-edit-alt' ></i>
 
@@ -124,7 +124,7 @@
                                                 </a>
                                             </div>
                                             <div class="btn">
-                                                <form  method="post" action="{{ route('users.destroy_user', $employee->id) }}">
+                                                <form  method="post" action="{{ route('users.destroy_user', $employee) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-primary" type="submit">
