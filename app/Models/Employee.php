@@ -7,28 +7,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class Employee extends Model implements \Illuminate\Contracts\Auth\Authenticatable
 {
     use HasFactory;
     use Authenticatable;
+    protected $table = 'employees';
+    protected $fillable = [
+        'employee_name',
+        'employee_email',
+        'employee_phone',
+        'username',
+        'password',
+        'role'
+    ];
+
     public $timestamps = false;
-    public function index()
-    {
-        $employees = DB::table('employees')->get();
-        return $employees;
+    public function receipts(){
+        return $this->hasMany(Receipt::class);
     }
-    public function store()
-    {
-        DB::table('employees')->insert([
-            'employee_name' => $this->employee_name,
-            'employee_email' => $this->employee_email,
-            'employee_phone' => '1023456789',
-            'username' => $this->username,
-            'password' => $this->password,
-            'role' => $this->role
-        ]);
-    }
+
     public function edit()
     {
         $employee = DB::table('employees')

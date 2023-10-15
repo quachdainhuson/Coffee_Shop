@@ -72,35 +72,40 @@
                         <li><a href="#" >Shop</a></li>
                     </ul>
                 </div>
+                <a href="{{route('users.change_password', $employees)}}" class="report">
+                    <i class='bx bx-plus'></i>
+                    <span>Đổi Mật Khẩu</span>
+                </a>
 
             </div>
 
             <!-- Insights -->
-            <form role="form"  enctype="multipart/form-data" method="post" action="{{ route('users.update_user', $id) }}">
+
+            <form role="form"  enctype="multipart/form-data" method="post" action="{{ route('users.update_user', $employees) }}">
                 @csrf
                 @method('PUT')
-                @foreach($employees as $employee )
+
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-7">
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Họ và Tên</label>
-                                <input type="text" name="employee_name" required class="form-control"  placeholder="" value="{{ $employee->employee_name }}">
+                                <input type="text" name="employee_name" required class="form-control"  placeholder="" value="{{ $employees['employee_name'] }}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" name="employee_email" required class="form-control"  placeholder="" value="{{ $employee->employee_email }}">
+                                <input type="text" name="employee_email" required class="form-control"  placeholder="" value="{{ $employees['employee_email'] }}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Số Điện thoại</label>
-                                <input type="text" name="employee_phone" required class="form-control"  placeholder="" value="{{ $employee->employee_phone }}">
+                                <input type="text" name="employee_phone" required class="form-control"  placeholder="" value="{{ $employees['employee_phone'] }}">
                             </div>
                         </div>
                         <br>
@@ -108,7 +113,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" name="username" required class="form-control"  placeholder="" value="{{ $employee->username }}">
+                                <input type="text" name="username" required class="form-control"  placeholder="" value="{{ $employees['username'] }}">
                             </div>
                         </div>
                         <br>
@@ -116,21 +121,15 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Mật Khẩu</label>
-                                <input type="pass_word" name="password" required class="form-control"  placeholder="" value="{{ $employee->password }}">
+                                <input type="password" name="password" required class="form-control"  placeholder="" >
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
-                            <div class="form-group">
-                                <label>Nhập Lại Mật Khẩu</label>
-                                <input type="password" name="re_password" required class="form-control" placeholder="">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label>Quyền</label>
                             <select name="role" class="form-control">
-                                    <option value=1 @if($employee->role == 1 ) selected @endif>Admin</option>
-                                    <option value=2 @if($employee->role == 2 ) selected @endif>Nhân Viên</option>
+                                    <option value=1 @if($employees->role == 1 ) selected @endif>Admin</option>
+                                    <option value=2 @if($employees->role == 2 ) selected @endif>Nhân Viên</option>
                                 </select>
                         </div>
                         <br>
@@ -141,7 +140,7 @@
                     </div>
                     <div class="col-4"></div>
                 </div>
-                @endforeach
+
             </form>
 
         </main>
