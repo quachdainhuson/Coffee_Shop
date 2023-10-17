@@ -14,16 +14,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 <header class="header">
-    <a href="#" class="logo">
-        <img src="../../../public/image/logo_highland.png" alt="">
+    <a href="{{route('client.home')}}" class="logo">
+        <img src="{{asset('image/logo_highland.png')}}" alt="">
     </a>
     <nav class="navbar">
-        <div><a href="#">TRANG CHỦ</a></div>
+        <div><a href="{{route('client.home')}}">TRANG CHỦ</a></div>
         <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
-                <a href="#">Cà phê</a>
-                <a href="#">Trà</a>
-                <a href="#">Freeze</a>
+                @foreach($categories as $category)
+                <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
+                @endforeach
             </div>
         </div>
         <div>

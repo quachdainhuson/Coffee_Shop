@@ -132,7 +132,10 @@ class HomePageController extends Controller
         return redirect()->route('client.cart');
     }
     public function checkout(){
-        return view('Client.checkout');
+        $categories = Category::all();
+        return view('Client.checkout',[
+            'categories' => $categories,
+        ]);
     }
     public function checkoutProcess(Request $request){
         $customer = $request->all();
@@ -166,6 +169,16 @@ class HomePageController extends Controller
         flash()->addSuccess('Đơn hàng của bạn sẽ được xác nhận trong thời gian sớm nhất');
 
         return redirect()->route('client.home');
+    }
+
+    public function searchProduct(Request $request){
+        $categories = Category::all();
+        $products = Product::where('product_name', 'like','%' .$request->key. '%')
+                                    ->get();
+        return view('Client.product',[
+        'products' => $products,
+        'categories' => $categories
+        ]);
     }
     /**
      * Show the form for creating a new resource.
