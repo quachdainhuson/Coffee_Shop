@@ -109,10 +109,6 @@
         <div class="col-3" id="cart-total">
             <div class="total-price">
                 <h4 class="title-2">CART TOTAL</h4>
-{{--                <div class="cart-total" id="subtotal">--}}
-{{--                    <span><b>SubTotal</b></span>--}}
-{{--                    <span><b>$180</b></span>--}}
-{{--                </div>--}}
                 <div class="cart-total" id="totalprice">
                     <span><b>Total</b></span>
 

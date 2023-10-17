@@ -122,7 +122,7 @@ class HomePageController extends Controller
         return redirect()->route('client.cart');
     }
     public function deleteCart(){
-        Session::flush();
+        Session::forget('cart');
         return redirect()->route('client.cart');
     }
     public function deleteProductInCart($product_id, Request $request){
