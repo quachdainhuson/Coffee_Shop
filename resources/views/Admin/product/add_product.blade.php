@@ -84,20 +84,24 @@
                         <div class="col-4" >
                             <br>
                             <br>
+                            @if($errors->has('product_image'))
+                                <p style="color:red">{{$errors->first('product_image')}}</p>
+                            @endif
                             <input type="file" name="product_image" id="product_image" onchange="preview()" multiple>
                             <img id="frame" src="image/no-img.png" width="300px" height="300px"/>
                         </div>
                         <div class="col-6" style="padding-left: 50px;">
                             <br><br><br><br>
-
+                            @if($errors->has('product_name'))
+                                <p style="color:red">{{$errors->first('product_name')}}</p>
+                            @endif
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input required name="product_name" class="form-control" placeholder="">
+                                <input name="product_name" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label>Danh mục</label>
-
                                 <select name="cate_id" class="form-control">
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->cate_name }}</option>
@@ -109,13 +113,15 @@
                                 <label>Giá Của Từng Size</label><br>
                                 @foreach($sizes as $size)
                                     <label for="size_{{ $size->id }}">{{ $size->size_name }}</label>
-                                    <input type="number" name="sizes[{{ $size->id }}][product_price]" id="size_{{ $size->id }}" value="0">
+                                    <input type="number" name="sizes[{{ $size->id }}][product_price]" id="size_{{ $size->id }}" value="0" min="0">
                                 @endforeach
                             </div>
-
+                            @if($errors->has('product_description'))
+                                <p style="color:red">{{$errors->first('product_description')}}</p>
+                            @endif
                             <div class="form-group">
                                 <label>Mô tả sản phẩm</label>
-                                <textarea required name="product_description" class="form-control" cols="30" rows="10"></textarea>
+                                <textarea name="product_description" class="form-control" cols="30" rows="10"></textarea>
                             </div>
                             <input name="sbm" type="submit" value="Thêm mới" class="btn btn-primary"></input>
                             <button type="reset" class="btn btn-light">Reset</button>
