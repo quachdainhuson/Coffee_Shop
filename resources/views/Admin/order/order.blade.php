@@ -168,6 +168,24 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="footer-order">
+                            <div class="btn-order-area">
+                                <div>
+                                    <select name="" id="">
+                                        <option value="">Bàn 1</option>
+                                        <option value="">Bàn 2</option>
+                                        <option value="">Bàn 3</option>
+                                        <option value="">Bàn 4</option>
+                                    </select>
+                                    <div class="total-price"> Tổng giá: 300.000</div>
+                                </div>
+                                <div>
+                                    <button class="btn-update-order">Cập nhật</button>
+                                    <button class="btn-order">Đặt hàng</button>
+                                </div>
+                            </div >
+
+                        </div>
                     </div>
 
                 </div>

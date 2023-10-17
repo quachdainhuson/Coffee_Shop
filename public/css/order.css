@@ -1,11 +1,19 @@
 /* chung cả hai */
-.products, .bills{
+.products{
     height: 550px;
     border: 2px solid rgb(176, 175, 175);
     border-radius: 0 0 7px 7px;
     overflow-y: scroll;
-    margin-bottom: 40px;
     
+}
+ .bills{
+    height: 400px;
+    border: 2px solid rgb(176, 175, 175);
+    overflow-y: scroll;
+}
+
+.bills::-webkit-scrollbar, .products::-webkit-scrollbar{
+    display: none;
 }
 
 /* phần sản phẩm */
@@ -138,6 +146,22 @@ li.item{
     color: aliceblue;
 }
 
+.footer-order{
+    height:150px;
+    background: #C7A17A;
+    border-radius:0 0 7px 7px ;
+    border-top: 0;
+    border: 2px solid #C7A17A;
+    display: fixed;
+    font-size: 20px;
+    text-align: center;
+    color: aliceblue;
+}
+.btn-order-area{
+    margin-top: 15px;
+}
+
+
 .table .thumbnail-product {
     display: -ms-flexbox;
     display: flex;
@@ -169,4 +193,26 @@ li.item{
     font-weight: 500;
     text-align: center;
   }
+
+.order-area{
+    margin-bottom: 80px;
+}
+
+
+/* button đặt hàng */
+.btn-update-order, .btn-order{
+    background-color: #fff;
+    margin: 7px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    color: #090909;
+    transition: 1s;
+}
+
+.btn-update-order:hover, .btn-order:hover{
+    transition: 0.5s;
+    color:#fff;
+    box-shadow: inset 170px 0 0 0 #d68a3f;
+}
 
