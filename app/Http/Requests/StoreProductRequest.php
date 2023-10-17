@@ -22,7 +22,18 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'product_name' => 'required|string|max:255',
+            'product_description' => 'required|string',
+            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
+    }
+    public function messages()
+    {
+        return
+            [
+            'product_name.required'=> 'Nhập Tên Sản Phẩm',
+            'product_description.required' => 'Nhập Mô Tả Sản Phẩm',
+            'product_image.required' => 'Xin Mời Nhập Ảnh',
         ];
     }
 }
