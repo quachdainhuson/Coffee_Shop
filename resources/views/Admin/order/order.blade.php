@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../../../../public/css/admin.css">
-    <link rel="stylesheet" href="../../../../public/css/order.css">
-    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
+    <link rel="stylesheet" href="{{asset('css/order.css')}}">
+    <link rel="stylesheet" href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.min.css')}}">
     <title>Admin Coffee Shop</title>
 </head>
 
@@ -21,9 +21,10 @@
         </a>
         <ul class="side-menu">
             <li><a href="{{route('dashboard.dashboard')}}"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
+            <li class="active"><a href="{{route('orders.order')}}"><i class='bx bxs-cart-add'></i>Đặt Hàng</a></li>
             <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
             <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
-            <li class="active"><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
+            <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
@@ -96,51 +97,31 @@
 
                         <div>
                             <ul class="products m-0">
-                              <li class="item">
-                                  <div class="product-item">
-                                      <div class="product-top">
-                                          <a href="#" class="product-thumb">
-                                              <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                                          </a>
-                                      </div>
-                                          <div class="product-info">
-                                              <div class="name_product">Sản phẩm</div>
-                                              <div class="size-radio">
-                                                <input type="radio" name="size_id" id="S" value="S" >
-                                                <label for="S">S</label>
-                                                <input type="radio" name="size_id" id="M" value="M" >
-                                                <label for="M">M</label>
-                                                <input type="radio" name="size_id" id="L" value="L" >
-                                                <label for="L">L</label>
+
+                                @foreach($products as $product)
+                                <li class="item">
+                                    <form action="{{route('orders.add_to_cart',$product)}}" method="post">
+                                        @csrf
+                                          <div class="product-item">
+                                              <div class="product-top">
+                                                  <a href="#" class="product-thumb">
+                                                      <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/'.$product['product_image']))}}" alt="">
+                                                  </a>
                                               </div>
-                                              <button class="btn_add_product">Thêm</button>
+                                                  <div class="product-info">
+                                                      <div class="name_product">{{$product->product_name}}</div>
+                                                      <div class="size-radio">
+                                                          @foreach($sizes as $size)
+                                                              <input type="radio" name="size_id" id="{{$size->id}}" value="{{$size->id}}">
+                                                              <label for="{{$size->id}}">{{$size->size_name}}</label>
+                                                          @endforeach
+                                                      </div>
+                                                      <button class="btn_add_product">Thêm</button>
+                                                  </div>
                                           </div>
-                                  </div>
+                                    </form>
                               </li>
-
-                              <li class="item">
-                                  <div class="product-item">
-                                      <div class="product-top">
-                                          <a href="#" class="product-thumb">
-                                              <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-
-                                          </a>
-                                      </div>
-                                          <div class="product-info">
-                                              <div class="name_product">Sản phẩm</div>
-                                              <div class="size-radio">
-                                                <input type="radio" name="size_id" id="S" value="S" >
-                                                <label for="S">S</label>
-                                                <input type="radio" name="size_id" id="M" value="M" >
-                                                <label for="M">M</label>
-                                                <input type="radio" name="size_id" id="L" value="L" >
-                                                <label for="L">L</label>
-                                              </div>
-                                              <button class="btn_add_product">Thêm</button>
-                                          </div>
-                                  </div>
-                              </li>
-
+                                @endforeach
 
                           </ul>
                           </div>
@@ -152,53 +133,43 @@
                             Đơn hàng
                         </div>
                         <div class="bills">
+                            <form action="{{route('orders.update_cart')}}" method="post">
+                                @csrf
+                                @method('PUT')
                             <table class="table">
-                                <tr>
-                                    <td>
-                                        <div class="thumbnail-product">
-                                            <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                                        </div>
-                                    </td>
+                                @if(Session::has('cart_admin'))
+                                    @foreach(Session::get('cart_admin') as $product_id =>$product)
+                                        <tr>
+                                            <td>
+                                                <div class="thumbnail-product">
+                                                    <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product['product_image'])}}" alt="">
+                                                </div>
+                                            </td>
 
-                                    <td class="product-name">ESPRESSO RISTRETTO</td>
-                                    <td class="product-size">M</td>
-                                    <td class="product-quantity">
-                                        <input type="number" placeholder="2">
-                                    </td>
-                                    <td class="product-subtotal"><span class="amount">100.000</span></td>
-                                    <td><a href=""><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="thumbnail-product">
-                                            <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                                        </div>
-                                    </td>
-                                    <td class="product-name">ESPRESSO RISTRETTO</td>
-                                    <td class="product-size">L</td>
-                                    <td class="product-quantity">
-                                        <input type="number" placeholder="2">
-                                    </td>
-                                    <td class="product-subtotal"><span class="amount">100.000</span></td>
-                                    <td><a href=""><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="thumbnail-product">
-                                            <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                                        </div>
-                                    </td>
-                                    <td class="product-name">ESPRESSO RISTRETTO</td>
-                                    <td class="product-size">S</td>
-                                    <td class="product-quantity">
-                                        <input type="number" placeholder="2">
-                                    </td>
-                                    <td class="product-subtotal"><span class="amount">100.000</span></td>
-                                    <td><a href=""><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></td>
-                                </tr>
+                                            <td class="product-name">{{$product['product_name']}}</td>
+                                            <td class="product-size">{{$product['size_name']}}</td>
+                                            <td class="product-quantity">
+                                                <input type="number" name="quantity[{{$product_id}}]" min="1" value="{{$product['product_quantity']}}">
+                                            </td>
+                                            <td class="product-subtotal"><span class="amount">{{number_format($product['price'] * $product['product_quantity'], 0, ',', '.') }} VND</span></td>
+                                            <td><a href="{{route('orders.delete_prd_cart', $product_id)}}"><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></td>
+                                        </tr>
+                                    @endforeach
+
+                                @endif
+
+
                             </table>
+                                <div class="row">
+                                    <div class="col-8" style="margin-top: 30px;">
+                                        <a href="{{route('orders.clear_cart')}}" class="btn-cart"><b>CLEAR CART</b></a>
+                                        <button class="btn-cart"><b>UPDATE CART</b></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -206,7 +177,7 @@
 
     </div>
 
-    <script src="../../../../public/js/admin.js"></script>
+    <script src="{{asset('js/admin.js')}}"></script>
 </body>
 
 </html>

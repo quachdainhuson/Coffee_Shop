@@ -26,6 +26,13 @@ Route::prefix('Client/')->group(function(){
     Route::post('/checkout', [\App\Http\Controllers\User\HomePageController::class, 'checkoutProcess'])->name('client.checkoutProcess');
     Route::get('/search',[\App\Http\Controllers\User\HomePageController::class, 'searchProduct'])->name('client.search_product');
 });
+Route::middleware('checkLoginEmployee')->prefix('Admin/order/')->group(function(){
+    Route::get('/order', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.order');
+    Route::post('{product}/add_to_cart', [\App\Http\Controllers\Admin\OrderController::class, 'addToCart'])->name('orders.add_to_cart');
+    Route::put('/update_cart', [\App\Http\Controllers\Admin\OrderController::class, 'updateCart'])->name('orders.update_cart');
+    Route::get('/{product}/delete-product-cart', [\App\Http\Controllers\Admin\OrderController::class, 'deleteProductInCart'])->name('orders.delete_prd_cart');
+    Route::get('/clear_cart', [\App\Http\Controllers\Admin\OrderController::class, 'clearCart'])->name('orders.clear_cart');
+});
 Route::middleware('checkLoginEmployee')->prefix('Admin/Product/')->group(function(){
     Route::get('/product', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products.product');
     Route::get('/add_product', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.add_product');

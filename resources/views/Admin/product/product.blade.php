@@ -24,6 +24,7 @@
     </a>
     <ul class="side-menu">
         <li><a href="{{route('dashboard.dashboard')}}"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
+        <li><a href="{{route('orders.order')}}"><i class='bx bxs-cart-add'></i>Đặt Hàng</a></li>
         <li class="active"><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
         <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
         <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
@@ -76,10 +77,6 @@
                     <li><a href="#" >Shop</a></li>
                 </ul>
             </div>
-            <a href="{{ route('products.cart') }}" class="report">
-                <i class='bx bx-plus'></i>
-                <span>Cart</span>
-            </a>
             <a href="{{ route('products.add_product') }}" class="report">
                 <i class='bx bx-plus'></i>
                 <span>Thêm Sản Phẩm</span>
