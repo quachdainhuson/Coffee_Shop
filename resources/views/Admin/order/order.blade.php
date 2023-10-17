@@ -91,7 +91,7 @@
                                         </div>
                                       </div>
                                     </div>
-                            </div> 
+                            </div>
                         </div>
 
                         <div>
@@ -101,150 +101,15 @@
                                       <div class="product-top">
                                           <a href="#" class="product-thumb">
                                               <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                  
-                                          </a>
-                                      </div>
-                                          <div class="product-info">
-                                              <div class="name_product">Sản phẩm</div>
-                                              <button class="btn_add_product">Thêm</button>
-                                          </div>
-                                  </div>
-                              </li>
-                  
-                              <li class="item">
-                                  <div class="product-item">
-                                      <div class="product-top">
-                                          <a href="#" class="product-thumb">
-                                              <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                  
-                                          </a>
-                                      </div>
-                                          <div class="product-info">
-                                              <div class="name_product">Sản phẩm</div>
-                                              <button class="btn_add_product">Thêm</button>
-                                          </div>
-                                  </div>
-                              </li>
-                  
-                              <li class="item">
-                                  <div class="product-item">
-                                      <div class="product-top">
-                                          <a href="#" class="product-thumb">
-                                              <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                  
-                                          </a>
-                                      </div>
-                                          <div class="product-info">
-                                              <div class="name_product">Sản phẩm</div>
-                                              <button class="btn_add_product">Thêm</button>
-                                          </div>
-                                  </div>
-                              </li>
-                  
-                              <li class="item">
-                                  <div class="product-item">
-                                      <div class="product-top">
-                                          <a href="#" class="product-thumb">
-                                              <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                  
-                                          </a>
-                                      </div>
-                                          <div class="product-info">
-                                              <div class="name_product">Sản phẩm</div>
-                                              <button class="btn_add_product">Thêm</button>
-                                          </div>
-                                  </div>
-                              </li>
-                  
-                              <li class="item">
-                                  <div class="product-item">
-                                      <div class="product-top">
-                                          <a href="#" class="product-thumb">
-                                              <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                  
-                                          </a>
-                                      </div>
-                                          <div class="product-info">
-                                              <div class="name_product">Sản phẩm</div>
-                                              <button class="btn_add_product">Thêm</button>
-                                          </div>
-                                  </div>
-                              </li>
-                  
-                              <li class="item">
-                                  <div class="product-item">
-                                      <div class="product-top">
-                                          <a href="#" class="product-thumb">
-                                              <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                  
-                                          </a>
-                                      </div>
-                                          <div class="product-info">
-                                              <div class="name_product">Sản phẩm</div>
-                                              <button class="btn_add_product">Thêm</button>
-                                          </div>
-                                  </div>
-                              </li>   
-                              <li class="item">
-                                <div class="product-item">
-                                    <div class="product-top">
-                                        <a href="#" class="product-thumb">
-                                            <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                
-                                        </a>
-                                    </div>
-                                        <div class="product-info">
-                                            <div class="name_product">Sản phẩm</div>
-                                            <button class="btn_add_product">Thêm</button>
-                                        </div>
-                                     </div>
-                                </li>
-                
-                            <li class="item">
-                                <div class="product-item">
-                                    <div class="product-top">
-                                        <a href="#" class="product-thumb">
-                                            <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                
-                                        </a>
-                                    </div>
-                                        <div class="product-info">
-                                            <div class="name_product">Sản phẩm</div>
-                                            <button class="btn_add_product">Thêm</button>
-                                        </div>
-                                    </div>
-                            </li>
-                
-                            <li class="item">
-                                <div class="product-item">
-                                    <div class="product-top">
-                                        <a href="#" class="product-thumb">
-                                            <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                
-                                        </a>
-                                    </div>
-                                        <div class="product-info">
-                                            <div class="name_product">Sản phẩm</div>
-                                            <button class="btn_add_product">Thêm</button>
-                                        </div>
-                                    </div>
-                            </li> 
 
-                            <li class="item">
-                                <div class="product-item">
-                                    <div class="product-top">
-                                        <a href="#" class="product-thumb">
-                                            <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
-                
-                                        </a>
-                                    </div>
-                                        <div class="product-info">
-                                            <div class="name_product">Sản phẩm</div>
-                                            <button class="btn_add_product">Thêm</button>
-                                        </div>
-                                    </div>
-                            </li> 
-                                                       
+                                          </a>
+                                      </div>
+                                          <div class="product-info">
+                                              <div class="name_product">Sản phẩm</div>
+                                              <button class="btn_add_product">Thêm</button>
+                                          </div>
+                                  </div>
+                              </li>
                           </ul>
                           </div>
                     </div>
@@ -299,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
 
         </main>
 
