@@ -170,6 +170,16 @@ class HomePageController extends Controller
 
         return redirect()->route('client.home');
     }
+
+    public function searchProduct(Request $request){
+        $categories = Category::all();
+        $products = Product::where('product_name', 'like','%' .$request->key. '%')
+                                    ->get();
+        return view('Client.product',[
+        'products' => $products,
+        'categories' => $categories
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */
