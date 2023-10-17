@@ -101,15 +101,47 @@
                                       <div class="product-top">
                                           <a href="#" class="product-thumb">
                                               <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
+                                          </a>
+                                      </div>
+                                          <div class="product-info">
+                                              <div class="name_product">Sản phẩm</div>
+                                              <div class="size-radio">
+                                                <input type="radio" name="size_id" id="S" value="S" >
+                                                <label for="S">S</label>
+                                                <input type="radio" name="size_id" id="M" value="M" >
+                                                <label for="M">M</label>
+                                                <input type="radio" name="size_id" id="L" value="L" >
+                                                <label for="L">L</label>
+                                              </div>
+                                              <button class="btn_add_product">Thêm</button>
+                                          </div>
+                                  </div>
+                              </li>
+
+                              <li class="item">
+                                  <div class="product-item">
+                                      <div class="product-top">
+                                          <a href="#" class="product-thumb">
+                                              <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
 
                                           </a>
                                       </div>
                                           <div class="product-info">
                                               <div class="name_product">Sản phẩm</div>
+                                              <div class="size-radio">
+                                                <input type="radio" name="size_id" id="S" value="S" >
+                                                <label for="S">S</label>
+                                                <input type="radio" name="size_id" id="M" value="M" >
+                                                <label for="M">M</label>
+                                                <input type="radio" name="size_id" id="L" value="L" >
+                                                <label for="L">L</label>
+                                              </div>
                                               <button class="btn_add_product">Thêm</button>
                                           </div>
                                   </div>
                               </li>
+
+
                           </ul>
                           </div>
                     </div>
@@ -127,11 +159,13 @@
                                             <img src="../../../../public/image/FREEZE-TRA-XANH-5.1.png" alt="">
                                         </div>
                                     </td>
+
                                     <td class="product-name">ESPRESSO RISTRETTO</td>
+                                    <td class="product-size">M</td>
                                     <td class="product-quantity">
                                         <input type="number" placeholder="2">
                                     </td>
-                                    <td class="product-subtotal"><span class="amount">$130.00</span></td>
+                                    <td class="product-subtotal"><span class="amount">100.000</span></td>
                                     <td><a href=""><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></td>
                                 </tr>
                                 <tr>
@@ -141,10 +175,11 @@
                                         </div>
                                     </td>
                                     <td class="product-name">ESPRESSO RISTRETTO</td>
+                                    <td class="product-size">L</td>
                                     <td class="product-quantity">
                                         <input type="number" placeholder="2">
                                     </td>
-                                    <td class="product-subtotal"><span class="amount">$130.00</span></td>
+                                    <td class="product-subtotal"><span class="amount">100.000</span></td>
                                     <td><a href=""><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></td>
                                 </tr>
                                 <tr>
@@ -154,10 +189,11 @@
                                         </div>
                                     </td>
                                     <td class="product-name">ESPRESSO RISTRETTO</td>
+                                    <td class="product-size">S</td>
                                     <td class="product-quantity">
                                         <input type="number" placeholder="2">
                                     </td>
-                                    <td class="product-subtotal"><span class="amount">$130.00</span></td>
+                                    <td class="product-subtotal"><span class="amount">100.000</span></td>
                                     <td><a href=""><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></td>
                                 </tr>
                             </table>
