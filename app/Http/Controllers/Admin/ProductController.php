@@ -46,20 +46,28 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product_image = $request->file('product_image')->getClientOriginalName();
-        if (!Storage::exists('public/Admin/'.$product_image)) {
-            Storage::putFileAs('public/Admin', $request->file('product_image'), $product_image);
+        if ($request->validated()) {
+            $product_image = $request->file('product_image')->getClientOriginalName();
+            if (!Storage::exists('public/Admin/'.$product_image)) {
+                Storage::putFileAs('public/Admin', $request->file('product_image'), $product_image);
+            }
+            $productId = Product::create(array_merge($request->all(), ['product_image' => $product_image]));
+            $product_id = $productId->id;
+            foreach ($request->input('sizes') as $sizeId => $data) {
+                ProductDetail::create([
+                    'product_id' => $product_id,
+                    'size_id' => $sizeId,
+                    'product_price' => $data['product_price'],
+                ]);
+            }
+            flash()->addSuccess('Add product success');
+            return redirect()->route('products.product');
+        }else{
+            flash()->addError('Please enter all field');
+            return redirect()->route('products.product');
         }
-        $productId = Product::create(array_merge($request->all(), ['product_image' => $product_image]));
-        $product_id = $productId->id;
-        foreach ($request->input('sizes') as $sizeId => $data) {
-            ProductDetail::create([
-                'product_id' => $product_id,
-                'size_id' => $sizeId,
-                'product_price' => $data['product_price'],
-            ]);
-        }
-        return redirect()->route('products.product');
+
+
     }
 
     /**
