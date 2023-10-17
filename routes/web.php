@@ -24,6 +24,7 @@ Route::prefix('Client/')->group(function(){
     Route::get('/checkout', [\App\Http\Controllers\User\HomePageController::class, 'checkout'])->name('client.checkout');
     Route::get('/category/{id}', [\App\Http\Controllers\User\HomePageController::class, 'cateProduct'])->name('client.cate_product');
     Route::post('/checkout', [\App\Http\Controllers\User\HomePageController::class, 'checkoutProcess'])->name('client.checkoutProcess');
+    Route::get('/search',[\App\Http\Controllers\User\HomePageController::class, 'searchProduct'])->name('client.search_product');
 });
 Route::middleware('checkLoginEmployee')->prefix('Admin/Product/')->group(function(){
     Route::get('/product', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products.product');

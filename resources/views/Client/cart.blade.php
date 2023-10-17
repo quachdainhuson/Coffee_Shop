@@ -22,7 +22,7 @@
         <div><a href="{{route('client.home')}}">TRANG CHỦ</a></div>
         <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
-                <@foreach($categories as $category)
+                @foreach($categories as $category)
                 <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
                 @endforeach
             </div>
@@ -98,9 +98,9 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8" style="margin-top: 30px;">
-            <a href="{{route('client.delete_cart')}}" class="cart-btn"><b>CLEAR CART</b></a>
+            <a href="{{route('client.delete_cart')}}" class="btn-cart"><b>CLEAR CART</b></a>
 
-            <button class="cart-btn"><b>UPDATE CART</b></button>
+            <button class="btn-cart"><b>UPDATE CART</b></button>
         </div>
     </div>
     </form>
