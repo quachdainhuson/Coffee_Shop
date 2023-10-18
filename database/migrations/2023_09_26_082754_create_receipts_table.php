@@ -17,8 +17,9 @@ return new class extends Migration
             $table->integer('total_price');
             $table->text('note');
             $table->string('order_date');
-            $table->foreignId('employee_id')->constrained('employees');
-            $table->foreignId('customer_id')->constrained('customers');
+            $table->foreignId('employee_id')->nullable()->constrained('employees');
+            $table->foreignId('customer_id')->nullable()->constrained('customers');
+            $table->foreignId('table_id')->nullable()->constrained('table_coffees');
         });
     }
 

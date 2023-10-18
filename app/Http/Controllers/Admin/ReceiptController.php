@@ -6,6 +6,7 @@ use App\Http\Requests\StoreReceiptRequest;
 use App\Http\Requests\UpdateReceiptRequest;
 use App\Models\Receipt;
 use App\Models\ReceiptDetail;
+use App\Models\TableCoffee;
 use Illuminate\Support\Facades\DB;
 
 class ReceiptController extends Controller
@@ -52,6 +53,27 @@ class ReceiptController extends Controller
                 'customer' => $customer,
                 'product_details' => $product_detail
             ]);
+    }
+    public function confirm(Receipt $receipt){
+        Receipt::where('id', $receipt->id)->update(['status' => 1]);
+        return redirect()->route('receipts.receipt');
+    }
+
+    public function print(Receipt $receipt){
+        Receipt::where('id', $receipt->id)->update(['status' => 2]);
+        return redirect()->route('receipts.receipt');
+    }
+    public function completeReceipt(Receipt $receipt){
+
+        TableCoffee::where('id', $receipt->table_id)->update(['table_status' => 0]);
+        Receipt::where('id', $receipt->id)->update(['status' => 3]);
+        return redirect()->route('receipts.receipt');
+    }
+    public function cancelReceipt(Receipt $receipt){
+
+        TableCoffee::where('id', $receipt->table_id)->update(['table_status' => 0]);
+        Receipt::where('id', $receipt->id)->update(['status' => 4]);
+        return redirect()->route('receipts.receipt');
     }
     /**
      * Show the form for creating a new resource.

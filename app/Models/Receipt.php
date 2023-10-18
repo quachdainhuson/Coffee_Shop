@@ -16,8 +16,10 @@ class Receipt extends Model
         'order_date',
         'total_price',
         'note',
+        'order_at',
         'employee_id',
         'customer_id',
+        'table_id',
     ];
     public function customer(){
         return $this->belongsTo(Customer::class, 'customer_id');

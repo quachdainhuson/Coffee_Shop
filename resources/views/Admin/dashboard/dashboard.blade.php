@@ -18,12 +18,13 @@
             <div class="logo-name"><span>Coffee</span>Shop</div>
         </a>
         <ul class="side-menu">
-            <li class="active" ><a href="{{route('dashboard.dashboard')}}"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
+            <li class="active"><a href="{{route('dashboard.dashboard')}}"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
             <li><a href="{{route('orders.order')}}"><i class='bx bxs-cart-add'></i>Đặt Hàng</a></li>
             <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
             <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
             <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
+            <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
@@ -85,33 +86,33 @@
                     <i class='bx bx-calendar-check'></i>
                     <span class="info">
                         <h3>
-                            1,074
+                            {{$count_receipt}}
                         </h3>
-                        <p>Paid Order</p>
+                        <p>Hóa Đơn Hoàn Thành</p>
                     </span>
                 </li>
-                <li><i class='bx bx-show-alt'></i>
+                <li><i class='bx bx-user-circle' style='color:#4abcff'  ></i>
                     <span class="info">
                         <h3>
-                            3,944
+                            {{$count_employee}}
                         </h3>
-                        <p>Site Visit</p>
+                        <p>Nhân Viên</p>
                     </span>
                 </li>
-                <li><i class='bx bx-line-chart'></i>
+                <li><i class='bx bx-coffee-togo' style='color:#0aaa1f'  ></i>
                     <span class="info">
                         <h3>
-                            14,721
+                            {{$count_product}}
                         </h3>
-                        <p>Searches</p>
+                        <p>Sản Phẩm</p>
                     </span>
                 </li>
                 <li><i class='bx bx-dollar-circle'></i>
                     <span class="info">
                         <h3>
-                            $6,742
+                            {{number_format($total_price,0,',','.')}} VND
                         </h3>
-                        <p>Total Sales</p>
+                        <p>Doanh Thu Tháng</p>
                     </span>
                 </li>
             </ul>

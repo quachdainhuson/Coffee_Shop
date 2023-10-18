@@ -148,6 +148,7 @@ class HomePageController extends Controller
                 'status' => 0,
                 'order_date' => date('Y-m-d'),
                 'total_price' => $total_price,
+                'order_at' => 'Website',
                 'customer_id' => $customer_id['id'],
                 'note' =>  $customer['note'],
             ]);
