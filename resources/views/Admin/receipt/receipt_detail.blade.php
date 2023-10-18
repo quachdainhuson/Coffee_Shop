@@ -24,7 +24,8 @@
             <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
             <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
             <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
-            <li  class="active" ><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
+            <li class="active"><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
+            <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
@@ -147,10 +148,10 @@
                                         <div class="col-6">
 
                                             <h6 class="text-muted text-uppercase fw-semibold mb-3">Thông Tin Khách Hàng</h6>
-                                            <p class="fw-medium mb-2" id="shipping-name">{{$customers->customer_name}}</p>
-                                            <p class="text-muted mb-1" id="shipping-address-line-1">{{$customers->customer_address}}</p>
-                                            <p class="text-muted mb-1" id="shipping-email-line-1">{{$customers->customer_email}}</p>
-                                            <p class="text-muted mb-1"><span>Phone: </span><span id="shipping-phone-no">{{$customers->customer_phone}}</span></p>
+                                            <p class="fw-medium mb-2" id="shipping-name">{{$customers->customer_name ?? 'Khách Vãng Lai'}}</p>
+                                            <p class="text-muted mb-1" id="shipping-address-line-1">{{$customers->customer_address ?? 'Tại Của Hàng'}}</p>
+                                            <p class="text-muted mb-1" id="shipping-email-line-1">{{$customers->customer_email ?? 'Không Có'}}</p>
+                                            <p class="text-muted mb-1"><span>Phone: </span><span id="shipping-phone-no">{{$customers->customer_phone ?? 'Không Có'}}</span></p>
                                         </div>
                                         <!--end col-->
                                     </div>

@@ -28,7 +28,8 @@
             <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
             <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
             <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
-            <li class="active" ><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
+            <li class="active"><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
+            <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
             <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
@@ -102,20 +103,21 @@
                                 @foreach($receipts as $receipt)
                                     <tr>
                                         <td scope="col">{{$receipt->id}}</td>
-                                        <td scope="col">{{$receipt->customer->customer_name}}</td>
-                                        <td scope="col">{{$receipt->customer->customer_phone}}</td>
+                                        <td scope="col">{{$receipt->customer->customer_name ?? 'Khách Vãng Lai'}}</td>
+                                        <td scope="col">{{$receipt->customer->customer_phone ?? 'Không Có'}}</td>
                                         <td scope="col">{{$receipt->total_price}}</td>
                                         <th scope="col" style="color:green">
+
                                             @if($receipt->status == 0)
-                                                Chờ Xác Nhận
+                                                <span class="badge bg-secondary-subtle text-secondary fs-11" id="payment-status">Chờ Xác Nhận</span>
                                             @elseif($receipt->status == 1)
-                                                Đã Xác Nhận
+                                                <span class="badge bg-primary-subtle text-primary fs-11" id="payment-status">Đã Xác Nhận</span>
                                             @elseif($receipt->status == 2)
-                                                Đang Giao Hàng
+                                                    <span class="badge bg-warning-subtle text-warning fs-11" id="payment-status">Đang Làm</span>
                                             @elseif($receipt->status == 3)
-                                                Đã Giao Hàng
+                                                    <span class="badge bg-success-subtle text-success fs-11" id="payment-status">Đã Hoàn Thành</span>
                                             @elseif($receipt->status == 4)
-                                                Đã Hủy
+                                                    <span class="badge bg-danger-subtle text-danger fs-11" id="payment-status">Đã Hủy</span>
                                             @endif
 
                                         </th>
@@ -124,10 +126,22 @@
                                             <a href="{{route('receipts.detail',$receipt)}}"><button class="btn btn-primary" type="submit">Chi Tiết</button></a>
                                         </td>
                                         <td scope="col">
-                                            <a href=""><button class="btn btn-primary" type="submit"><i class='bx bx-checkbox-checked'></i></button></a>
-                                            <a href=""><button class="btn btn-primary" type="submit"><i class="fa-regular fa-square-check"></i></button></a>
-                                            <a href=""><button class="btn btn-primary" type="submit"><i class='bx bx-check'></i></button></a>
-                                            <a href=""><button class="btn btn-primary" type="submit"><i class='bx bx-x'></i></button></a>
+                                            @if($receipt->status == 0)
+                                                <a href="{{route('receipts.confirm',$receipt)}}"><button class="btn btn-success" type="submit">Xác Nhận</button></a>
+                                                <a href="{{route('receipts.cancel_receipt', $receipt)}}"><button class="btn btn-danger" type="submit">Hủy</button></a>
+                                            @elseif($receipt->status == 1)
+                                                <a href="{{route('receipts.print', $receipt)}}"><button class="btn btn-warning" type="submit">In Hóa Đơn</button></a>
+                                                <a href="{{route('receipts.cancel_receipt',$receipt)}}"><button class="btn btn-danger" type="submit">Hủy</button></a>
+                                            @elseif($receipt->status == 2)
+                                                <a href="{{route('receipts.complete_receipt', $receipt)}}"><button class="btn btn-success" type="submit">Hoàn Thành</button></a>
+                                            @elseif($receipt->status == 3)
+
+
+                                            @elseif($receipt->status == 4)
+
+                                            @endif
+
+
                                         </td>
                                         <td scope="col"></td>
                                     </tr>

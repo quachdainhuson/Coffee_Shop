@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreDashboardRequest;
 use App\Http\Requests\UpdateDashboardRequest;
 use App\Models\Dashboard;
+use App\Models\Employee;
+use App\Models\Product;
+use App\Models\Receipt;
 
 class DashboardController extends Controller
 {
@@ -13,7 +16,20 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('Admin.dashBoard.dashboard');
+        $product = Product::all();
+        $count_product = count($product);
+        $employee = Employee::all();
+        $count_employee = count($employee);
+        $receipt = Receipt::all();
+        $count_receipt = count($receipt);
+        $total_price = Receipt::where('status', 3)->sum('total_price');
+
+        return view('Admin.dashBoard.dashboard',[
+            'count_product' => $count_product,
+            'count_employee' => $count_employee,
+            'count_receipt' => $count_receipt,
+            'total_price' => $total_price
+        ]);
     }
 
     /**

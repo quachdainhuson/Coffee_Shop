@@ -8,17 +8,21 @@ use Illuminate\Support\Facades\DB;
 class TableCoffee extends Model
 {
     use HasFactory;
-
+    protected $table = 'table_coffees';
+    protected $fillable = [
+        'table_name',
+        'table_status'
+    ];
+    public $timestamps = false;
+    public function receipt(){
+        return $this->hasMany(Receipt::class, 'table_id', 'id');
+    }
     public function index(){
         $tables = DB::table('table_coffees')
                     ->get();
         return $tables;
     }
-    public function index1(){
-        $tables = DB::table('table_coffees')
-                    ->get();
-        return $tables;
-    }
+
 
     public function store(){
         DB::table('table_coffees')->insert([
