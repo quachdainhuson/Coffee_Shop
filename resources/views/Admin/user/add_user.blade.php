@@ -95,6 +95,9 @@
                                 <label>Email</label>
                                 <input type="text" name="employee_email" required class="form-control"  placeholder="">
                             </div>
+                            @if($errors->has('employee_email'))
+                                {{$errors->first('employee_email')}}
+                            @endif
                         </div>
                         <br>
                         <div class="form-group">
@@ -102,6 +105,9 @@
                                 <label>Điện Thoại</label>
                                 <input type="text" name="employee_phone" required class="form-control"  placeholder="">
                             </div>
+                            @if($errors->has('employee_phone'))
+                                {{$errors->first('employee_phone')}}
+                            @endif
                         </div>
                         <br>
                         <div class="form-group">
@@ -109,6 +115,9 @@
                                 <label>Username</label>
                                 <input type="text" name="username" required class="form-control"  placeholder="">
                             </div>
+                            @if($errors->has('username'))
+                                {{$errors->first('username')}}
+                            @endif
                         </div>
                         <br>
 
