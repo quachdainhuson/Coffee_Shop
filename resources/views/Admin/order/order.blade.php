@@ -102,7 +102,6 @@
                             @foreach($products as $product)
                                 <li class="item">
                                     <form action="{{route('orders.add_to_cart',$product)}}" method="post">
-
                                         @csrf
                                         <div class="product-item">
                                             <div class="product-top">

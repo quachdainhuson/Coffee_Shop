@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
+use App\Models\Receipt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -64,7 +65,6 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee, Request $request)
     {
-
         return view('Admin/User/edit_user',[
             'employees' => $employee
         ]);
@@ -78,15 +78,15 @@ class EmployeeController extends Controller
     {
 
         if (Hash::check($request->password, $employee->password)){
-            $obj = new Employee();
-            $obj->id = $request->id;
-            $obj->employee_name = $request->employee_name;
-            $obj->employee_email = $request->employee_email;
-            $obj->employee_phone = $request->employee_phone;
-            $obj->username = $request->username;
-            $obj->password = Hash::make($request->password);
-            $obj->role = $request->role;
-            $obj->updateEmployee();
+            Employee::where('id', $employee->id)->update([
+                'employee_name' => $request->employee_name,
+                'employee_email' => $request->employee_email,
+                'employee_phone' => $request->employee_phone,
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+                'role' => $request->role
+            ]);
+
             flash()->addSuccess('Cập nhật thành công');
             return Redirect::route('users.user');
 
@@ -102,9 +102,10 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee, Request $request)
     {
-        $obj = new Employee();
-        $obj->id = $request->id;
-        $obj->destroyUser();
+        Receipt::where('employee_id', $employee->id)->update([
+            'employee_id' => null
+        ]);
+        $employee->delete();
         return Redirect::route('users.user');
     }
     public function changePassword(Request $request, Employee $employee){

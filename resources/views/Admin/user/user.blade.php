@@ -160,8 +160,11 @@
         $(document).ready(function () {
             $('#table_id').DataTable();
         });
+        $('#table_id').dataTable( {
+            lengthMenu: [ [10, 25, 50, -1], [5, 10, 15, "All"] ]
+        } );
     </script>
-    <script src="../../../../public/js/admin.js"></script>
+    <script src="{{asset('js/admin.js')}}"></script>
 </body>
 
 </html>
