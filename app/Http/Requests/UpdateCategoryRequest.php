@@ -21,8 +21,17 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
+        $category = $this->route('category');
         return [
-            //
+            'cate_name' => 'required|unique:categories,cate_name,'.$category->id,
+        ];
+    }
+    public function messages()
+    {
+        return [
+
+            'cate_name.required' => 'Tên danh mục không được để trống',
+            'cate_name.unique' => 'Tên danh mục đã tồn tại',
         ];
     }
 }

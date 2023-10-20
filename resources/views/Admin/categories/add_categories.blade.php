@@ -89,9 +89,12 @@
                                     @csrf
                                     <div style="margin-bottom: 10px;">
                                         <label>Tên danh mục:</label>
-                                        <input required type="text" name="cate_name" class="form-control"
+                                        <input  type="text" name="cate_name" class="form-control"
                                             placeholder="Tên danh mục...">
-
+                                        @if(
+                                        $errors->has('cate_name')) <span
+                                            class="text-danger">{{ $errors->first('cate_name') }}</span>
+                                        @endif
                                     </div>
                                     <input type="submit" name="sbm" value="Thêm Danh Mục" class="btn btn-success"></input>
                                     <button type="reset" class="btn btn-default">Làm mới</button>

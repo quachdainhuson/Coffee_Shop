@@ -28,6 +28,7 @@ class OrderController
         ]);
     }
     public function addToCart(Product $product, Request $request){
+
         if($request->size_id == null){
             return redirect()->route('orders.order');
         }
@@ -82,38 +83,43 @@ class OrderController
         return redirect()->route('orders.order');
     }
     public function checkoutProcess(Request $request){
-        $table_id = $request->input('table_id');
-        $currentCart = Session::get('cart_admin');
-        $current_employee = Session::get('employee');
-        $total_price = 0;
-        $receipt = Receipt::create([
-            'status' => 1,
-            'total_price' => $total_price,
-            'note' => '',
-            'order_date' => date('Y-m-d'),
-            'order_at' => 'Cửa hàng',
-            'employee_id' => $current_employee->id,
-            'table_id' => $table_id,
-        ]);
-        foreach ($currentCart as $cartItem) {
-            $total_price += $cartItem['price'] * $cartItem['product_quantity'];
-            DB::table('receipt_details')->insert([
-                'receipt_id' => $receipt['id'],
-                'product_detail_id' => $cartItem['product_detail_id'],
-                'size_name' => $cartItem['size_name'],
-                'quantity' => $cartItem['product_quantity'],
-                'price' => $cartItem['price'],
+        if (Session::has('cart_admin')){
+            $table_id = $request->input('table_id');
+            $currentCart = Session::get('cart_admin');
+            $current_employee = Session::get('employee');
+            $total_price = 0;
+            $receipt = Receipt::create([
+                'status' => 1,
+                'total_price' => $total_price,
+                'note' => '',
+                'order_date' => date('Y-m-d'),
+                'order_at' => 'Cửa hàng',
+                'employee_id' => $current_employee->id,
+                'table_id' => $table_id,
             ]);
+            foreach ($currentCart as $cartItem) {
+                $total_price += $cartItem['price'] * $cartItem['product_quantity'];
+                DB::table('receipt_details')->insert([
+                    'receipt_id' => $receipt['id'],
+                    'product_detail_id' => $cartItem['product_detail_id'],
+                    'size_name' => $cartItem['size_name'],
+                    'quantity' => $cartItem['product_quantity'],
+                    'price' => $cartItem['price'],
+                ]);
+            }
+            Receipt::where('id', $receipt['id'])->update([
+                'total_price' => $total_price,
+            ]);
+            TableCoffee::where('id', $table_id)->update([
+                'table_status' => 2,
+            ]);
+            Session::forget('cart_admin');
+            flash()->addSuccess('Đặt hàng thành công');
+            return redirect()->route('orders.order');
         }
-        Receipt::where('id', $receipt['id'])->update([
-            'total_price' => $total_price,
-        ]);
-        TableCoffee::where('id', $table_id)->update([
-            'table_status' => 2,
-        ]);
-        Session::forget('cart_admin');
-        flash()->addSuccess('Đặt hàng thành công');
+        flash()->addError('Giỏ hàng trống');
         return redirect()->route('orders.order');
+
 
 
     }

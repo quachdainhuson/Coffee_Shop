@@ -102,6 +102,9 @@
                                 <label>Email</label>
                                 <input type="text" name="employee_email" required class="form-control"  placeholder="" value="{{ $employees['employee_email'] }}">
                             </div>
+                            @if($errors->has('employee_email'))
+                                {{$errors->first('employee_email')}}
+                            @endif
                         </div>
                         <br>
                         <div class="form-group">
@@ -109,6 +112,9 @@
                                 <label>Số Điện thoại</label>
                                 <input type="text" name="employee_phone" required class="form-control"  placeholder="" value="{{ $employees['employee_phone'] }}">
                             </div>
+                            @if($errors->has('employee_phone'))
+                                {{$errors->first('employee_phone')}}
+                            @endif
                         </div>
                         <br>
 
@@ -117,6 +123,9 @@
                                 <label>Username</label>
                                 <input type="text" name="username" required class="form-control"  placeholder="" value="{{ $employees['username'] }}">
                             </div>
+                            @if($errors->has('username'))
+                                {{$errors->first('username')}}
+                            @endif
                         </div>
                         <br>
 

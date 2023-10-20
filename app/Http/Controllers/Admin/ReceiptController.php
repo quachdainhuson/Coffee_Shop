@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateReceiptRequest;
 use App\Models\Receipt;
 use App\Models\ReceiptDetail;
 use App\Models\TableCoffee;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ReceiptController extends Controller
@@ -70,8 +71,7 @@ class ReceiptController extends Controller
         return redirect()->route('receipts.receipt');
     }
     public function cancelReceipt(Receipt $receipt){
-
-        TableCoffee::where('id', $receipt->table_id)->update(['table_status' => 0]);
+        TableCoffee::where('id', $receipt->table_id)->update(['table_status' => 1]);
         Receipt::where('id', $receipt->id)->update(['status' => 4]);
         return redirect()->route('receipts.receipt');
     }

@@ -18,23 +18,17 @@
         <img src="../../../public/image/logo_highland.png" alt="">
     </a>
     <nav class="navbar">
-        <div><a href="#">TRANG CHỦ</a></div>
+        <div><a href="{{route('client.home')}}">TRANG CHỦ</a></div>
         <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
-                <a href="#">Cà phê</a>
-                <a href="#">Trà</a>
-                <a href="#">Freeze</a>
+                @foreach($categories as $category)
+                    <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
+                @endforeach
             </div>
         </div>
-        <div>
-            <a href="#">CỘNG ĐỒNG</a>
-        </div>
-        <div>
-            <a href="#">TIN TỨC</a>
-        </div>
-        <div>
-            <a href="#">VỀ CHÚNG TÔI</a>
-        </div>
+        <div><a href="#">CỘNG ĐỒNG</a></div>
+        <div><a href="#">TIN TỨC</a></div>
+        <div><a href="#">VỀ CHÚNG TÔI</a></div>
     </nav>
 
     <div class="icons">
