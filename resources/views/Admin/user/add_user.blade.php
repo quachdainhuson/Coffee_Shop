@@ -86,14 +86,14 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Họ và Tên</label>
-                                <input type="text" name="employee_name" required class="form-control"  placeholder="">
+                                <input type="text" name="employee_name"  class="form-control"  placeholder="">
                             </div>
                         </div>
                         <br>
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" name="employee_email" required class="form-control"  placeholder="">
+                                <input type="text" name="employee_email"  class="form-control"  placeholder="">
                             </div>
                             @if($errors->has('employee_email'))
                                 {{$errors->first('employee_email')}}
@@ -103,7 +103,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Điện Thoại</label>
-                                <input type="text" name="employee_phone" required class="form-control"  placeholder="">
+                                <input type="text" name="employee_phone"  class="form-control"  placeholder="">
                             </div>
                             @if($errors->has('employee_phone'))
                                 {{$errors->first('employee_phone')}}
@@ -113,7 +113,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" name="username" required class="form-control"  placeholder="">
+                                <input type="text" name="username"  class="form-control"  placeholder="">
                             </div>
                             @if($errors->has('username'))
                                 {{$errors->first('username')}}
@@ -124,7 +124,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Mật Khẩu</label>
-                                <input type="password" name="password" required class="form-control"  placeholder="">
+                                <input type="password" name="password"  class="form-control"  placeholder="">
                             </div>
                         </div>
                         <br>

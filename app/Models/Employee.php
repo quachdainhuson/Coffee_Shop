@@ -25,33 +25,6 @@ class Employee extends Model implements \Illuminate\Contracts\Auth\Authenticatab
 
     public $timestamps = false;
     public function receipts(){
-        return $this->hasMany(Receipt::class);
+        return $this->hasMany(Receipt::class, 'employee_id');
     }
-
-    public function edit()
-    {
-        $employee = DB::table('employees')
-            ->where('id', $this->id)
-            ->get();
-        return $employee;
-    }
-    public function updateEmployee(){
-        DB::table('employees')
-            ->where('id', $this->id)
-            ->update([
-                'employee_name' => $this->employee_name,
-                'employee_email' => $this->employee_email,
-                'employee_phone' => $this->employee_phone,
-                'username' => $this->username,
-                'password' => $this->password,
-                'role' => $this->role
-            ]);
-
-    }
-    public function destroyUser(){
-        DB::table('employees')
-            ->where('id', $this->id)
-            ->delete();
-    }
-
 }
