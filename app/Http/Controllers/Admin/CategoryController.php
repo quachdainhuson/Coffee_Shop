@@ -34,6 +34,13 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        $cate = Category::all();
+        foreach ($cate as $item){
+            if ($item->cate_name == $request->cate_name){
+                flash()->addError('Tên danh mục đã tồn tại');
+                return Redirect::route('categories.category');
+            }
+        }
         Category::create($request->all());
         return Redirect::route('categories.category');
     }
@@ -62,6 +69,13 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
+        $cate = Category::all();
+        foreach ($cate as $item){
+            if ($item->cate_name == $request->cate_name){
+                flash()->addError('Tên danh mục đã tồn tại');
+                return Redirect::route('categories.category');
+            }
+        }
         $category->update($request->all());
         return Redirect::route('categories.category');
     }
