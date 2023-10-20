@@ -93,7 +93,7 @@
                                         <input required type="text" name="cate_name" class="form-control"
                                             placeholder="Tên danh mục..." value="{{$categories->cate_name}}">
                                         @if($errors->has('cate_name'))
-                                        <span class="text-danger">{{$errors->first('cate_name')}}</span>
+                                            <span class="text-danger">{{$errors->first('cate_name')}}</span>
                                         @endif
                                     </div>
                                     <input type="submit" name="sbm" value="Sửa Danh Mục" class="btn btn-success"></input>

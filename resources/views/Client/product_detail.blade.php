@@ -72,11 +72,11 @@
             <h6>{{ $products->product_description }}</h6>
             <div class="product-details">
                 <div class="size-buttons">
-                    @foreach($sizes as $size)
-
-                            <input type="radio" name="size_id" id="{{$size->id}}" value="{{$size->id}}" onClick="updatePrice(this)">
-                            <label for="{{$size->id}}">{{$size->size_name}}</label>
-
+                    @foreach($products_detail as $product_detail)
+                        @if($product_detail->product_price != 0 )
+                            <input type="radio" name="size_id" id="{{$product_detail->size_id}}" value="{{$product_detail->size_id}}" onClick="updatePrice(this)">
+                            <label for="{{$product_detail->size_id}}">{{$product_detail->size_name}}</label>
+                        @endif
                     @endforeach
                     <br>
                     <span>Số Lượng</span>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Customer extends Model
 {
@@ -20,4 +21,7 @@ class Customer extends Model
         return $this->hasMany(Receipt::class, 'customer_id');
     }
     use HasFactory;
+    public function abc(){
+
+    }
 }
