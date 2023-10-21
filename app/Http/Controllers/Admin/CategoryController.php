@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -16,9 +17,15 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('Admin.Categories.categories',[
-            'categories' => $categories
-        ]);
+        if(Session::get('employee')->role  == 1){
+            return view('Admin.Categories.categories',[
+                'categories' => $categories
+            ]);
+        }else{
+            flash()->addError('Bạn không có quyền truy cập');
+            return redirect()->route('dashboard.dashboard');
+        }
+
     }
 
     /**

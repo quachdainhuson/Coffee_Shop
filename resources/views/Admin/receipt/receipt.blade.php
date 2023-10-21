@@ -161,7 +161,10 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('#table_id').DataTable();
+            $('#table_id').DataTable({
+                "order": [[0, 'desc']]
+                }
+            );
         });
     </script>
     <script src="../../../../public/js/admin.js"></script>
