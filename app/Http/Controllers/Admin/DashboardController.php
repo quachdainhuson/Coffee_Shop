@@ -20,10 +20,9 @@ class DashboardController extends Controller
         $count_product = count($product);
         $employee = Employee::all();
         $count_employee = count($employee);
-        $receipt = Receipt::all();
+        $receipt = Receipt::where('status', 3)->get();
         $count_receipt = count($receipt);
         $total_price = Receipt::where('status', 3)->sum('total_price');
-
         return view('Admin.dashBoard.dashboard',[
             'count_product' => $count_product,
             'count_employee' => $count_employee,

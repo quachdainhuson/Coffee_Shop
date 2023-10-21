@@ -21,9 +21,16 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('categories')->get();
-        return view('Admin.Product.product',[
-            'products' => $products
-        ]);
+        if(Session::get('employee')->role  == 1){
+            return view('Admin.Product.product',[
+                'products' => $products
+            ]);
+        }else{
+            flash()->addError('Bạn không có quyền truy cập');
+            return redirect()->route('dashboard.dashboard');
+        }
+
+
     }
 
 

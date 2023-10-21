@@ -17,7 +17,7 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $receipt = Receipt::all();
+        $receipt = Receipt::orderBy('status', 'asc')->get();
         return view('Admin.receipt.receipt',[
             'receipts' => $receipt
         ]);

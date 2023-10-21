@@ -21,10 +21,17 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+
         $employees = Employee::all();
-        return view('Admin/User/user',[
-            'employees' => $employees
-        ]);
+        if(Session::get('employee')->role  == 1){
+            return view('Admin/User/user',[
+                'employees' => $employees
+            ]);
+        }else{
+            flash()->addError('Bạn không có quyền truy cập');
+             return redirect()->route('dashboard.dashboard');
+        }
+
     }
 
     /**
