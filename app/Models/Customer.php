@@ -21,7 +21,5 @@ class Customer extends Model
         return $this->hasMany(Receipt::class, 'customer_id');
     }
     use HasFactory;
-    public function abc(){
 
-    }
 }
