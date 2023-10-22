@@ -121,7 +121,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Username</label>
-                                <input type="text" name="username" required class="form-control"  placeholder="" value="{{ $employees['username'] }}" disabled>
+                                <input type="text" name="username" required class="form-control"  placeholder="" value="{{ $employees['username'] }}">
                             </div>
                             @if($errors->has('username'))
                                 {{$errors->first('username')}}
