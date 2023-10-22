@@ -133,28 +133,5 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.product');
     }
-    public function addToCart(Product $product, Request $request)
-    {
-        if(Session::has('cart')){
 
-            $currentCart = Session::get('cart');
-        }else{
-            $currentCart = array();
-        }
-            $currentCart = Arr::add($currentCart, $product->id,
-                [
-                    'product_name' => $product->product_name,
-                    'product_image' => $product->product_image,
-                    'product_quantity' => 1,
-                ]);
-        Session::put('cart', $currentCart);
-        return redirect()->route('products.cart');
-    }
-    public function cart()
-    {
-
-        Session::get('cart');
-        return view('Admin.Product.cart');
-
-    }
 }
