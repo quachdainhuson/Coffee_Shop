@@ -17,7 +17,7 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $receipt = Receipt::orderBy('status', 'asc')->get();
+        $receipt = Receipt::with('employee')->orderBy('status', 'asc')->get();
         return view('Admin.receipt.receipt',[
             'receipts' => $receipt
         ]);
@@ -66,7 +66,7 @@ class ReceiptController extends Controller
     }
     public function completeReceipt(Receipt $receipt){
 
-        TableCoffee::where('id', $receipt->table_id)->update(['table_status' => 0]);
+        TableCoffee::where('id', $receipt->table_id)->update(['table_status' => 1]);
         Receipt::where('id', $receipt->id)->update(['status' => 3]);
         return redirect()->route('receipts.receipt');
     }

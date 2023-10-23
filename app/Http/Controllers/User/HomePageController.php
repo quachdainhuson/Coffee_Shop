@@ -176,9 +176,17 @@ class HomePageController extends Controller
         $categories = Category::all();
         $products = Product::where('product_name', 'like','%' .$request->key. '%')
                                     ->get();
+        if ($products->isEmpty()){
+            $products = Product::join('categories', 'categories.id', '=', 'products.cate_id')
+                ->select('products.*',
+                    'categories.cate_name')
+                ->where('categories.cate_name', 'like','%' .$request->key. '%')
+                ->get();
+        }
+
         return view('Client.product',[
-        'products' => $products,
-        'categories' => $categories
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
     /**

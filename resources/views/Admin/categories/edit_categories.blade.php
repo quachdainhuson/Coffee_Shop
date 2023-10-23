@@ -26,13 +26,13 @@
             <li class="active"><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
-            <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
+            
         </ul>
         <ul class="side-menu">
             <li>
                 <a href="{{route('user.logout')}}" class="logout">
                     <i class='bx bx-log-out-circle'></i>
-                    Logout
+                    Đăng Xuất
                 </a>
             </li>
         </ul>

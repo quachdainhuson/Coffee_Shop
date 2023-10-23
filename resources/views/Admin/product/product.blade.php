@@ -25,12 +25,12 @@
     <ul class="side-menu">
         <li><a href="{{route('dashboard.dashboard')}}"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
         <li><a href="{{route('orders.order')}}"><i class='bx bxs-cart-add'></i>Đặt Hàng</a></li>
-        <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
-        <li class="active"><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
+        <li class="active"><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
+        <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
         <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
         <li><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
         <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
-        <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
+        
     </ul>
     <ul class="side-menu">
         <li>
@@ -150,7 +150,9 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('#table_id').DataTable();
+        $('#table_id').DataTable({
+            "lengthMenu": [ 5, 10, 20, 50, 100 ]
+        });
     });
 </script>
 <script src="../../../../public/js/admin.js"></script>
