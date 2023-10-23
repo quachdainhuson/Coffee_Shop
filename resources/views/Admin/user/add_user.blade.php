@@ -26,13 +26,13 @@
            <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
            <li><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
            <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
-           <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
+
         </ul>
         <ul class="side-menu">
             <li>
                 <a href="{{route('user.logout')}}" class="logout">
                     <i class='bx bx-log-out-circle'></i>
-                    Logout
+                    Đăng Xuất
                 </a>
             </li>
         </ul>
@@ -96,7 +96,7 @@
                                 <input type="text" name="employee_email"  class="form-control"  placeholder="">
                             </div>
                             @if($errors->has('employee_email'))
-                                {{$errors->first('employee_email')}}
+                                <span class="text-danger">{{ $errors->first('employee_email') }}</span>
                             @endif
                         </div>
                         <br>
@@ -106,7 +106,7 @@
                                 <input type="text" name="employee_phone"  class="form-control"  placeholder="">
                             </div>
                             @if($errors->has('employee_phone'))
-                                {{$errors->first('employee_phone')}}
+                                <span class="text-danger">{{ $errors->first('employee_phone') }}</span>
                             @endif
                         </div>
                         <br>
@@ -116,7 +116,7 @@
                                 <input type="text" name="username"  class="form-control"  placeholder="">
                             </div>
                             @if($errors->has('username'))
-                                {{$errors->first('username')}}
+                                <span class="text-danger">{{ $errors->first('username') }}</span>
                             @endif
                         </div>
                         <br>
