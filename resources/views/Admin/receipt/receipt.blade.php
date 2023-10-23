@@ -30,13 +30,13 @@
             <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li class="active"><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
-            <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
+            
         </ul>
         <ul class="side-menu">
             <li>
                 <a href="{{route('user.logout')}}" class="logout">
                     <i class='bx bx-log-out-circle'></i>
-                    Logout
+                    Đăng Xuất
                 </a>
             </li>
         </ul>
@@ -88,15 +88,15 @@
                         <table class="table table-striped" id="table_id">
                             <thead>
                                 <tr>
-                                    <th  width="7%" scope="col">Mã ĐH</th>
-                                    <th  width="18%" scope="col">Khách Hàng</th>
-                                    <th  width="10%" scope="col">Điện Thoại</th>
-                                    <th  width="7%" scope="col">Tổng Tiền</th>
-                                    <th  width="10%"  scope="col">Tình Trạng</th>
-                                    <th  width="12%" scope="col">Ngày Mua</th>
-                                    <th  width="8%" scope="col">Chi Tiết Đơn Hàng</th>
-                                    <th  width="15%" scope="col">Sửa Trạng Thái</th>
-                                    <th  width="10" scope="col">Lần Sửa Đổi Gần Nhất</th>
+                                    <th scope="col">Mã ĐH</th>
+                                    <th scope="col">Khách Hàng</th>
+                                    <th scope="col">Điện Thoại</th>
+                                    <th scope="col">Tổng Tiền</th>
+                                    <th scope="col">Tình Trạng</th>
+                                    <th scope="col">Ngày Mua</th>
+                                    <th scope="col">Chi Tiết Đơn Hàng</th>
+                                    <th scope="col">Sửa Trạng Thái</th>
+                                    <th scope="col">Người Tạo</th>
                                 </tr>
                             </thead>
                                 <tbody>
@@ -105,7 +105,7 @@
                                         <td scope="col">{{$receipt->id}}</td>
                                         <td scope="col">{{$receipt->customer->customer_name ?? 'Khách Vãng Lai'}}</td>
                                         <td scope="col">{{$receipt->customer->customer_phone ?? 'Không Có'}}</td>
-                                        <td scope="col">{{$receipt->total_price}}</td>
+                                        <td scope="col">{{number_format($receipt->total_price, 0, ',', '.')}} VND</td>
                                         <th scope="col" style="color:green">
 
                                             @if($receipt->status == 0)
@@ -135,15 +135,10 @@
                                             @elseif($receipt->status == 2)
                                                 <a href="{{route('receipts.complete_receipt', $receipt)}}"><button class="btn btn-success" type="submit">Hoàn Thành</button></a>
                                             @elseif($receipt->status == 3)
-
-
                                             @elseif($receipt->status == 4)
-
                                             @endif
-
-
                                         </td>
-                                        <td scope="col"></td>
+                                        <td scope="col">{{$receipt->employee->employee_name}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -162,9 +157,8 @@
     <script>
         $(document).ready(function () {
             $('#table_id').DataTable({
-                "order": [[0, 'desc']]
-                }
-            );
+                "lengthMenu": [ 5, 10, 20, 50, 100 ]
+            });
         });
     </script>
     <script src="../../../../public/js/admin.js"></script>
