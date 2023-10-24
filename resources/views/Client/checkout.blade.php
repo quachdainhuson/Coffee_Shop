@@ -89,9 +89,9 @@
 {{--                                                <a class="nav-link" id="pd-2-tab" data-bs-toggle="tab" href="#pd-2" role="tab" aria-controls="pd-2" aria-selected="true">--}}
 {{--                                                    Paypal--}}
 {{--                                                </a>--}}
-                                                <a class="nav-link" id="pd-3-tab" data-bs-toggle="tab" href="#pd-3" role="tab" aria-controls="pd-3" aria-selected="true">
-                                                    Thanh Toán Tại Cửa Hàng
-                                                </a>
+{{--                                                <a class="nav-link" id="pd-3-tab" data-bs-toggle="tab" href="#pd-3" role="tab" aria-controls="pd-3" aria-selected="true">--}}
+{{--                                                    Thanh Toán Tại Cửa Hàng--}}
+{{--                                                </a>--}}
                                             </div>
                                         </nav>
 

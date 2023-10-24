@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreReceiptRequest;
 use App\Http\Requests\UpdateReceiptRequest;
+use App\Models\Customer;
+use App\Models\Employee;
 use App\Models\Receipt;
 use App\Models\ReceiptDetail;
 use App\Models\TableCoffee;
@@ -17,9 +19,11 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $receipt = Receipt::with('employee')->orderBy('status', 'asc')->get();
+        $employee = Employee::all();
+        $receipt = Receipt::orderBy('status', 'asc')->get();
         return view('Admin.receipt.receipt',[
-            'receipts' => $receipt
+            'receipts' => $receipt,
+            'employees' => $employee
         ]);
     }
     public function detail(Receipt $receipt){

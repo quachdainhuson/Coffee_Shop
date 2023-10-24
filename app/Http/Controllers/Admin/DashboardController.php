@@ -8,6 +8,7 @@ use App\Models\Dashboard;
 use App\Models\Employee;
 use App\Models\Product;
 use App\Models\Receipt;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -23,11 +24,35 @@ class DashboardController extends Controller
         $receipt = Receipt::where('status', 3)->get();
         $count_receipt = count($receipt);
         $total_price = Receipt::where('status', 3)->sum('total_price');
+        $order = DB::table('receipts')
+            ->select(DB::raw('MONTH(order_date) as month'), DB::raw('SUM(total_price) as total'))
+            ->where('status', 3)
+            ->groupBy('month')
+            ->orderBy('month', 'asc')
+            ->get();
+        $label = array();
+        $data = array();
+        for ($i = 1; $i <= 12; $i++) {
+            $month = date('F', mktime(0, 0, 0, $i, 1));
+            $total = 0;
+            foreach ($order as $item) {
+                $orderMonth = date('F', mktime(0, 0, 0, $item->month, 1));
+                if ($month == $orderMonth) {
+                    $total = $item->total;
+                    break;
+                }
+            }
+            $label[] = $month;
+            $data[] = $total;
+        }
+
         return view('Admin.dashBoard.dashboard',[
             'count_product' => $count_product,
             'count_employee' => $count_employee,
             'count_receipt' => $count_receipt,
-            'total_price' => $total_price
+            'total_price' => $total_price,
+            'labels' => $label,
+            'data' => $data,
         ]);
     }
 
