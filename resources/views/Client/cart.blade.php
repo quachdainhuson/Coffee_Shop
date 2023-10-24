@@ -23,7 +23,7 @@
         <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
                 @foreach($categories as $category)
-                <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
+                    <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
                 @endforeach
             </div>
         </div>
@@ -55,97 +55,90 @@
 
 </header>
 <body>
-    <div class="row">
-        @php($total = 0)
-        <div class="col-2"></div>
+<div class="row">
+    @php($total = 0)
+    <div class="col-2"></div>
 
-            <div class="col-8" id="list-cart">
-                <form method="post" action="{{route('client.update_cart')}}">
-                    @csrf
-                    @method('PUT')
-                    <h4 class="title-2">YOUR CART</h4>
-                <table class="table table-hover">
-                    <tr>
-                        <th class="product-image">Hình Ảnh</th>
-                        <th class="product-name">Sản Phẩm</th>
-                        <th class="product-name">Giá</th>
-                        <th class="product-price">Kích cỡ</th>
-                        <th class="product-subtotal">Số lượng</th>
-                        <th class="product-quantity">Giá</th>
-                        <th></th>
-                    </tr>
-                    @if(Session::has('cart'))
-                        @foreach(Session::get('cart') as $product_id => $product)
-                            @php($total += $product['price'] * $product['product_quantity'])
-                            <tr>
-                                <input type="hidden" name="size_id" value="{{$product['size_id']}}">
-                                <th class="product-image">
-                                    <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product['product_image'])}}" width="150px" height="150px">
-                                </th>
-                                <th class="product-name">{{$product['product_name']}}</th>
-                                <th class="product-price">{{ number_format($product['price'], 0, ',', '.') }}</th>
-                                <th class="product-price">{{$product['size_name']}}</th>
-                                <th class="product-subtotal">
-                                    <input type="number" name="quantity[{{$product_id}}]" min="1" value="{{$product['product_quantity']}}">
-                                </th>
-                                <th class="product-quantity">{{number_format($product['price'] * $product['product_quantity'], 0, ',', '.') }}</th>
-                                <th><a href="{{route('client.delete_prd_cart', $product_id)}}"><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></th>
-                            </tr>
-                        @endforeach
-                </table>
-            </div>
-        <div class="col-2"></div>
+    <div class="col-8" id="list-cart">
+        <form method="post" action="{{route('client.update_cart')}}">
+            @csrf
+            @method('PUT')
+            <h4 class="title-2">YOUR CART</h4>
+            <table class="table table-hover">
+                <tr>
+                    <th class="product-image">Hình Ảnh</th>
+                    <th class="product-name">Sản Phẩm</th>
+                    <th class="product-name">Giá</th>
+                    <th class="product-price">Kích cỡ</th>
+                    <th class="product-subtotal">Số lượng</th>
+                    <th class="product-quantity">Giá</th>
+                    <th></th>
+                </tr>
+                @if(Session::has('cart'))
+                    @foreach(Session::get('cart') as $product_id => $product)
+                        @php($total += $product['price'] * $product['product_quantity'])
+                        <tr>
+                            <input type="hidden" name="size_id" value="{{$product['size_id']}}">
+                            <th class="product-image">
+                                <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product['product_image'])}}" width="150px" height="150px">
+                            </th>
+                            <th class="product-name">{{$product['product_name']}}</th>
+                            <th class="product-price">{{ number_format($product['price'], 0, ',', '.') }}</th>
+                            <th class="product-price">{{$product['size_name']}}</th>
+                            <th class="product-subtotal">
+                                <input type="number" name="quantity[{{$product_id}}]" min="1" value="{{$product['product_quantity']}}">
+                            </th>
+                            <th class="product-quantity">{{number_format($product['price'] * $product['product_quantity'], 0, ',', '.') }}</th>
+                            <th><a href="{{route('client.delete_prd_cart', $product_id)}}"><i class='bx bx-x-circle' style='color:#ff0303' ></i></a></th>
+                        </tr>
+                    @endforeach
+                @endif
+
+            </table>
     </div>
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8" style="margin-top: 30px;">
-            <a href="{{route('client.delete_cart')}}" class="btn-cart"><b>CLEAR CART</b></a>
+    <div class="col-2"></div>
+</div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8" style="margin-top: 30px;">
+        <a href="{{route('client.delete_cart')}}" class="btn-cart"><b>CLEAR CART</b></a>
 
-            <button class="btn-cart"><b>UPDATE CART</b></button>
+        <button class="btn-cart"><b>UPDATE CART</b></button>
+    </div>
+</div>
+</form>
+<div class="row">
+    <div class="col-7"></div>
+    <div class="col-3" id="cart-total">
+        <div class="total-price">
+            <h4 class="title-2">CART TOTAL</h4>
+            <div class="cart-total" id="totalprice">
+                <span><b>Total</b></span>
+
+                <span><b>{{number_format($total, 0, ',', '.')}}</b></span>
+
+            </div>
+            <button id="cart-btn" ><a href="{{route('client.checkout')}}"><b>ADD TO PROCESS</b></a></button>
+
         </div>
     </div>
-    </form>
-    <div class="row">
-        <div class="col-7"></div>
-        <div class="col-3" id="cart-total">
-            <div class="total-price">
-                <h4 class="title-2">CART TOTAL</h4>
-                <div class="cart-total" id="totalprice">
-                    <span><b>Total</b></span>
+    <div class="col-2"></div>
+</div>
 
-                    <span><b>{{number_format($total, 0, ',', '.')}}</b></span>
+</div>
+<script src="{{asset('js/product.js')}}"></script>
 
-                </div>
-                <button id="cart-btn" ><a href="{{route('client.checkout')}}"><b>ADD TO PROCESS</b></a></button>
-
-            </div>
-        </div>
-        <div class="col-2"></div>
-    </div>
-
-    @else
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8" id="list-cart">
-                <h4 class="title-2">YOUR CART IS EMPTY</h4>
-            </div>
-            <div class="col-2"></div>
-        </div>
-    @endif
-    <script src="{{asset('js/product.js')}}"></script>
 </body>
-<footer>
-    <section class="contact">
-        <div class="social">
-            <a href="#"><i class="bx bxl-facebook"></i></a>
-            <a href="#"><i class="bx bxl-instagram"></i></a>
-            <a href="#"><i class="bx bxl-youtube"></i></a>
-        </div>
-        <div class="links">
-            <a href="#">© 2018 Highlands Coffee. All rights reserved</a>
-            <a href="#"><i class='bx bx-paper-plane'></i>Đăng ký để nhận bản tin</a>
-            <a href="#"><i class='bx bx-envelope'></i>customerservice@highlandscoffee.com.vn</a>
-        </div>
-    </section>
-</footer>
+<section class="contact">
+    <div class="social">
+        <a href="#"><i class="bx bxl-facebook"></i></a>
+        <a href="#"><i class="bx bxl-instagram"></i></a>
+        <a href="#"><i class="bx bxl-youtube"></i></a>
+    </div>
+    <div class="links">
+        <a href="#">© 2018 Highlands Coffee. All rights reserved</a>
+        <a href="#"><i class='bx bx-paper-plane'></i>Đăng ký để nhận bản tin</a>
+        <a href="#"><i class='bx bx-envelope'></i>customerservice@highlandscoffee.com.vn</a>
+    </div>
+</section>
 </html>
