@@ -126,8 +126,8 @@
           <a href="#"><i class='bx bx-envelope'></i>customerservice@highlandscoffee.com.vn</a>
         </div>
   </section>
-    <script src="../../public/js/product.js"></script>
-    <script src="../../public/js/nav.js"></script>
-    <script src="../../public/bootstrap-5.3.1-dist/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/product.js')}}"></script>
+    <script src="{{asset('js/nav.js')}}"></script>
+    <script src="{{asset('bootstrap-5.3.1-dist/js/bootstrap.min.js')}}"></script>
 </body>
 </html>

@@ -136,9 +136,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product, Request $request)
     {
-        ProductDetail::with('sizes')->where('product_id','=', $product->id)->delete();
-        $product->delete();
-        return redirect()->route('products.product');
+        try {
+            ProductDetail::with('sizes')->where('product_id','=', $product->id)->delete();
+            $product->delete();
+            return redirect()->route('products.product');
+        }catch (\Exception $exception){
+            flash()->addError('Không thể xóa san pham này');
+            return redirect()->route('products.product');
+        }
+
     }
 
 }

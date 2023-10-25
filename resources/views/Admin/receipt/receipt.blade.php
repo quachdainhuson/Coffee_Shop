@@ -30,7 +30,7 @@
             <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li class="active"><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
-            
+
         </ul>
         <ul class="side-menu">
             <li>
@@ -138,7 +138,15 @@
                                             @elseif($receipt->status == 4)
                                             @endif
                                         </td>
-                                        <td scope="col">{{$receipt->employee->employee_name}}</td>
+
+                                        <td scope="col">
+                                            @foreach($employees as $employee)
+                                                @if($receipt->employee_id == $employee->id)
+                                                    {{$employee->employee_name}}
+                                                @endif
+                                            @endforeach
+                                        </td>
+
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -157,7 +165,8 @@
     <script>
         $(document).ready(function () {
             $('#table_id').DataTable({
-                "lengthMenu": [ 5, 10, 20, 50, 100 ]
+                "lengthMenu": [ 5, 10, 20, 50, 100 ],
+                "order": [[0, 'desc']]
             });
         });
     </script>
