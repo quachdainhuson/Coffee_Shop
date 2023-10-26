@@ -79,6 +79,10 @@ class ReceiptController extends Controller
         Receipt::where('id', $receipt->id)->update(['status' => 3]);
         return redirect()->route('receipts.receipt');
     }
+    public function deliveryReceipt(Receipt $receipt){
+    Receipt::where('id', $receipt->id)->update(['status' => 5]);
+    return redirect()->route('receipts.receipt');
+}
     public function cancelReceipt(Receipt $receipt){
         TableCoffee::where('id', $receipt->table_id)->update(['table_status' => 1]);
         Receipt::where('id', $receipt->id)->update(['status' => 4]);
