@@ -55,6 +55,8 @@ Route::middleware('checkLoginEmployee')->prefix('Admin/receipt/')->group(functio
     Route::get('{receipt}/print', [\App\Http\Controllers\Admin\ReceiptController::class, 'print'])->name('receipts.print');
     Route::get('{receipt}/complete_receipt', [\App\Http\Controllers\Admin\ReceiptController::class, 'completeReceipt'])->name('receipts.complete_receipt');
     Route::get('{receipt}/cancel_receipt', [\App\Http\Controllers\Admin\ReceiptController::class, 'cancelReceipt'])->name('receipts.cancel_receipt');
+    Route::get('{receipt}/delivery', [\App\Http\Controllers\Admin\ReceiptController::class, 'deliveryReceipt'])->name('receipts.delivery_receipt');
+
 });
 Route::prefix('Admin/login/')->group(function(){
     Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('users.login');

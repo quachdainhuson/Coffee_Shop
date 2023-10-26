@@ -146,12 +146,12 @@ class ProductController extends Controller
         try {
             ProductDetail::with('sizes')->where('product_id','=', $product->id)->delete();
             $product->delete();
-            return redirect()->route('products.product');
+
         }catch (\Exception $exception){
             flash()->addError('Không thể xóa san pham này');
-            return redirect()->route('products.product');
-        }
 
+        }
+        return redirect()->route('products.product');
     }
 
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('status');
             $table->integer('total_price');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->string('order_date');
             $table->string('order_at');
             $table->foreignId('employee_id')->nullable()->constrained('employees');
