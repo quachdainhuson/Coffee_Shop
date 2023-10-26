@@ -11,6 +11,7 @@ use App\Models\ReceiptDetail;
 use App\Models\TableCoffee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ReceiptController extends Controller
 {
@@ -19,14 +20,17 @@ class ReceiptController extends Controller
      */
     public function index()
     {
+        $current_employee = Session::get('employee');
         $employee = Employee::all();
         $receipt = Receipt::orderBy('status', 'asc')->get();
         return view('Admin.receipt.receipt',[
             'receipts' => $receipt,
-            'employees' => $employee
+            'employees' => $employee,
+            'current_employee' => $current_employee
         ]);
     }
     public function detail(Receipt $receipt){
+        $current_employee = Session::get('employee');
         $customer = DB::table('customers')
             ->select('customers.*')
             ->where('customers.id', '=', $receipt->customer_id)
@@ -56,7 +60,8 @@ class ReceiptController extends Controller
                 'receipt_details' => $receipt_detail,
                 'receipt' => $receipt,
                 'customer' => $customer,
-                'product_details' => $product_detail
+                'product_details' => $product_detail,
+                'current_employee' => $current_employee
             ]);
     }
     public function confirm(Receipt $receipt){

@@ -20,10 +20,13 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $current_employee = Session::get('employee');
         $products = Product::with('categories')->get();
         if(Session::get('employee')->role  == 1){
             return view('Admin.Product.product',[
-                'products' => $products
+                'products' => $products,
+                'current_employee' => $current_employee
+
             ]);
         }else{
             flash()->addError('Bạn không có quyền truy cập');
@@ -39,11 +42,13 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $current_employee = Session::get('employee');
         $categories = Category::all();
         $sizes = Size::all();
         return view('Admin.Product.add_product',[
             'categories' => $categories,
-            'sizes' => $sizes
+            'sizes' => $sizes,
+            'current_employee' => $current_employee
 
         ]);
     }
@@ -90,6 +95,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product, Request $request)
     {
+        $current_employee = Session::get('employee');
         $product_detail = ProductDetail::with('sizes')->where('product_id','=', $product->id)->get();
         $categories = Category::all();
         $sizes = Size::all();
@@ -97,7 +103,8 @@ class ProductController extends Controller
             'products' => $product,
             'categories' => $categories,
             'sizes' => $sizes,
-            'product_detail' =>$product_detail
+            'product_detail' =>$product_detail,
+            'current_employee' => $current_employee
         ]);
     }
 

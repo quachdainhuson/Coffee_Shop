@@ -26,7 +26,7 @@
             <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
             <li><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
             <li class="active"><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
-            
+
         </ul>
         <ul class="side-menu">
             <li>
@@ -51,12 +51,14 @@
                 </div>
             </form>
             <input type="checkbox" id="theme-toggle" hidden>
+            <label for="theme-toggle" class="theme-toggle"></label>
             <a href="#" class="notif">
                 <i class='bx bx-bell'></i>
                 <span class="count">12</span>
             </a>
+            <p>{{$current_employee->employee_name}}</p>
             <a href="#" class="profile">
-                <img src="images/logo.png">
+                <img src="{{asset('image/user_image.jpg')}}">
             </a>
         </nav>
 
