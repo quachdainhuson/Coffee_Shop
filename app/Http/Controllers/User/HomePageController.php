@@ -189,6 +189,28 @@ class HomePageController extends Controller
             'categories' => $categories
         ]);
     }
+
+
+    public function origin(){
+            $categories = Category::all();
+            return view('Client.origin',[
+                'categories' => $categories
+         ]);   
+    }
+
+    public function service(){
+        $categories = Category::all();
+        return view('Client.service',[
+            'categories' => $categories
+     ]);   
+}
+
+public function job(){
+    $categories = Category::all();
+    return view('Client.job',[
+        'categories' => $categories
+ ]);   
+}
     /**
      * Show the form for creating a new resource.
      */

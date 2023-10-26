@@ -7,6 +7,7 @@
     <!-- <link rel="stylesheet" href="../../public/css/style.css"> -->
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('css/checkout.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.min.css')}}">
     <title>Highlands Coffee</title>
@@ -59,6 +60,7 @@
     </div>
 
 </header>
+<br><br><br>
 <body>
     @php
         $total = 0;
@@ -80,7 +82,7 @@
                             <div class="row">
                                 <div class="col-xl-9">
                                     <div class="checkout-top">
-                                        <h4 class="title">Phương Thức Thanh Toán</h4>
+                                        <h4 class="title">Thanh Toán</h4>
                                         <nav>
                                             <div class="nav" id="shop-filter-tab" role="tablist">
 {{--                                                <a class="nav-link active" id="pd-1-tab" data-bs-toggle="tab" href="#pd-1" role="tab" aria-controls="pd-1" aria-selected="true">--}}
@@ -144,7 +146,7 @@
                                                     <span>Total</span>
                                                     <span>{{number_format($total, 0, ',', '.')}} VND</span>
                                                 </div>
-                                                <button>Procced to checkout</button>
+                                                <button class="btn-checkout">Procced to checkout</button>
                                             </div>
                                         </div>
                                     </div>
@@ -166,10 +168,6 @@
 
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-                            <div>
-                                <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
-                                            class="fas fa-angle-down mt-1"></i></a></p>
-                            </div>
                         </div>
                         @foreach(Session::get('cart') as $product_id => $product)
                         <div class="card rounded-3 mb-4">

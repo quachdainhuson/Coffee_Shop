@@ -1,0 +1,81 @@
+
+.origin-heading {
+    background-image: url(../../public/image/nav-origin-highland.jpg);
+    background-color: rgb(187, 185, 185);
+    background-size: cover;
+    background-blend-mode:multiply;
+    background-repeat: no-repeat;
+    padding: 390px 0;
+    color: #e7cd85;
+}
+
+.origin-nav{
+    max-width: 960px;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.origin-title{
+    margin-top: 50px;
+}
+
+.container h1{
+    font-size: 50px;
+    font-weight: 700;
+    color: #4b2f13;
+}
+
+
+.title-1{
+    font-size: 15px;
+    color: #4b2f13;
+    font-weight: 700;
+}
+.content p{
+    font-size: 14px;
+}
+
+.img-service {
+    background-image: url(../../public/image/service-mini.jpg);
+    background-size: 90%;
+    background-blend-mode:multiply;
+    background-repeat: no-repeat;
+    padding: 150px 0 80px 0;
+}
+.img-service a{
+    text-decoration: none;
+    color: aliceblue;
+    text-align: center;
+    padding: 120px;
+    font-size: 45px;
+    font-weight: 700;
+}
+.img-service a:hover{
+    text-decoration: none;
+    color: aliceblue;
+
+}
+.img-job {
+    background-image: url(../../public/image/job-highland.jpg);
+    background-size: 90%;
+    background-blend-mode:multiply;
+    background-repeat: no-repeat;
+    padding: 150px 0 80px 0;
+}
+.img-job a{
+    text-decoration: none;
+    color: aliceblue;
+    padding: 60px;
+    font-size: 45px;
+    font-weight: 700;
+}
+.img-job a:hover{
+    text-decoration: none;
+    color: aliceblue;
+
+}
