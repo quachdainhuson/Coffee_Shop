@@ -100,19 +100,19 @@
                                         <!--end col-->
                                         <div class="col-lg-6 col-6">
                                             <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Payment Status</p>
-                                            <span class="badge bg-success-subtle text-success fs-11" id="payment-status">
-                                                @if($receipt->status == 0)
-                                                    Chưa Xác Nhận
-                                                @elseif($receipt->status == 1)
-                                                    Đã Xác Nhận
-                                                @elseif($receipt->status == 2)
-                                                    Đang Thực Hiện
-                                                @elseif($receipt->status == 3)
-                                                    Đã Xong
-                                                @elseif($receipt->status == 4)
-                                                    Đã Hủy
-                                                @endif
-                                            </span>
+                                            @if($receipt->status == 0)
+                                                <span class="badge bg-secondary-subtle text-secondary fs-11" id="payment-status">Chờ Xác Nhận</span>
+                                            @elseif($receipt->status == 1)
+                                                <span class="badge bg-primary-subtle text-primary fs-11" id="payment-status">Đã Xác Nhận</span>
+                                            @elseif($receipt->status == 2)
+                                                <span class="badge bg-warning-subtle text-warning fs-11" id="payment-status">Đang Làm</span>
+                                            @elseif($receipt->status == 3)
+                                                <span class="badge bg-success-subtle text-success fs-11" id="payment-status">Đã Hoàn Thành</span>
+                                            @elseif($receipt->status == 4)
+                                                <span class="badge bg-danger-subtle text-danger fs-11" id="payment-status">Đã Hủy</span>
+                                            @elseif($receipt->status == 5)
+                                                <span class="badge bg-warning-subtle text-warning fs-11" id="payment-status">Đang Giao Hàng</span>
+                                            @endif
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-6 col-6">

@@ -109,7 +109,7 @@
                                                             <div class="col-xl-6">
                                                                 <div class="from-group mt-30">
                                                                     <label for="customer_phone">Số Điện Thoại*</label>
-                                                                    <input type="text" name="customer_phone" id="customer_phone" placeholder="Số Điện Thoại" required>
+                                                                    <input type="text" name="customer_phone" id="customer_phone" placeholder="Số Điện Thoại" maxlength="10">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6">

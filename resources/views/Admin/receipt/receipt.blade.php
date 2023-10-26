@@ -96,6 +96,7 @@
                                     <th scope="col">Tổng Tiền</th>
                                     <th scope="col">Tình Trạng</th>
                                     <th scope="col">Ngày Mua</th>
+                                    <th scope="col">Hình Thức Mua Hàng</th>
                                     <th scope="col">Chi Tiết Đơn Hàng</th>
                                     <th scope="col">Sửa Trạng Thái</th>
                                     <th scope="col">Người Tạo</th>
@@ -120,10 +121,13 @@
                                                     <span class="badge bg-success-subtle text-success fs-11" id="payment-status">Đã Hoàn Thành</span>
                                             @elseif($receipt->status == 4)
                                                     <span class="badge bg-danger-subtle text-danger fs-11" id="payment-status">Đã Hủy</span>
+                                            @elseif($receipt->status == 5)
+                                                <span class="badge bg-warning-subtle text-warning fs-11" id="payment-status">Đang Giao Hàng</span>
                                             @endif
 
                                         </th>
                                         <td scope="col">{{$receipt->order_date}}</td>
+                                        <td scope="col">{{$receipt->order_at}}</td>
                                         <td scope="col">
                                             <a href="{{route('receipts.detail',$receipt)}}"><button class="btn btn-primary" type="submit">Chi Tiết</button></a>
                                         </td>
@@ -134,10 +138,12 @@
                                             @elseif($receipt->status == 1)
                                                 <a href="{{route('receipts.print', $receipt)}}"><button class="btn btn-warning" type="submit">In Hóa Đơn</button></a>
                                                 <a href="{{route('receipts.cancel_receipt',$receipt)}}"><button class="btn btn-danger" type="submit">Hủy</button></a>
-                                            @elseif($receipt->status == 2)
+                                            @elseif($receipt->status == 2 && $receipt->order_at == 'Cửa hàng' || $receipt->status == 5)
                                                 <a href="{{route('receipts.complete_receipt', $receipt)}}"><button class="btn btn-success" type="submit">Hoàn Thành</button></a>
                                             @elseif($receipt->status == 3)
                                             @elseif($receipt->status == 4)
+                                            @elseif($receipt->status == 2 && $receipt->order_at == 'Website')
+                                                <a href="{{route('receipts.delivery_receipt', $receipt)}}"><button class="btn btn-warning" type="submit">Giao Hàng</button></a>
                                             @endif
                                         </td>
 
