@@ -101,7 +101,7 @@ section{
     text-decoration: none;
 
   }
-  .header .search-form{
+  /* .header .search-form{
     position: absolute;
     top: 100%;
     right: 7%;
@@ -134,8 +134,7 @@ section{
     margin-right: 1.5rem;
     margin-top: 0.5rem;
     color: black;
-    background-color: #CC0033;
-}
+} */
 
 
  img{
@@ -174,6 +173,10 @@ header.sticky {
 }
 
 .menu:hover .menu-items {
+    display: block;
+  }
+
+  .about-us:hover .menu-items {
     display: block;
   }
 

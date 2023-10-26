@@ -25,6 +25,9 @@ Route::prefix('Client/')->group(function(){
     Route::get('/category/{id}', [\App\Http\Controllers\User\HomePageController::class, 'cateProduct'])->name('client.cate_product');
     Route::post('/checkout', [\App\Http\Controllers\User\HomePageController::class, 'checkoutProcess'])->name('client.checkoutProcess');
     Route::get('/search',[\App\Http\Controllers\User\HomePageController::class, 'searchProduct'])->name('client.search_product');
+    Route::get('/origin', [\App\Http\Controllers\User\HomePageController::class, 'origin'])->name('client.origin');
+    Route::get('/service', [\App\Http\Controllers\User\HomePageController::class, 'service'])->name('client.service');
+    Route::get('/job', [\App\Http\Controllers\User\HomePageController::class, 'job'])->name('client.job');
 });
 Route::middleware('checkLoginEmployee')->prefix('Admin/order/')->group(function(){
     Route::get('/order', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.order');

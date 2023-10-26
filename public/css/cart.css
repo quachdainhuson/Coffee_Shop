@@ -5,11 +5,12 @@ div#list-cart.col-8{
     border: 1px solid #E2DFDD;
 }
 
-.btn-cart{
+.btn-cart, .btn-update-cart{
     text-decoration: none;
     color: black;
     font-size: 20px;
     margin-right: 20px;
+    background-color: white;
 
 }
 .btn-cart:hover{

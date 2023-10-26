@@ -103,7 +103,7 @@
     <div class="col-8" style="margin-top: 30px;">
         <a href="{{route('client.delete_cart')}}" class="btn-cart"><b>CLEAR CART</b></a>
 
-        <button class="btn-cart"><b>UPDATE CART</b></button>
+        <button class="btn-update-cart"><b>UPDATE CART</b></button>
     </div>
 </div>
 </form>
@@ -129,6 +129,7 @@
 <script src="{{asset('js/product.js')}}"></script>
 
 </body>
+<br><br><br><br><br>
 <section class="contact">
     <div class="social">
         <a href="#"><i class="bx bxl-facebook"></i></a>
