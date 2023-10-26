@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\Product;
 use App\Models\Receipt;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -17,6 +18,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $current_employee = Session::get('employee');
         $product = Product::all();
         $count_product = count($product);
         $employee = Employee::all();
@@ -53,6 +55,7 @@ class DashboardController extends Controller
             'total_price' => $total_price,
             'labels' => $label,
             'data' => $data,
+            'current_employee' => $current_employee
         ]);
     }
 

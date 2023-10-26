@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateTableCoffeeRequest;
 use App\Models\TableCoffee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class TableCoffeeController extends Controller
 {
@@ -15,19 +16,23 @@ class TableCoffeeController extends Controller
      */
     public function index()
     {
+        $current_employee = Session::get('employee');
         $obj = new TableCoffee();
         $tables = $obj ->index();
         return view('Admin.Tables.table_management',[
-            'tables' => $tables
+            'tables' => $tables,
+            'current_employee' => $current_employee
         ]);
     }
 
     public function index1()
     {
+        $current_employee = Session::get('employee');
         $obj = new TableCoffee();
         $tables = $obj ->index();
         return view('Admin.Tables.table',[
-            'tables' => $tables
+            'tables' => $tables,
+            'current_employee' => $current_employee
         ]);
     }
 
@@ -36,7 +41,10 @@ class TableCoffeeController extends Controller
      */
     public function create()
     {
-        return view('Admin.Tables.add_table');
+        $current_employee = Session::get('employee');
+        return view('Admin.Tables.add_table',[
+            'current_employee' => $current_employee
+        ]);
     }
 
     /**
@@ -64,12 +72,14 @@ class TableCoffeeController extends Controller
      */
     public function edit(TableCoffee $tableCoffee, Request $request)
     {
+        $current_employee = Session::get('employee');
         $obj = new TableCoffee();
         $obj->id = $request->id;
         $tables = $obj->edit();
         return view('Admin.Tables.edit_table',[
             'tables' => $tables,
-            'id' => $obj->id
+            'id' => $obj->id,
+            'current_employee' => $current_employee
         ]);
     }
 

@@ -57,8 +57,9 @@
                 <i class='bx bx-bell'></i>
                 <span class="count">12</span>
             </a>
+            <p>{{$current_employee->employee_name}}</p>
             <a href="#" class="profile">
-                <img src="{{asset('images/logo.png')}}">
+                <img src="{{asset('image/user_image.jpg')}}">
             </a>
         </nav>
 

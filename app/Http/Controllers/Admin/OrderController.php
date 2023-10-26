@@ -16,6 +16,7 @@ class OrderController
 {
     public function index()
     {
+        $current_employee = Session::get('employee');
         $table = TableCoffee::all();
         $sizes = Size::all();
         $products = Product::all();
@@ -24,7 +25,8 @@ class OrderController
             'products' => $products,
             'sizes' => $sizes,
             'tables' => $table,
-            'product_details' => $product_detail
+            'product_details' => $product_detail,
+            'current_employee' => $current_employee
         ]);
     }
     public function addToCart(Product $product, Request $request){

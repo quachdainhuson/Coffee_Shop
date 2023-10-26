@@ -21,11 +21,12 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-
+        $current_employee = Session::get('employee');
         $employees = Employee::all();
         if(Session::get('employee')->role  == 1){
             return view('Admin/User/user',[
-                'employees' => $employees
+                'employees' => $employees,
+                'current_employee' => $current_employee
             ]);
         }else{
             flash()->addError('Bạn không có quyền truy cập');
@@ -39,7 +40,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('Admin/User/add_user');
+        $current_employee = Session::get('employee');
+        return view('Admin/User/add_user',[
+            'current_employee' => $current_employee
+        ]);
     }
 
     /**
@@ -72,8 +76,10 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee, Request $request)
     {
+        $current_employee = Session::get('employee');
         return view('Admin/User/edit_user',[
-            'employees' => $employee
+            'employees' => $employee,
+            'current_employee' => $current_employee
         ]);
 
     }
@@ -116,29 +122,38 @@ class EmployeeController extends Controller
         return Redirect::route('users.user');
     }
     public function changePassword(Request $request, Employee $employee){
+        $current_employee = Session::get('employee');
         return view('Admin/User/change_password',[
-            'employees' => $employee
+            'employees' => $employee,
+            'current_employee' => $current_employee
         ]);
     }
     public function changePass(Request $request, Employee $employee){
+        $current_employee = Session::get('employee');
+        if ($current_employee->id == $employee->id){
+            if (Hash::check($request->current_password, $employee->password)){
+                if ($request->new_password == $request->confirm_password){
+                    Employee::where('id', $employee->id)->update([
+                        'password' => Hash::make($request->new_password)
+                    ]);
+                    flash()->addSuccess('Cập nhật thành công');
+                    return Redirect::route('users.user');
+                }else{
+                    flash()->addError('Mật khẩu không trùng khớp');
+                    return Redirect::route('users.user');
+                }
 
-        if (Hash::check($request->current_password, $employee->password)){
-            if ($request->new_password == $request->confirm_password){
-                Employee::where('id', $employee->id)->update([
-                    'password' => Hash::make($request->new_password)
-                ]);
-                flash()->addSuccess('Cập nhật thành công');
-                return Redirect::route('users.user');
+
             }else{
-                flash()->addError('Mật khẩu không trùng khớp');
+                flash()->addError('Cập nhật thất bại');
                 return Redirect::route('users.user');
             }
-
-
         }else{
-            flash()->addError('Cập nhật thất bại');
+            flash()->addError('Bạn không có quyền đổi mật khẩu của người khác');
             return Redirect::route('users.user');
         }
+
+
     }
 
 }

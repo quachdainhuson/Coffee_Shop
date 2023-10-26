@@ -16,10 +16,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $current_employee = Session::get('employee');
         $categories = Category::all();
         if(Session::get('employee')->role  == 1){
             return view('Admin.Categories.categories',[
-                'categories' => $categories
+                'categories' => $categories,
+                'current_employee' => $current_employee
             ]);
         }else{
             flash()->addError('Bạn không có quyền truy cập');
@@ -33,7 +35,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('Admin.Categories.add_categories');
+        $current_employee = Session::get('employee');
+        return view('Admin.Categories.add_categories',[
+            'current_employee' => $current_employee
+        ]);
     }
 
     /**
@@ -59,8 +64,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category, Request $request)
     {
+        $current_employee = Session::get('employee');
         return view('Admin.Categories.edit_categories',[
             'categories' => $category,
+            'current_employee' => $current_employee
         ]);
 
     }
