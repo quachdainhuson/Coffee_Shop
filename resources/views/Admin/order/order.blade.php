@@ -157,7 +157,13 @@
                                                 </div>
                                             </td>
                                             <td class="product-name">{{$product['product_name']}}</td>
-                                            <td class="product-size">{{$product['size_name']}}</td>
+                                            <td class="product-size">
+                                                @foreach($sizes as $size)
+                                                    @if($size->id == $product['size_id'])
+                                                        {{$size->size_name}}
+                                                    @endif
+                                                @endforeach
+                                            </td>
                                             <td class="product-quantity">
                                                 <input type="number" name="quantity[{{$product_id}}]" min="1" value="{{$product['product_quantity']}}">
                                             </td>

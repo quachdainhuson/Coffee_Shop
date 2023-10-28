@@ -46,9 +46,25 @@
             <li class="cart-btn">
                 <a class="nav-link" href="{{route('client.cart')}}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><style>svg{fill:#f7f7f8}</style><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg></a>
             </li>
-            <li class="user-btn">
-                <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#f1f2f3}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg></a>
-            </li>
+            @if(Session::has('customer'))
+                <li class="user-btn">
+                    <a class="nav-link" href="{{route('client.customer')}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg></a>
+                </li>
+                <li class="user-btn">
+                    <a class="nav-link" href="{{route('customer.logout')}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                        </svg></a>
+                </li>
+                
+            @else
+                <li class="user-btn">
+                    <a class="nav-link" href="{{route('customer.login')}}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#f1f2f3}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg></a>
+                </li>
+            @endif
         </ul>
     </div>
 
@@ -69,7 +85,6 @@
         @php($total += $product['price'] * $product['product_quantity'])
     @endforeach
 <div class="row">
-
     <div class="col-1"></div>
     <div class="col-6">
         <form action="{{route('client.checkoutProcess')}}" method="post">
@@ -96,7 +111,6 @@
 {{--                                                </a>--}}
                                             </div>
                                         </nav>
-
                                         <div class="tab-content" id="pdContent">
                                             <div class="tab-pane fade show active" id="pd-1" role="tabpanel" aria-labelledby="pd-1-tab">
                                                 <div class="cart-form">
@@ -105,25 +119,25 @@
                                                             <div class="col-xl-6">
                                                                 <div class="from-group mt-30">
                                                                     <label for="customer_name">Họ và Tên*</label>
-                                                                    <input type="text" name="customer_name" id="customer_name" placeholder="Họ Và Tên" required>
+                                                                    <input type="text" name="customer_name" id="customer_name" placeholder="Họ Và Tên" value="{{$customer->customer_name}}" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6">
                                                                 <div class="from-group mt-30">
                                                                     <label for="customer_phone">Số Điện Thoại*</label>
-                                                                    <input type="text" name="customer_phone" id="customer_phone" placeholder="Số Điện Thoại" maxlength="10">
+                                                                    <input type="text" name="customer_phone" id="customer_phone" placeholder="Số Điện Thoại" value="{{$customer->customer_phone}}" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6">
                                                                 <div class="from-group mt-30">
-                                                                    <label for="customer_email">Email</label>
-                                                                    <input type="email" name="customer_email" id="customer_email" placeholder="Email">
+                                                                    <label for="email">Email</label>
+                                                                    <input type="email" name="email" id="email" placeholder="Email" value="{{$customer->email}}" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6">
                                                                 <div class="from-group mt-30">
                                                                     <label for="customer_address">Địa Chỉ</label>
-                                                                    <input type="text" name="customer_address" id="customer_address" placeholder="Địa Chỉ">
+                                                                    <input type="text" name="customer_address" id="customer_address" placeholder="Địa Chỉ" value="{{$customer->customer_address}}">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-12">
@@ -180,7 +194,11 @@
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-4">
                                         <p class="lead fw-normal mb-2">{{$product['product_name']}}</p>
-                                        <p><span class="text-muted">Size: </span>{{$product['size_name']}}
+                                        <p><span class="text-muted">Size: </span>@foreach($sizes as $size)
+                                            @if($size->id == $product['size_id'])
+                                                {{$size->size_name}}
+                                            @endif
+                                        @endforeach</p>
                                         <p><span class="text-muted">Số Lượng: </span>{{$product['product_quantity']}}
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3 offset-lg-1">
