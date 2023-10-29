@@ -3,7 +3,9 @@
 body::-webkit-scrollbar {
     display: none;
 }
-
+body{
+    position: relative;
+}
 :root{
     --main-color: #FDF5E6;
     --second-color: #CD853F;
@@ -138,7 +140,7 @@ header ul li a
 }
 .header .search-form button{
     width: 0px;
-    
+
 }
 
 

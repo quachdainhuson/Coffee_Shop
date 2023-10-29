@@ -188,7 +188,11 @@
                                                         <th scope="row">{{$i}}</th>
                                                         <td class="text-start">
                                                             <span class="fw-medium">{{$product_detail->product_name}}</span>
-                                                            <p class="text-muted mb-0">{{$product_detail->size_name}}</p>
+                                                            <p class="text-muted mb-0">@foreach($sizes as $size)
+                                                                    @if($size->id == $product_detail->size_id)
+                                                                        {{$size->size_name}}
+                                                                    @endif
+                                                                @endforeach</p>
                                                         </td>
                                                         <td>{{number_format($product_detail->product_price, 0, ',', '.')}}</td>
                                                         <td>{{$product_detail->quantity}}</td>

@@ -30,6 +30,9 @@ class ReceiptController extends Controller
         ]);
     }
     public function detail(Receipt $receipt){
+        $size = DB::table('sizes')
+            ->select('sizes.*')
+            ->get();
         $current_employee = Session::get('employee');
         $customer = DB::table('customers')
             ->select('customers.*')
@@ -61,7 +64,8 @@ class ReceiptController extends Controller
                 'receipt' => $receipt,
                 'customer' => $customer,
                 'product_details' => $product_detail,
-                'current_employee' => $current_employee
+                'current_employee' => $current_employee,
+                'sizes' => $size
             ]);
     }
     public function confirm(Receipt $receipt){

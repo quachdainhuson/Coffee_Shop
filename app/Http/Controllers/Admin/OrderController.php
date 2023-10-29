@@ -58,7 +58,6 @@ class OrderController
                 'product_quantity' => $quantity,
                 'size_id' => $size_id,
                 'product_detail_id' => $product_detail->id,
-                'size_name' => $product_detail->size_name,
                 'price' => $product_detail->product_price,
             ];
         }
@@ -104,7 +103,6 @@ class OrderController
                 DB::table('receipt_details')->insert([
                     'receipt_id' => $receipt['id'],
                     'product_detail_id' => $cartItem['product_detail_id'],
-                    'size_name' => $cartItem['size_name'],
                     'quantity' => $cartItem['product_quantity'],
                     'price' => $cartItem['price'],
                 ]);

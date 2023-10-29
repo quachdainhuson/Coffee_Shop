@@ -58,7 +58,6 @@ class EmployeeController extends Controller
             'username' => $request->username,
             'password' =>  Hash::make($request->password),
             'role' => $request->role
-
        ]);
         return Redirect::route('users.user');
     }

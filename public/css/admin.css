@@ -547,7 +547,7 @@ body{
 }
 
 .content main .bottom-data .reminders .task-list li .bx{
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 .content main .bottom-data .reminders .task-list li.completed{
@@ -575,7 +575,7 @@ body{
 }
 
 @media screen and (max-width: 576px) {
-    
+
     .content nav form .form-input input{
         display: none;
     }
@@ -620,7 +620,7 @@ body{
     .content main .bottom-data .reminders .task-list{
         min-width: 340px;
     }
-    
+
 }
 
 
@@ -637,7 +637,7 @@ body{
     border: 1px solid #090909;
     box-sizing: border-box;
     width: 20%;
-    height: 90px;  
+    height: 90px;
 } */
 #btn-table{
     display: inline-flex;
@@ -652,7 +652,7 @@ body{
     border: 1px solid #090909;
     box-sizing: border-box;
     width: 20%;
-    height: 90px;  
+    height: 90px;
 }
 
 #btn-table:hover{

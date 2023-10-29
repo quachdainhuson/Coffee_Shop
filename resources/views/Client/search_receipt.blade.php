@@ -7,28 +7,39 @@
     <!-- <link rel="stylesheet" href="../../public/css/style.css"> -->
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="{{asset('css/product.css')}}">
+    <link rel="stylesheet" href="{{asset('css/search_order.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../../public/bootstrap-5.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.min.css')}}">
     <title>Highlands Coffee</title>
-    <link rel="stylesheet" href="../../../public/fontawesome-free-6.4.2-web/css/all.min.css">
+    <link rel="stylesheet" href="../../public/fontawesome-free-6.4.2-web/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.min.css')}}">
+
+
 </head>
 <header class="header">
-    <a href="#" class="logo">
-        <img src="../../../public/image/logo_highland.png" alt="">
+    <a href="{{route('client.home')}}" class="logo">
+        <!-- <img src="{{asset('image/logo_highland.png')}}" alt=""> -->
+        <img src="../../public/image/logo_highland.png" alt="">
     </a>
     <nav class="navbar">
         <div><a href="{{route('client.home')}}">TRANG CHỦ</a></div>
         <div class="menu"><a href="{{route('client.product')}}">MENU</a>
             <div class="menu-items">
                 @foreach($categories as $category)
-                    <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
+                <a href="{{route('client.cate_product',['id'=>$category->id])}}">{{$category->cate_name}}</a>
                 @endforeach
             </div>
         </div>
         <div><a href="#">CỘNG ĐỒNG</a></div>
         <div><a href="#">TIN TỨC</a></div>
-        <div><a href="#">VỀ CHÚNG TÔI</a></div>
+        <div class="about-us"><a href="#">VỀ CHÚNG TÔI</a>
+            <div class="menu-items">
+                <a href="{{route('client.origin')}}">Nguồn Gốc</a>
+                <a href="{{route('client.service')}}">Dịch Vụ</a>
+                <a href="{{route('client.job')}}">Nghề Nghiệp</a>
+            </div>
+        </div>
     </nav>
 
     <div class="icons">
@@ -61,94 +72,76 @@
         </ul>
     </div>
 
-    <div class="search-form">
-        <input type="search" id="search-box" placeholder="search here...">
-        <label for="search-box">
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
-        </label>
-    </div>
+    <form class="search-form" method="get" action="{{route('client.search_product')}}">
+        <input type="search" name="key" id="search-box" placeholder="search here...">
+        <button type="submit">
+            <label  for="search-box">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+            </label>
+        </button>
+
+    </form>
+
 
 </header>
 <body>
-<br><br><br><br><br>
-<div class="product-title">
-    <h3 id="title-1">Sản Phẩm Mới Nhất</h3>
-</div>
-<form method="post" action="{{route('client.add_to_cart', $products)}}">
-    @csrf
-    @method('PUT')
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3">
-            <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/'.$products['product_image']))}}" alt="" width="300px">
-        </div>
-        <div class="col-4" style="margin-left: 20px">
-            <span style="font-size: 40px;">{{ $products->product_name }}</span><br>
-            <h4 style="margin-top: 10px;" id="product_price">Chọn Size</h4>
-            <h6>{{ $products->product_description }}</h6>
-            <div class="product-details">
-                <div class="size-buttons">
-                    @foreach($products_detail as $product_detail)
-                        @if($product_detail->product_price != 0 )
-                            <input type="radio" name="size_id" id="{{$product_detail->size_id}}" value="{{$product_detail->size_id}}" onClick="updatePrice(this)">
-                            <label for="{{$product_detail->size_id}}">{{$product_detail->size_name}}</label>
-                        @endif
-                    @endforeach
-                    <br>
-                    <span>Số Lượng</span>
-                    <input type="number" class="quantity-input" min="1" value="1" name="product_quantity">
-                </div>
-            </div>
-            <br>
-            <button id="cart-btn">ADD TO CART</button>
-        </div>
 
-        <div class="col-2">
-            <div class="search-here">
-                <h5 class="title">SEARCH HERE</h5>
-                <input id="search" type="text" placeholder="     Search Here">
-            </div>
-            <div class="categories">
-                <h5 class="title">DANH MỤC</h5>
-                <ul>
-                    @foreach($categories as $category)
-                        <li class="cate-item">{{ $category->cate_name }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
+<div class="container">
+    <h1>Tra cứu đơn hàng</h1>
+    <div class="search-box">
+        <form method="post" action="{{route('client.search_receipt_process')}}">
+            @csrf
+            <input type="text" name="customer_phone" placeholder="Nhập số đơn hàng">
+            <input type="submit" value="Tra cứu">
+        </form>
     </div>
-</form>
+    <br><br>
+    <table class="table" id="table_id">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tên Khách Hàng</th>
+            <th scope="col">Điện Thoại</th>
+            <th scope="col">Địa Chỉ</th>
+            <th scope="col">Email</th>
+            <th scope="col">Ngày Đặt Hàng</th>
+            <th scope="col">Tổng Tiền</th>
+            <th scope="col">Trạng Thái</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach($receipts as $receipt)
+                <tr>
+                    <th scope="row">{{$receipt->id}}</th>
+                    <td>{{$receipt->customer_name}}</td>
+                    <td>{{$receipt->customer_phone}}</td>
+                    <td>{{$receipt->customer_address}}</td>
+                    <td>{{$receipt->email}}</td>
+                    <td>{{$receipt->order_date}}</td>
+                    <td>{{$receipt->total_price}}</td>
+                    <td>{{$receipt->status}}</td>
+                </tr>
+            @endforeach
+
+        </tbody>
+    </table>
 </div>
-</div>ư
-<section class="contact">
-    <div class="social">
+
+</body>
+    <section class="contact">
+        <div class="social">
         <a href="#"><i class="bx bxl-facebook"></i></a>
         <a href="#"><i class="bx bxl-instagram"></i></a>
         <a href="#"><i class="bx bxl-youtube"></i></a>
-    </div>
-    <div class="links">
+        </div>
+        <div class="links">
         <a href="#">© 2018 Highlands Coffee. All rights reserved</a>
         <a href="#"><i class='bx bx-paper-plane'></i>Đăng ký để nhận bản tin</a>
         <a href="#"><i class='bx bx-envelope'></i>customerservice@highlandscoffee.com.vn</a>
-    </div>
-</section>
+        </div>
+    </section>
 <script src="../../public/js/product.js"></script>
 <script src="../../public/js/nav.js"></script>
 <script src="../../public/bootstrap-5.3.1-dist/js/bootstrap.min.js"></script>
-<script>
-    function updatePrice(e) {
-        let size = e.value;
-        let price = 0;
-        @foreach($products_detail as $sizePrice)
-        if(size == "{{$sizePrice->size_id}}"){
-            price = "{{ number_format($sizePrice->product_price, 0, ',', '.') }}";
-        }
-        @endforeach
-        document.getElementById('product_price').innerHTML = price + " VND";
-    }
 
-</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-</body>
 </html>

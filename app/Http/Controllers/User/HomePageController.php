@@ -11,6 +11,7 @@ use App\Models\HomePage;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Receipt;
+use App\Models\ReceiptDetail;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -65,16 +66,17 @@ class HomePageController extends Controller
     }
     public function cart()
     {
+        $size = Size::all();
         $categories = Category::all();
         $currentCart = Session::get('cart');
         return view('Client.cart',[
             'currentCart' => $currentCart,
             'categories' => $categories,
+            'sizes' => $size
         ]);
     }
     public function addToCart(Product $product, Request $request)
     {
-
         if($request->size_id == null){
             return redirect()->route('client.detail', $product);
         }
@@ -102,7 +104,6 @@ class HomePageController extends Controller
                 'product_quantity' => $quantity,
                 'size_id' => $size_id,
                 'product_detail_id' => $product_detail->id,
-                'size_name' => $product_detail->size_name,
                 'price' => $product_detail->product_price,
             ];
         }
@@ -132,16 +133,30 @@ class HomePageController extends Controller
         return redirect()->route('client.cart');
     }
     public function checkout(){
+        $size = Size::all();
         $categories = Category::all();
-        return view('Client.checkout',[
-            'categories' => $categories,
-        ]);
+        if (!Session::has('customer')){
+            flash()->addError('Bạn cần đăng nhập để thực hiện chức năng này');
+            return redirect()->route('customer.login');
+        }else{
+            $customer = Session::get('customer');
+            if(Session::get('cart') == null){
+                flash()->addError('Giỏ hàng của bạn đang trống');
+                return redirect()->route('client.cart');
+            }else{
+                return view('Client.checkout',[
+                    'categories' => $categories,
+                    'sizes' => $size,
+                    'customer' => $customer,
+                ]);
+            }
+        }
+
     }
     public function checkoutProcess(Request $request){
         $customer = $request->all();
         $currentCart = Session::get('cart');
-//        dd($customer);
-        $customer_id = Customer::create($customer);
+        $customer_id = Session::get('customer')->id;
         $total_price = 0;
         $order_id = Receipt::create(
             [
@@ -149,7 +164,7 @@ class HomePageController extends Controller
                 'order_date' => date('Y-m-d'),
                 'total_price' => $total_price,
                 'order_at' => 'Website',
-                'customer_id' => $customer_id['id'],
+                'customer_id' => $customer_id,
                 'note' =>  $customer['note'],
             ]);
         foreach ($currentCart as $cartItemKey => $cartItem){
@@ -157,7 +172,6 @@ class HomePageController extends Controller
             DB::table('receipt_details')->insert([
                 'receipt_id' => $order_id['id'],
                 'product_detail_id' => $cartItem['product_detail_id'],
-                'size_name' => $cartItem['size_name'],
                 'quantity' => $cartItem['product_quantity'],
                 'price' => $cartItem['price'],
             ]);
@@ -195,22 +209,82 @@ class HomePageController extends Controller
             $categories = Category::all();
             return view('Client.origin',[
                 'categories' => $categories
-         ]);   
+         ]);
     }
 
     public function service(){
         $categories = Category::all();
         return view('Client.service',[
             'categories' => $categories
-     ]);   
+     ]);
 }
+    public function searchReceipt(Request $request){
+        $categories = Category::all();
+        $receipts = Receipt::where('id', $request->key)->get();
+        return view('Client.search_receipt',[
+            'receipts' => $receipts,
+            'categories' => $categories
+        ]);
+    }
+    public function searchReceiptProcess(Request $request){
+        $categories = Category::all();
+        $receipts = DB::table('receipts')
+            ->join('customers', 'customers.id', '=', 'receipts.customer_id')
+            ->select('receipts.*',
+                'customers.id',
+                'customers.customer_name',
+                'customers.customer_phone',
+                'customers.customer_address',
+                'customers.email')
+            ->where('customers.customer_phone', $request->input('customer_phone'))
+            ->get();
 
-public function job(){
-    $categories = Category::all();
-    return view('Client.job',[
-        'categories' => $categories
- ]);   
-}
+        return view('Client.search_receipt',[
+            'receipts' => $receipts,
+            'categories' => $categories,
+        ]);
+    }
+    public function job(){
+        $categories = Category::all();
+        return view('Client.job',[
+            'categories' => $categories
+        ]);
+
+    }
+    public function customer(){
+        $customer = Session::get('customer');
+        $categories = Category::all();
+        return view('Client.customer_information',[
+            'categories' => $categories,
+            'customer' => $customer
+        ]);
+    }
+    public function historyOrder(){
+        $customer = Session::get('customer');
+        $categories = Category::all();
+        $receipts = Receipt::where('customer_id', $customer['id'])->get();
+        $orderObj = new Receipt();
+        $order = $orderObj->getOrder();
+        $orderDetailOrder = new ReceiptDetail();
+        $arrOrderDetail = array();
+        foreach ($order as $item){
+            $orderDetailOrder->receipt_id = $item->id;
+            $orderDetail = $orderDetailOrder->getOrderDetail();
+            foreach ($orderDetail as $itemDetail){
+                $arrOrderDetail[] = $itemDetail;
+            }
+        }
+        return view('Client.history_order',[
+            'categories' => $categories,
+            'receipts' => $receipts,
+            'customer' => $customer,
+            'orders' => $order,
+            'arrOrderDetails' => $arrOrderDetail
+        ]);
+    }
+    public function editCustomer(Request $request){
+
+    }
     /**
      * Show the form for creating a new resource.
      */
