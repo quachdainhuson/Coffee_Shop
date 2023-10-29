@@ -37,10 +37,13 @@ Route::prefix('Client/')->group(function(){
     Route::get('/search_receipt', [\App\Http\Controllers\User\HomePageController::class, 'searchReceipt'])->name('client.search_receipt');
     Route::post('/search_receipt_process', [\App\Http\Controllers\User\HomePageController::class, 'searchReceiptProcess'])->name('client.search_receipt_process');
 
-    Route::get('/customer', [\App\Http\Controllers\User\HomePageController::class, 'customer'])->name('client.customer');
-    Route::get('/{customer}/history_order', [\App\Http\Controllers\User\HomePageController::class, 'historyOrder'])->name('client.history_order');
-    Route::post('/{customer}/edit_customer', [\App\Http\Controllers\Admin\CustomerController::class, 'update'])->name('client.edit_customer');
-    Route::post('/{customer}/change_password', [\App\Http\Controllers\Admin\CustomerController::class, 'changePassword'])->name('client.change_password');
+    Route::middleware('checkLoginCustomer')->prefix('customer/')->group(function(){
+        Route::get('/customer', [\App\Http\Controllers\User\HomePageController::class, 'customer'])->name('client.customer');
+        Route::get('/{customer}/history_order', [\App\Http\Controllers\User\HomePageController::class, 'historyOrder'])->name('client.history_order');
+        Route::post('/{customer}/edit_customer', [\App\Http\Controllers\Admin\CustomerController::class, 'update'])->name('client.edit_customer');
+        Route::post('/{customer}/change_password', [\App\Http\Controllers\Admin\CustomerController::class, 'changePassword'])->name('client.change_password');
+    });
+
 
     Route::prefix('/login')->group(function(){
         Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'loginCustomer'])->name('customer.login');

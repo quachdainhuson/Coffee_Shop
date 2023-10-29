@@ -106,54 +106,70 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card-body p-4">
-                            <h3>Lịch sử đơn hàng</h3>
-                            Đơn hàng của bạn: 2 đơn hàng
-                            @foreach($orders as $order)
-                            <div class="table-responsive">
-                                <table class="table table-borderless text-center table-nowrap align-middle mb-0">
-                                    <thead>
-                                    <tr class="table-primary">
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody id="products-list">
-                                        @foreach($arrOrderDetails as $arrOrderDetail)
-                                            @if($arrOrderDetail->receipt_id == $order->id)
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </tbody>
-                                </table><!--end table-->
+                            <div class="row">
+                                <div class="col-xxl-8 col-12">
+                                    <!-- card --><div class="mb-6">
+                                        <h4 class="mb-0">History</h4>
+                                    </div>
+                                    @foreach($orders as $order)
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="mb-8">
+                                                    <div class="border-bottom mb-3 pb-3 d-lg-flex align-items-center justify-content-between ">
+                                                        <div class="d-flex align-items-center justify-content-between">
+                                                            <h5 class="mb-0">#{{$order->id}}</h5>
+                                                            <span class="ms-2">{{$order->order_date}}</span>
+                                                        </div>
+                                                        <div class="col-lg-3 col-12 d-grid">
+                                                            <a href="products.html" class="btn btn-primary mb-2">Chi Tiết</a>
+                                                        </div>
+                                                    </div>
+                                                    @foreach($arrOrderDetails as $arrOrderDetail)
+                                                        @if($arrOrderDetail->receipt_id == $order->id)
+                                                            <div class="row justify-content-between align-items-center">
+                                                                    <!-- col -->
+                                                                    <div class="col-lg-8 col-12">
+                                                                        <div class="d-md-flex">
+                                                                            <div>
+                                                                                <!-- img -->
+                                                                                <img src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$arrOrderDetail->product_image)}}" alt=""
+                                                                                     class="img-4by3-xl rounded" width="70px" height="50px">
+                                                                            </div>
+                                                                            <div class="ms-md-4 mt-2 mt-lg-0">
+                                                                                <!-- heading -->
+                                                                                <h5 class="mb-1">
+                                                                                    {{$arrOrderDetail->product_name}}
+                                                                                </h5>
+                                                                                <!-- text -->
+                                                                                <span>Size: <span class="text-dark">{{$arrOrderDetail->size_name}}</span>, Số Lượng:<span
+                                                                                        class="text-dark"> {{$arrOrderDetail->quantity}}</span>
+                                                                                </span>
+                                                                                <!-- text -->
+                                                                                <div class="mt-3">
+                                                                                    <h4>{{number_format($arrOrderDetail->product_price * $arrOrderDetail->quantity, 0, ',', '.') }}</h4>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <br>
+                                                                    </div>
+                                                                </div>
+                                                        @endif
+                                                    @endforeach
+                                                    <div class="card-footer">
+                                                        <h5 class="d-flex align-items-center justify-content-end text-black mb-0">Tổng Tiền:
+                                                            <span class="h2 mb-0 ms-2 text-black">{{$order->total_price}}</span></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    @endforeach
+                                </div>
                             </div>
-
-                            <div class="border-top border-top-dashed mt-2">
-                                <table class="table table-borderless table-nowrap align-middle mb-0 ms-auto" style="width:250px">
-                                    <tbody>
-                                    <tr class="border-top border-top-dashed fs-15">
-                                        <th scope="row">Tổng Giá : {{$order->total_price}}</th>
-                                        <th class="text-end"></th>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <!--end table-->
-                            </div>
-                            @endforeach
                         </div>
-                        <!--end card-body-->
-                    </div><!--end col-->
+                    </div>
                 </div>
             </div>
-
-        </div>
 
         <div class="popup" id="popup1">
             <h2>Đổi mật khẩu</h2>
