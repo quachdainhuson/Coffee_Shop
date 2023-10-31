@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('css/login.css')}}">
+    <link rel="stylesheet" href="{{asset('css/login_user.css')}}">
     <title>Login</title>
 </head>
 <body>
     <div class="center">
-        <h1>Người Dùng | Đăng Kí</h1>
+        <h1>Đăng Kí</h1>
         <form method="post"  action="{{route('customer.registerCreate')}}">
             @csrf
             <div class="txt_field">
