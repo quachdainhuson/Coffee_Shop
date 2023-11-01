@@ -122,7 +122,7 @@
                                                     <div class="tab-content" id="pdContent">
                                                         <div class="tab-pane fade show active" id="pd-1" role="tabpanel" aria-labelledby="pd-1-tab">
                                                             <div class="cart-form">
-                                                                <form action="https://xpressrow.com/html/cafena/cafena/checkout.html">
+                                                                <form>
                                                                     <div class="row">
                                                                         <div class="col-xl-">
                                                                             <div class="from-group mt-30">

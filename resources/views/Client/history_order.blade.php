@@ -156,7 +156,7 @@
                                                         @endif
                                                     @endforeach
                                                     <div class="card-footer">
-                                                        <h5 class="d-flex align-items-center justify-content-end text-black mb-0">Tổng Tiền:
+                                                        <h5 class="d-flex align-items-center justify-content-end text-black mb-0">TỔNG TIỀN:
                                                             <span class="h2 mb-0 ms-2 text-black">{{$order->total_price}}</span></h5>
                                                     </div>
                                                 </div>

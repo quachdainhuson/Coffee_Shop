@@ -40,9 +40,8 @@ class CustomerController extends Controller
                 'customer_address' => $request->customer_address,
                 'password' =>  Hash::make($request->password),
             ]);
-            Session::put('customer', $customer);
             flash()->addSuccess('Đăng ký thành công');
-            return redirect()->route('client.home');
+            return redirect()->route('customer.login');
         }
         else{
             flash()->addError('Mật khẩu không trùng khớp');
