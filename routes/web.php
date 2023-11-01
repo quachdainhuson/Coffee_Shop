@@ -42,6 +42,7 @@ Route::prefix('Client/')->group(function(){
         Route::get('/{customer}/history_order', [\App\Http\Controllers\User\HomePageController::class, 'historyOrder'])->name('client.history_order');
         Route::post('/{customer}/edit_customer', [\App\Http\Controllers\Admin\CustomerController::class, 'update'])->name('client.edit_customer');
         Route::post('/{customer}/change_password', [\App\Http\Controllers\Admin\CustomerController::class, 'changePassword'])->name('client.change_password');
+        Route::get('/{receipt}/destroy_receipt', [\App\Http\Controllers\Admin\ReceiptController::class, 'destroyReceipt'])->name('client.destroy_receipt');
     });
 
 
@@ -121,6 +122,12 @@ Route::prefix('Admin/')->group(function(){
         Route::get('/{id}/edit_table', [\App\Http\Controllers\Admin\TableCoffeeController::class, 'edit'])->name('tables.edit_table');
         Route::put('/{id}/update_table', [\App\Http\Controllers\Admin\TableCoffeeController::class, 'update'])->name('tables.update_table');
         Route::delete('/{id}/delete_table', [\App\Http\Controllers\Admin\TableCoffeeController::class, 'destroy'])->name('tables.delete_table');
+    });
+    Route::middleware('checkLoginEmployee')->prefix('/customer')->group(function(){
+        Route::get('/customer', [\App\Http\Controllers\Admin\CustomerController::class, 'index'])->name('customers.customer');
+        Route::get('/{customer}/edit_customer', [\App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customers.edit_customer');
+        Route::put('/{customer}/edit_customer', [\App\Http\Controllers\Admin\CustomerController::class, 'updateAdmin'])->name('customers.update_customer');
+
     });
 
 });

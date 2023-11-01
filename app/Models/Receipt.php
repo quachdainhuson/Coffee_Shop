@@ -41,6 +41,7 @@ class Receipt extends Model
             ->select('receipts.*', 'customers.id as customer_id', 'customers.customer_name', 'customers.email', 'customers.customer_phone', 'customers.customer_address')
             ->join('customers', 'customers.id', '=', 'receipts.customer_id')
             ->where('customers.id', $customer['id'])
+            ->orderBy('receipts.id', 'desc')
             ->get();
     }
 }
