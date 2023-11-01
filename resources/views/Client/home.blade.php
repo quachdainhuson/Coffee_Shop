@@ -101,7 +101,7 @@
 
             <div class="shop-container">
               <div class="box1">
-                <div class="box-img">
+                <div class="box-img bx-tada-hover">
                   <img src="{{asset('image/PHIN_SUA_DA_5.1.png')}}" alt="">
                 </div>
                 <h2>Cà Phê</h2>
@@ -110,7 +110,7 @@
               </div>
 
               <div class="box2">
-                <div class="box-img">
+                <div class="box-img bx-tada-hover">
                   <img src="{{asset('image/FREEZE-TRA-XANH-5.1.png')}}" alt="">
                 </div>
                 <h2>Freeze</h2>
@@ -119,7 +119,7 @@
               </div>
 
               <div class="box3">
-                <div class="box-img">
+                <div class="box-img bx-tada-hover">
                   <img src="{{asset('image/TRA-SEN-VANG-CN-5.1.png')}}" alt="">
                 </div>
                 <h2>Trà</h2>
