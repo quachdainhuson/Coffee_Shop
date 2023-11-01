@@ -18,6 +18,7 @@
 -----------------------------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@200;300;400;500;600;700&family=Roboto&display=swap');
 @-webkit-keyframes zoom {
   0% {
     -webkit-transform: scale(1);
@@ -126,7 +127,7 @@ html {
 }
 
 body {
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   padding: 0;
   margin: 0;
@@ -151,14 +152,14 @@ button {
 
 button {
   border: none;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
 }
 
 span {
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 button:focus {
@@ -169,7 +170,7 @@ a {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 a:hover {
   text-decoration: none;
@@ -244,7 +245,7 @@ p, li, span {
 .section-heading .sub-title {
   color: #ffffff;
   background: #C7A17A;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: inline-block;
   font-size: 12px;
   text-transform: uppercase;
@@ -382,7 +383,7 @@ span.border-effect:hover {
 }
 
 .ctn-preloader .animation-preloader .txt-loading {
-  font: bold 5em "Jost", sans-serif;
+  font: bold 5em 'Poppins', sans-serif;
   text-align: center;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -402,7 +403,7 @@ span.border-effect:hover {
   content: attr(data-text-preloader);
   left: 0;
   opacity: 0;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   position: absolute;
   top: -3px;
   -webkit-transform: rotateY(-90deg);
@@ -555,7 +556,7 @@ span.border-effect:hover {
   }
 
   .ctn-preloader .animation-preloader .txt-loading {
-    font: bold 3.5em "Jost", sans-serif;
+    font: bold 3.5em 'Poppins', sans-serif;
   }
 }
 @media screen and (max-width: 500px) {
@@ -565,7 +566,7 @@ span.border-effect:hover {
   }
 
   .ctn-preloader .animation-preloader .txt-loading {
-    font: bold 2em "Jost", sans-serif;
+    font: bold 2em 'Poppins', sans-serif;
   }
 }
 /*--
@@ -2915,7 +2916,7 @@ h6 {
   padding-right: 20px;
 }
 .side-info .title {
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 18px;
@@ -3165,7 +3166,7 @@ h6 {
 }
 .cart-bar__title {
   font-size: 18px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
   font-weight: 600;
   display: block;
@@ -4275,7 +4276,7 @@ h6 {
   font-size: 18px;
   text-transform: uppercase;
   color: #ffffff;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
 }
 .pp__title a {
@@ -4284,7 +4285,7 @@ h6 {
 }
 .pp__price .label {
   color: #ffffff;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
   padding-right: 5px;
 }
@@ -4357,7 +4358,7 @@ h6 {
   visibility: hidden;
 }
 .big-product-wrapper .product-highlight__content h4 {
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   font-size: 16px;
@@ -4426,7 +4427,7 @@ h6 {
   color: #ffffff;
   font-size: 18px;
   text-transform: uppercase;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .testimonial__item .designation {
   font-size: 14;
@@ -4547,7 +4548,7 @@ h6 {
 }
 .blog__title {
   font-size: 22px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: capitalize;
 }
 .blog__title a {
@@ -4649,7 +4650,7 @@ h6 {
 .viewcontent__header h2 {
   font-size: 22px;
   font-weight: 500;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .viewcontent__rating i {
   color: #C7A17A;
@@ -4660,7 +4661,7 @@ h6 {
 }
 .viewcontent__price h4 {
   color: #010103;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 24px;
 }
@@ -4672,7 +4673,7 @@ h6 {
   margin-bottom: 10px;
 }
 .viewcontent__stock h4 {
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .viewcontent__details {
   margin-bottom: 20px;
@@ -5639,7 +5640,7 @@ h6 {
 }
 .team__box .name {
   font-size: 18px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   margin-bottom: 2px;
@@ -6020,7 +6021,7 @@ h6 {
   }
 }
 .faq__item .title {
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-decoration: none;
   background: transparent;
   padding: 0px;
@@ -6252,7 +6253,7 @@ h6 {
   color: #000;
   font-weight: normal;
   font-weight: 500;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .blog__post:hover > .thumb img {
   -webkit-transform: scale(1.1);
@@ -6285,7 +6286,7 @@ h6 {
 }
 .blog__post--releted .content .title a {
   font-size: 20px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 27px;
   text-transform: capitalize;
   font-weight: 500;
@@ -6418,7 +6419,7 @@ h6 {
 }
 .recent-posts .item .rp-title {
   margin-bottom: 8px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
 }
 .recent-posts .item .rp-title a {
@@ -6746,7 +6747,7 @@ h6 {
   font-size: 18px;
   margin-bottom: 0px;
   font-weight: 600;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .latest__comments .avatar-name span {
   font-size: 14px;
@@ -7502,7 +7503,7 @@ html .ui-button.ui-state-disabled:active {
   }
 }
 .pp-comments .comment .name {
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: capitalize;
   font-weight: 600;
   font-size: 16px;
@@ -7528,7 +7529,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .pp-comments-form .title {
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -7729,7 +7730,7 @@ html .ui-button.ui-state-disabled:active {
 .cart-total .title {
   text-transform: capitalize;
   font-size: 24px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   margin-bottom: 20px;
   text-align: center;
@@ -7791,7 +7792,7 @@ html .ui-button.ui-state-disabled:active {
 }
 .checkout-wrapper .checkout-top .title {
   font-size: 24px;
-  font-family: "Jost", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   margin-right: 100px;
 }
