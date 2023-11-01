@@ -126,7 +126,7 @@
                                                     <div class="tab-content" id="pdContent">
                                                         <div class="tab-pane fade show active" id="pd-1" role="tabpanel" aria-labelledby="pd-1-tab">
                                                             <div class="cart-form">
-                                                                <form action="">
+                                                                <form>
                                                                     <div class="row">
                                                                         <div class="col-xl-12">
                                                                             <div class="from-group mt-30">
@@ -166,7 +166,6 @@
                                                                         @if($errors->has('customer_address'))
                                                                             <span class="text-danger">{{$errors->first('customer_address')}}</span>
                                                                         @endif
-
                                                                     </div>
                                                                     <button type="submit" class="btn btn-primary" id="information_btn">Cập Nhật</button>
                                                                 </form>

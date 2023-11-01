@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="{{asset('css/checkout.css')}}">
     <link rel="stylesheet" href="{{asset('css/customer.css')}}">
-   
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('bootstrap-5.3.1-dist/css/bootstrap.min.css')}}">
     <title>Highlands Coffee</title>
@@ -102,7 +102,7 @@
                         <li>
                             <a href="{{route('customer.logout')}}" class="logout ">
                                 <i class='bx bx-log-out-circle'></i>
-                                Đăng Xuất   
+                                Đăng Xuất
                             </a>
                         </li>
                     </ul>
@@ -162,9 +162,8 @@
                                                         @endif
                                                     @endforeach
                                                     <div class="card-footer">
-                                                        <h5 id="total_price_order" class="d-flex align-items-center justify-content-end text-black mb-0">Tổng Tiền:
-                                                            <span id="total_price_order" class="h2 mb-0 ms-2 text-black">{{$order->total_price}}</span>
-                                                        </h5>
+                                                        <h5 class="d-flex align-items-center justify-content-end text-black mb-0">TỔNG TIỀN:
+                                                            <span class="h2 mb-0 ms-2 text-black">{{$order->total_price}}</span></h5>
                                                     </div>
                                                 </div>
                                             </div>
