@@ -126,9 +126,31 @@
                                                             <h5 class="mb-0">#{{$order->id}}</h5>
                                                             <span class="ms-2">{{$order->order_date}}</span>
                                                         </div>
+                                                        @if($order->status == 0)
                                                         <div class="col-lg-3 col-12 d-grid">
-                                                            <a href="#" class="btn btn-danger mb-2">Hủy đơn</a>
+                                                            <a href="{{route('client.destroy_receipt', $order->id)}}" class="btn btn-danger mb-2">Hủy đơn</a>
                                                         </div>
+                                                            @elseif($order->status == 1)
+                                                            <div class="col-lg-3 col-12 d-grid">
+                                                                <a href="#" class="btn btn-success mb-2">Đã xác nhận</a>
+                                                            </div>
+                                                        @elseif($order->status == 2)
+                                                            <div class="col-lg-3 col-12 d-grid">
+                                                                <a href="#" class="btn btn-success mb-2">Đang Làm</a>
+                                                            </div>
+                                                        @elseif($order->status == 3)
+                                                            <div class="col-lg-3 col-12 d-grid">
+                                                                <a href="#" class="btn btn-success mb-2">Hoàn Thành</a>
+                                                            </div>
+                                                        @elseif($order->status == 4)
+                                                            <div class="col-lg-3 col-12 d-grid">
+                                                                <a href="#" class="btn btn-danger mb-2">Đã Hủy</a>
+                                                            </div>
+                                                        @elseif($order->status == 5)
+                                                            <div class="col-lg-3 col-12 d-grid">
+                                                                <a href="#" class="btn btn-success mb-2">Đang Giao Hàng</a>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                     @foreach($arrOrderDetails as $arrOrderDetail)
                                                         @if($arrOrderDetail->receipt_id == $order->id)

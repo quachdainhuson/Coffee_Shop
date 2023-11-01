@@ -22,8 +22,8 @@
         <li><a href="{{route('dashboard.dashboard')}}"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
         <li><a href="{{route('orders.order')}}"><i class='bx bxs-cart-add'></i>Đặt Hàng</a></li>
         <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
-        <li class="active"><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
-        <li><a href="{{route('customers.customer')}}"><i class='bx bx-group'></i>Khách Hàng</a></li>
+        <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
+        <li class="active"><a href="{{route('customers.customer')}}"><i class='bx bx-group'></i>Khách Hàng</a></li>
         <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
         <li><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
         <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
@@ -33,7 +33,7 @@
         <li>
             <a href="{{route('user.logout')}}" class="logout">
                 <i class='bx bx-log-out-circle'></i>
-                Logout
+                Đăng Xuất
             </a>
         </li>
     </ul>
@@ -52,13 +52,14 @@
             </div>
         </form>
         <input type="checkbox" id="theme-toggle" hidden>
+        <label for="theme-toggle" class="theme-toggle"></label>
         <a href="#" class="notif">
             <i class='bx bx-bell'></i>
             <span class="count">12</span>
         </a>
         <p>{{$current_employee->employee_name}}</p>
         <a href="#" class="profile">
-            <img src="images/logo.png">
+            <img src="{{asset('image/user_image.jpg')}}">
         </a>
     </nav>
 
@@ -76,46 +77,60 @@
                     <li><a href="#" >Shop</a></li>
                 </ul>
             </div>
-
-
         </div>
 
         <!-- Insights -->
-        <form role="form"  enctype="multipart/form-data" method="post" action="{{ route('users.change_pass', $employees) }}">
+
+        <form role="form"  enctype="multipart/form-data" method="post" action="{{ route('customers.update_customer', $customer) }}">
             @csrf
             @method('PUT')
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-7">
-
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-7">
+                    <div class="form-group">
                         <div class="form-group">
-                            <div class="form-group">
-                                <label>Mật Khẩu Hiện Tại</label>
-                                <input type="password" name="current_password" required class="form-control"  placeholder="" >
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label>Mật Khẩu Mới</label>
-                                <input type="password" name="new_password" required class="form-control"  placeholder="" >
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label>Nhập Lại Mật Khẩu</label>
-                                <input type="password" name="confirm_password" required class="form-control"  placeholder="" >
-                            </div>
-                        </div>
-                        <br>
-                        <div class="button">
-                            <button type="submit" name="submit" class="btn btn-primary">Sửa Thông Tin</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
+                            <label>Họ và Tên</label>
+                            <input type="text" name="customer_name" required class="form-control"  placeholder="" value="{{ $customer['customer_name'] }}">
                         </div>
                     </div>
-                    <div class="col-4"></div>
+                    <br>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" name="email" required class="form-control"  placeholder="" value="{{ $customer['email'] }}">
+                        </div>
+                        @if($errors->has('email'))
+                            {{$errors->first('email')}}
+                        @endif
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label>Số Điện thoại</label>
+                            <input type="text" name="customer_phone" required class="form-control"  placeholder="" value="{{ $customer['customer_phone'] }}">
+                        </div>
+                        @if($errors->has('customer_phone'))
+                            {{$errors->first('customer_phone')}}
+                        @endif
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label>Địa Chỉ</label>
+                            <input type="text" name="customer_address" required class="form-control"  placeholder="" value="{{ $customer['customer_address'] }}">
+                        </div>
+                        @if($errors->has('customer_address'))
+                            {{$errors->first('customer_address')}}
+                        @endif
+                    </div>
+                    <br>
+                    <div class="button">
+                        <button type="submit" name="submit" class="btn btn-primary">Sửa Thông Tin</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </div>
                 </div>
+                <div class="col-4"></div>
+            </div>
 
         </form>
 

@@ -25,9 +25,9 @@
     <ul class="side-menu">
         <li><a href="{{route('dashboard.dashboard')}}"><i class='bx bxs-home' ></i></i>Dashboard</a></li>
         <li><a href="{{route('orders.order')}}"><i class='bx bxs-cart-add'></i>Đặt Hàng</a></li>
-        <li class="active"><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
+        <li><a href="{{route('products.product')}}"><i class='bx bx-store-alt'></i>Sản Phẩm</a></li>
         <li><a href="{{route('users.user')}}"><i class='bx bx-group'></i>Người Dùng</a></li>
-        <li><a href="{{route('customers.customer')}}"><i class='bx bx-group'></i>Khách Hàng</a></li>
+        <li class="active"><a href="{{route('customers.customer')}}"><i class='bx bx-group'></i>Khách Hàng</a></li>
         <li><a href="{{route('categories.category')}}"><i class='bx bxs-category'></i></i>Danh Mục</a></li>
         <li><a href="{{route('receipts.receipt')}}"><i class='bx bxs-receipt'></i>Đơn Hàng</a></li>
         <li><a href="{{route('tables.table_management')}}"><i class='bx bx-table' ></i></i>Quản Lý Bàn</a></li>
@@ -37,7 +37,7 @@
         <li>
             <a href="{{route('user.logout')}}" class="logout">
                 <i class='bx bx-log-out-circle'></i>
-                Logout
+                Đăng Xuất
             </a>
         </li>
     </ul>
@@ -72,7 +72,7 @@
     <main>
         <div class="header">
             <div class="left">
-                <h1>Sản Phẩm</h1>
+                <h1>Khách Hàng</h1>
                 <ul class="breadcrumb">
                     <li><a href="#">
                             Analytics
@@ -81,12 +81,6 @@
                     <li><a href="#" >Shop</a></li>
                 </ul>
             </div>
-            <a href="{{ route('products.add_product') }}" class="report">
-                <i class='bx bx-plus'></i>
-                <span>Thêm Sản Phẩm</span>
-            </a>
-
-
         </div>
 
         <!-- Insights -->
@@ -94,48 +88,40 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
 
-                    <table class="table table-striped" id="table_id">
+                    <table class="table" id="table_id">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Tên Sản Phẩm</th>
-                            <th scope="col">Hình Ảnh</th>
-                            <th scope="col">Danh Mục</th>
-                            <th>ADD/DELETE</th>
+                            <th scope="col">Họ và tên</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Điện thoại</th>
+                            <th scope="col">Hành Động</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($products as $product)
+                        @foreach($customers as $customer)
                             <tr>
-                                <th scope="row">{{ $product->id }}</th>
-                                <td>{{ $product->product_name }}</td>
-                                <td id="product-img">
-
-                                    <img width="150px" height="150px"
-                                         src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$product->product_image)}}"
-                                         alt="" srcset=""></td>
-                                <td>{{ $product->categories->cate_name }}</td>
+                                <td>
+                                    {{ $customer->id }}
+                                </td>
+                                <td>{{ $customer->customer_name }}</td>
+                                <td>{{ $customer->email }}</td>
+                                <td>{{ $customer->customer_phone }}</td>
                                 <td>
                                     <div class="form-group">
-                                        <a href="{{route('products.edit_product',$product)}}">
-                                            <button class="btn btn-primary" type="submit">
-                                                <i class='bx bxs-edit-alt' ></i>
-                                            </button>
-                                        </a>
                                         <div class="btn">
-                                            <form method="post" action="{{route('products.destroy_product', $product)}}">
-                                                @csrf
-                                                @method('DELETE')
+                                            <a href="{{ route('customers.edit_customer',$customer ) }}">
                                                 <button class="btn btn-primary" type="submit">
-                                                    <i class='bx bxs-trash' ></i>
+                                                    <i class='bx bxs-edit-alt' ></i>
                                                 </button>
-                                            </form>
+                                            </a>
                                         </div>
                                     </div>
 
                                 </td>
                             </tr>
                         @endforeach
+
                         </tbody>
                     </table>
 
@@ -146,15 +132,15 @@
     </main>
 
 </div>
-
 <script>
     $(document).ready(function () {
         $('#table_id').DataTable({
             "lengthMenu": [ 5, 10, 20, 50, 100 ]
         });
     });
+
 </script>
-<script src="../../../../public/js/admin.js"></script>
+<script src="{{asset('js/admin.js')}}"></script>
 </body>
 
 </html>

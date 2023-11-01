@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\UpdateAdminCustomer;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -16,7 +17,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customer = Customer::all();
+        $employee = Session::get('employee');
+        return view('Admin.customer.customer',[
+            'current_employee' => $employee,
+            'customers' => $customer
+        ]);
     }
 
     /**
@@ -62,9 +68,22 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        $employee = Session::get('employee');
+        return view('Admin.customer.edit_customer',[
+            'current_employee' => $employee,
+            'customer' => $customer
+        ]);
     }
-
+    public function updateAdmin(UpdateAdminCustomer $request, Customer $customer){
+        $customer->update([
+            'customer_name' => $request->customer_name,
+            'email' => $request->email,
+            'customer_phone' => $request->customer_phone,
+            'customer_address' => $request->customer_address,
+        ]);
+        flash()->addSuccess('Cập nhật thông tin thành công');
+        return redirect()->route('customers.customer');
+    }
     /**
      * Update the specified resource in storage.
      */
@@ -107,6 +126,7 @@ class CustomerController extends Controller
 
 
     }
+
 
     /**
      * Remove the specified resource from storage.

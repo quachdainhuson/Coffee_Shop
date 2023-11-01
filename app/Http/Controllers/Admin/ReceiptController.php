@@ -92,6 +92,10 @@ class ReceiptController extends Controller
         Receipt::where('id', $receipt->id)->update(['status' => 4]);
         return redirect()->route('receipts.receipt');
     }
+    public function destroyReceipt($order){
+        Receipt::where('id', $order)->update(['status' => 4]);
+        return redirect()->back();
+    }
     /**
      * Show the form for creating a new resource.
      */
