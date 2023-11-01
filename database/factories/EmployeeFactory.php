@@ -19,7 +19,7 @@ class EmployeeFactory extends Factory
         return [
             'employee_name' => $this->faker->name,
             'employee_email' => $this->faker->email,
-            'employee_phone' => $this->faker->word,
+            'employee_phone' => '0123456789',
             'username' => $this->faker->userName,
             'password' => bcrypt('123456'),
             'role' => 1,
