@@ -39,7 +39,6 @@
             </div>
         </div>
     </nav>
-
     <div class="icons">
         <ul>
             <li id="search-btn">

@@ -27,7 +27,8 @@ Route::prefix('Client/')->group(function(){
 
     Route::middleware('checkLoginCustomer')->get('/checkout', [\App\Http\Controllers\User\HomePageController::class, 'checkout'])->name('client.checkout');
     Route::get('/category/{id}', [\App\Http\Controllers\User\HomePageController::class, 'cateProduct'])->name('client.cate_product');
-    Route::post('/checkout', [\App\Http\Controllers\User\HomePageController::class, 'checkoutProcess'])->name('client.checkoutProcess');
+    Route::post('/payment_vnpay', [\App\Http\Controllers\User\HomePageController::class, 'paymentVnPay'])->name('client.payment_vnpay');
+    Route::get('/checkout_process/{note}', [\App\Http\Controllers\User\HomePageController::class, 'checkoutProcess'])->name('client.checkoutProcess');
 
 
     Route::get('/origin', [\App\Http\Controllers\User\HomePageController::class, 'origin'])->name('client.origin');

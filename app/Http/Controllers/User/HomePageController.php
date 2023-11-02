@@ -104,7 +104,7 @@ class HomePageController extends Controller
                 'product_quantity' => $quantity,
                 'size_id' => $size_id,
                 'product_detail_id' => $product_detail->id,
-                'price' => $product_detail->product_price,
+                'price' => $product_detail->product_price
             ];
         }
         Session::put('cart', $currentCart);
@@ -152,38 +152,6 @@ class HomePageController extends Controller
             }
         }
 
-    }
-    public function checkoutProcess(Request $request){
-        $customer = $request->all();
-        $currentCart = Session::get('cart');
-        $customer_id = Session::get('customer')->id;
-        $total_price = 0;
-        $order_id = Receipt::create(
-            [
-                'status' => 0,
-                'order_date' => date('Y-m-d'),
-                'total_price' => $total_price,
-                'order_at' => 'Website',
-                'customer_id' => $customer_id,
-                'note' =>  $customer['note'],
-            ]);
-        foreach ($currentCart as $cartItemKey => $cartItem){
-            $total_price += $cartItem['product_quantity'] * $cartItem['price'];
-            DB::table('receipt_details')->insert([
-                'receipt_id' => $order_id['id'],
-                'product_detail_id' => $cartItem['product_detail_id'],
-                'quantity' => $cartItem['product_quantity'],
-                'price' => $cartItem['price'],
-            ]);
-        }
-        Receipt::where('id', $order_id['id'])->update([
-            'total_price' => $total_price,
-        ]);
-        Session::forget('cart');
-        flash()->addSuccess('Đặt hàng thành công');
-        flash()->addSuccess('Đơn hàng của bạn sẽ được xác nhận trong thời gian sớm nhất');
-
-        return redirect()->route('client.home');
     }
 
     public function searchProduct(Request $request){
@@ -282,6 +250,102 @@ class HomePageController extends Controller
             'orders' => $order,
             'arrOrderDetails' => $arrOrderDetail
         ]);
+    }
+    public function checkoutProcess(Request $request, $note){
+
+        $currentCart = Session::get('cart');
+        $customer_id = Session::get('customer')->id;
+        $total_price = 0;
+        $order_id = Receipt::create(
+            [
+                'status' => 0,
+                'order_date' => date('Y-m-d'),
+                'total_price' => $total_price,
+                'order_at' => 'Website',
+                'customer_id' => $customer_id,
+                'note' => $note
+            ]);
+        foreach ($currentCart as $cartItemKey => $cartItem){
+            $total_price += $cartItem['product_quantity'] * $cartItem['price'];
+            DB::table('receipt_details')->insert([
+                'receipt_id' => $order_id['id'],
+                'product_detail_id' => $cartItem['product_detail_id'],
+                'quantity' => $cartItem['product_quantity'],
+                'price' => $cartItem['price'],
+            ]);
+        }
+        Receipt::where('id', $order_id['id'])->update([
+            'total_price' => $total_price,
+        ]);
+        Session::forget('cart');
+        flash()->addSuccess('Đặt hàng thành công');
+        flash()->addSuccess('Đơn hàng của bạn sẽ được xác nhận trong thời gian sớm nhất');
+        return redirect()->route('client.home');
+    }
+    public function paymentVnPay(Request $request){
+        Session::put('data', $request->all());
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_Returnurl = "http://127.0.0.1:8000/Client/checkout_process".'/'.$request['note'];
+        $vnp_TmnCode = "IKAWFNTY";//Mã website tại VNPAY
+        $vnp_HashSecret = "SCVNUFEGHJVOUBFMNPUNMCCVVIZQUWGM"; //Chuỗi bí mật
+
+        $vnp_TxnRef = rand(00,9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo = 'Thanh toán đơn hàng';
+        $vnp_OrderType = 'billpayment';
+        $vnp_Amount = $request['total'] *100;
+        $vnp_Locale = 'vn';
+        $vnp_BankCode = 'NCB';
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef,
+        );
+
+        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $vnp_Url . "?" . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        $returnData = array('code' => '00'
+        , 'message' => 'success'
+        , 'data' => $vnp_Url);
+        if (isset($_POST['redirect'])) {
+            Session::put('data', $request->all());
+            header('Location: ' . $vnp_Url);
+
+            die();
+        } else {
+            echo json_encode($returnData);
+        }
+
+
     }
     public function editCustomer(Request $request){
 
