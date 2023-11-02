@@ -63,7 +63,7 @@
                             <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                         </svg></a>
                 </li> -->
-                
+
             @else
                 <li class="user-btn">
                     <a class="nav-link bx-tada-hover" href="{{route('customer.login')}}"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 448 512"><style>svg{fill:#f1f2f3}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg></a>
@@ -94,7 +94,7 @@
 <div class="row">
     <div class="col-1"></div>
     <div class="col-6">
-        <form action="{{route('client.checkoutProcess')}}" method="post">
+        <form action="{{route('client.payment_vnpay',$total)}}" method="post">
             @csrf
         <div class="checkout-area pt-120 pb-120">
             <div class="container">
@@ -153,6 +153,7 @@
                                                                     <textarea name="note" id="note" placeholder="Ghi chú"></textarea>
                                                                 </div>
                                                             </div>
+                                                            <input type="hidden" name="total" value="{{$total}}">
                                                         </div>
                                                     </form>
                                                 </div>
@@ -167,7 +168,7 @@
                                                     <span>Total</span>
                                                     <span>{{number_format($total, 0, ',', '.')}} VND</span>
                                                 </div>
-                                                <button class="btn-checkout">Procced to checkout</button>
+                                                <button class="btn-checkout" name="redirect">Thanh Toán Bằng VnPay</button>
                                             </div>
                                         </div>
                                     </div>

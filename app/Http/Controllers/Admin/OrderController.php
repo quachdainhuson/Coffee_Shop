@@ -19,7 +19,7 @@ class OrderController
         $current_employee = Session::get('employee');
         $table = TableCoffee::all();
         $sizes = Size::all();
-        $products = Product::all();
+        $products = Product::all()->where('status', 0);
         $product_detail = ProductDetail::with('sizes')->get();
         return view('Admin.order.order',[
             'products' => $products,

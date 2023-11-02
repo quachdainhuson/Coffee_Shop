@@ -96,7 +96,7 @@
                                         <!--end col-->
                                         <div class="col-lg-6 col-6">
                                             <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Ngày</p>
-                                            <h5 class="fs-16 mb-0"><span id="invoice-date">{{$receipt->order_date}}</span> <small class="text-muted" id="invoice-time">02:36PM</small></h5>
+                                            <h5 class="fs-16 mb-0"><span id="invoice-date">{{$receipt->order_date}}</span> <small class="text-muted" id="invoice-time"></small></h5>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-6 col-6">
@@ -155,6 +155,8 @@
                                             <p class="text-muted mb-1" id="shipping-address-line-1">{{$customers->customer_address ?? 'Tại Của Hàng'}}</p>
                                             <p class="text-muted mb-1" id="shipping-email-line-1">{{$customers->customer_email ?? 'Không Có'}}</p>
                                             <p class="text-muted mb-1"><span>Phone: </span><span id="shipping-phone-no">{{$customers->customer_phone ?? 'Không Có'}}</span></p>
+                                            <span class="text-danger">Ghi Chú: {{$receipt->note}}</span>
+
                                         </div>
                                         <!--end col-->
                                     </div>
