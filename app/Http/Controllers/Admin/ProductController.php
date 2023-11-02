@@ -26,7 +26,6 @@ class ProductController extends Controller
             return view('Admin.Product.product',[
                 'products' => $products,
                 'current_employee' => $current_employee
-
             ]);
         }else{
             flash()->addError('Bạn không có quyền truy cập');
@@ -63,7 +62,7 @@ class ProductController extends Controller
             if (!Storage::exists('public/Admin/'.$product_image)) {
                 Storage::putFileAs('public/Admin', $request->file('product_image'), $product_image);
             }
-            $productId = Product::create(array_merge($request->all(), ['product_image' => $product_image]));
+            $productId = Product::create(array_merge($request->all(), ['product_image' => $product_image], ['status' => 0]));
             $product_id = $productId->id;
             foreach ($request->input('sizes') as $sizeId => $data) {
                 ProductDetail::create([

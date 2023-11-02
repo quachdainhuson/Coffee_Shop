@@ -32,7 +32,7 @@ class HomePageController extends Controller
     }
     public function product()
     {
-        $products = Product::with('categories')->get();
+        $products = Product::with('categories')->where('status', '=', '0')->get();
         $categories = Category::all();
         return view('Client.product',[
             'products' => $products,
@@ -41,7 +41,7 @@ class HomePageController extends Controller
     }
 
     public function cateProduct($id){
-        $products = Product::where('cate_id',$id)->get();
+        $products = Product::where('cate_id',$id)->where('status', '=', '0')->get();
         $categories = Category::all();
         return view('Client.product',[
             'products' => $products,
@@ -188,13 +188,14 @@ class HomePageController extends Controller
 
     public function searchProduct(Request $request){
         $categories = Category::all();
-        $products = Product::where('product_name', 'like','%' .$request->key. '%')
+        $products = Product::where('product_name', 'like','%' .$request->key. '%')->where('status', '=', '0')
                                     ->get();
         if ($products->isEmpty()){
             $products = Product::join('categories', 'categories.id', '=', 'products.cate_id')
                 ->select('products.*',
                     'categories.cate_name')
                 ->where('categories.cate_name', 'like','%' .$request->key. '%')
+                ->where('status', '=', '0')
                 ->get();
         }
 

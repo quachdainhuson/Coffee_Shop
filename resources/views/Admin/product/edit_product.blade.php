@@ -115,12 +115,18 @@
 
                             </div>
                             <div class="form-group">
+                                <label>Tình Trạng</label><br>
+                                <select name="status" class="form-control">
+                                    <option @if($products->status == 0){{'selected'}} @endif value="0">Còn Hàng</option>
+                                    <option @if($products->status == 1){{'selected'}} @endif value="1">Hết Hàng</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>Giá Của Từng Size</label><br>
                                 @foreach($product_detail as $prd_detail)
                                     <label for="size_{{ $prd_detail->size_id }}">{{ $prd_detail->sizes->size_name }}</label>
                                     <input type="number" name="sizes[{{ $prd_detail->size_id }}][product_price]" id="size_{{ $prd_detail->size_id }}" value="{{ $prd_detail->product_price }}">
                                 @endforeach
-
                             </div>
 
                             <div class="form-group">

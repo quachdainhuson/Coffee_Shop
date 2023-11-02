@@ -16,6 +16,7 @@ return new class extends Migration
             $table->String('product_name');
             $table->text('product_image');
             $table->text('product_description');
+            $table->integer('status');
             $table->foreignId('cate_id')->constrained('categories');
         });
     }
