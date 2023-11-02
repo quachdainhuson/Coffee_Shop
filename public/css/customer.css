@@ -24,6 +24,7 @@
     background: #FFF;
     z-index: 20;
     border-radius: 10px;
+    text-align: center;
 }
 
 #popup1 {
@@ -44,13 +45,7 @@ input.change-pass {
     margin-bottom: 10px;
 }
 
-button {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+
 .sidebar-customer{
     top: 0;
     left: 0;
@@ -177,4 +172,49 @@ button {
 }
 .table thead th {
     padding-left:20px ;
+}
+
+.btn_update{
+    margin-top: 20px;
+    text-align: center;
+  }
+  #information_btn{
+    background-color: #C7A17A;
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .change-pass-title{
+    font-size: 35px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+  }
+#change_pass_btn {
+    background-color: #C7A17A;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding:  10px 15px;
+    border-radius: 10px ;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-right: 5px;
+}
+.btn_cancel{
+    background-color: #CC0033;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding:  10px 15px;
+    border-radius: 10px ;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 20px;
 }

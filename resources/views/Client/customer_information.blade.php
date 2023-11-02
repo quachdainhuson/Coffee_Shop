@@ -167,7 +167,10 @@
                                                                             <span class="text-danger">{{$errors->first('customer_address')}}</span>
                                                                         @endif
                                                                     </div>
-                                                                    <button type="submit" class="btn btn-primary" id="information_btn">Cập Nhật</button>
+                                                                    <div class="btn_update">
+                                                                        <button type="submit" class="btn" id="information_btn">Cập Nhật</button>
+                                                                    </div>
+                                                                    
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -189,15 +192,15 @@
         </div>
 
         <div class="popup" id="popup1">
-            <h2>Đổi mật khẩu</h2>
+            <h2 class="change-pass-title" >Đổi mật khẩu</h2>
             <form action="{{route('client.change_password', $customer)}}" method="post" id="change_pass">
                 @csrf
                 <input class="change-pass" type="password" name="old_password" placeholder="Mật khẩu cũ" required>
                 <input class="change-pass" type="password" name="new_password" placeholder="Mật khẩu mới" required>
                 <input class="change-pass" type="password" name="confirm_password" placeholder="Nhập lại mật khẩu mới" required>
                 <button type="submit" id="change_pass_btn" >Cập nhật tài khoản</button>
+                <button type="button" class="btn_cancel" onclick="closeForm()">Đóng</button>
             </form>
-            <a href="#" onclick="hide('popup1')">Ok!</a>
         </div>
 
     </main>
@@ -211,6 +214,11 @@
     });
 </script>
 <script src="{{asset('js/admin.js')}}"></script>
+<script>
+function closeForm() {
+  document.getElementById("popup1").style.display = "none";
+}
+</script>
 <script>
     // JavaScript để hiển thị và ẩn popup
     $ = function(id) {
