@@ -91,6 +91,9 @@
                         <div class="col-4" >
                             <br>
                             <br>
+                            @if($errors->has('product_image'))
+                                <span class="text-danger">{{ $errors->first('product_image') }}</span>
+                            @endif
                             <input type="hidden" name="image_name" value="{{$products->product_image}}">
                             <input type="file"  name="product_image" id="product_image" onchange="preview()" multiple>
                             <img id="frame" src="{{asset(\Illuminate\Support\Facades\Storage::url('Admin/').$products->product_image)}}" width="300px" height="300px"/>
@@ -100,7 +103,10 @@
 
                             <div class="form-group">
                                 <label>Tên sản phẩm</label>
-                                <input required name="product_name" class="form-control" placeholder="" value="{{$products->product_name}}">
+                                <input  name="product_name" class="form-control" placeholder="" value="{{$products->product_name}}">
+                                @if($errors->has('product_name'))
+                                    <span class="text-danger">{{ $errors->first('product_name') }}</span>
+                                @endif
                             </div>
 
                             <div class="form-group">

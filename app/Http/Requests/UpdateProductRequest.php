@@ -22,7 +22,21 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'product_name' => 'required',
+            'product_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'product_description' => 'required',
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+
+                'product_name.required' => 'Tên sản phẩm không được để trống',
+                'product_image.image' => 'Ảnh không đúng định dạng',
+                'product_image.mimes' => 'Ảnh không đúng định dạng',
+                'product_image.max' => 'Ảnh không quá 2MB',
+                'product_description.required' => 'Mô tả không được để trống',
         ];
     }
 }

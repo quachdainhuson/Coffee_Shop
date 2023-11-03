@@ -94,8 +94,7 @@
                                         <label>Tên danh mục:</label>
                                         <input  type="text" name="cate_name" class="form-control"
                                             placeholder="Tên danh mục...">
-                                        @if(
-                                        $errors->has('cate_name')) <span
+                                        @if($errors->has('cate_name')) <span
                                             class="text-danger">{{ $errors->first('cate_name') }}</span>
                                         @endif
                                     </div>

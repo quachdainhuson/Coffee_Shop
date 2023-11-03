@@ -65,6 +65,9 @@ class ProductController extends Controller
             $productId = Product::create(array_merge($request->all(), ['product_image' => $product_image], ['status' => 0]));
             $product_id = $productId->id;
             foreach ($request->input('sizes') as $sizeId => $data) {
+                if ($data['product_price'] == null) {
+                    $data['product_price'] = 0;
+                }
                 ProductDetail::create([
                     'product_id' => $product_id,
                     'size_id' => $sizeId,
@@ -124,6 +127,9 @@ class ProductController extends Controller
         }
         $product->update(array_merge($request->all(), ['product_image' => $product_image]));
         foreach ($request->input('sizes') as $sizeId => $data) {
+            if ($data['product_price'] == null) {
+                $data['product_price'] = 0;
+            }
             ProductDetail::updateOrCreate(
                 [
                     'product_id' => $product->id,
