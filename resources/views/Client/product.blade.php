@@ -58,7 +58,7 @@
                             <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                         </svg></a>
                 </li> -->
-                
+
             @else
                 <li class="user-btn">
                     <a class="nav-link bx-tada-hover" href="{{route('customer.login')}}"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 448 512"><style>svg{fill:#f1f2f3}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg></a>
@@ -105,6 +105,39 @@
             @endforeach
 
         </ul>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <!-- Previous Page Link -->
+                    @if ($products->onFirstPage())
+                        <li class="page-item disabled">
+                            <span class="page-link">Previous</span>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a href="{{ $products->previousPageUrl() }}" class="page-link" rel="prev">Previous</a>
+                        </li>
+                    @endif
+
+                    <!-- Pagination Elements -->
+                    @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                        <li class="page-item @if ($products->currentPage() == $page) active @endif">
+                            <a href="{{ $url }}" class="page-link">{{ $page }}</a>
+                        </li>
+                    @endforeach
+
+                    <!-- Next Page Link -->
+                    @if ($products->hasMorePages())
+                        <li class="page-item">
+                            <a href="{{ $products->nextPageUrl() }}" class="page-link" rel="next">Next</a>
+                        </li>
+                    @else
+                        <li class="page-item disabled">
+                            <span class="page-link">Next</span>
+                        </li>
+                    @endif
+                </ul>
+            </nav>
         </div>
 
         <div class="col-3">
@@ -132,7 +165,6 @@
 
         </div>
     </div>
-
 
 
 
