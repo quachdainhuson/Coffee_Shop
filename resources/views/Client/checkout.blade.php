@@ -150,7 +150,7 @@
                                                             <div class="col-xl-12">
                                                                 <div class="from-group mt-30">
                                                                     <label for="note">Ghi Chú*</label>
-                                                                    <textarea name="note" id="note" placeholder="Ghi chú"></textarea>
+                                                                    <textarea name="note" id="note" placeholder="Ghi chú" >Không Có</textarea>
                                                                 </div>
                                                             </div>
                                                             <input type="hidden" name="total" value="{{$total}}">

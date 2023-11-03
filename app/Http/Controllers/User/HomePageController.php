@@ -32,7 +32,10 @@ class HomePageController extends Controller
     }
     public function product()
     {
-        $products = Product::with('categories')->where('status', '=', '0')->get();
+        $products = Product::with('categories')
+            ->where('status', '=', '0')
+            ->inRandomOrder()
+            ->paginate(12);
         $categories = Category::all();
         return view('Client.product',[
             'products' => $products,
@@ -252,35 +255,42 @@ class HomePageController extends Controller
         ]);
     }
     public function checkoutProcess(Request $request, $note){
-
-        $currentCart = Session::get('cart');
-        $customer_id = Session::get('customer')->id;
-        $total_price = 0;
-        $order_id = Receipt::create(
-            [
-                'status' => 0,
-                'order_date' => date('Y-m-d'),
+        $vnp = $request->all();
+        if ($vnp['vnp_ResponseCode']== '00'){
+            $currentCart = Session::get('cart');
+            $customer_id = Session::get('customer')->id;
+            $total_price = 0;
+            $order_id = Receipt::create(
+                [
+                    'status' => 0,
+                    'order_date' => date('Y-m-d'),
+                    'total_price' => $total_price,
+                    'order_at' => 'Website',
+                    'customer_id' => $customer_id,
+                    'note' => $note
+                ]);
+            foreach ($currentCart as $cartItemKey => $cartItem){
+                $total_price += $cartItem['product_quantity'] * $cartItem['price'];
+                DB::table('receipt_details')->insert([
+                    'receipt_id' => $order_id['id'],
+                    'product_detail_id' => $cartItem['product_detail_id'],
+                    'quantity' => $cartItem['product_quantity'],
+                    'price' => $cartItem['price'],
+                ]);
+            }
+            Receipt::where('id', $order_id['id'])->update([
                 'total_price' => $total_price,
-                'order_at' => 'Website',
-                'customer_id' => $customer_id,
-                'note' => $note
             ]);
-        foreach ($currentCart as $cartItemKey => $cartItem){
-            $total_price += $cartItem['product_quantity'] * $cartItem['price'];
-            DB::table('receipt_details')->insert([
-                'receipt_id' => $order_id['id'],
-                'product_detail_id' => $cartItem['product_detail_id'],
-                'quantity' => $cartItem['product_quantity'],
-                'price' => $cartItem['price'],
-            ]);
+            Session::forget('cart');
+            flash()->addSuccess('Đặt hàng thành công');
+            flash()->addSuccess('Đơn hàng của bạn sẽ được xác nhận trong thời gian sớm nhất');
+            return redirect()->route('client.home');
+        }else{
+            flash()->addError('Đặt hàng thất bại');
+            return redirect()->route('client.home');
         }
-        Receipt::where('id', $order_id['id'])->update([
-            'total_price' => $total_price,
-        ]);
-        Session::forget('cart');
-        flash()->addSuccess('Đặt hàng thành công');
-        flash()->addSuccess('Đơn hàng của bạn sẽ được xác nhận trong thời gian sớm nhất');
-        return redirect()->route('client.home');
+
+
     }
     public function paymentVnPay(Request $request){
         Session::put('data', $request->all());

@@ -25,7 +25,7 @@ class UpdateCustomerRequest extends FormRequest
         return [
             'customer_name' => 'required',
             'email' => 'required|email|unique:customers,email,'.$customer->id,
-            'customer_phone' => 'required|numeric',
+            'customer_phone' => 'required|numeric|unique:customers,customer_phone,'.$customer->id,
             'customer_address' => 'required',
         ];
     }
@@ -40,6 +40,7 @@ class UpdateCustomerRequest extends FormRequest
             'customer_phone.required' => 'Số điện thoại không được để trống',
             'customer_phone.numeric' => 'Số điện thoại không đúng định dạng',
             'customer_address.required' => 'Địa chỉ không được để trống',
+            'customer_phone.unique' => 'Số điện thoại đã tồn tại',
         ];
     }
 }
